@@ -13,7 +13,6 @@
         --text: rgba(255, 255, 255, 0.92);
         --muted: rgba(255, 255, 255, 0.65);
 
-        /* GOLD PALETTE */
         --gold-a: rgb(255, 224, 155);
         --gold-b: rgb(209, 167, 84);
         --gold-c: rgb(125, 96, 40);
@@ -22,7 +21,6 @@
         --ok: rgba(46, 204, 113, 0.95);
         --bad: rgba(231, 76, 60, 0.95);
 
-        /* tamanho estável do logo */
         --logoW: 270px;
         --logoH: 135px;
       }
@@ -46,6 +44,12 @@
         min-height: 100vh;
       }
 
+      /* ===== Fade-in premium (igual vibe do reveal) ===== */
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(10px); filter: blur(1px); }
+      to   { opacity: 1; transform: translateY(0);  filter: blur(0); }
+    }
+
       .brand {
         display: flex;
         align-items: center;
@@ -56,7 +60,7 @@
       }
 
       h1 {
-        margin: 0px 0px 7px 0px;
+        margin: 40px 0px 0px 0px;
         font-size: clamp(26px, 3vw, 35px);
         letter-spacing: 3px;
         font-weight: 900;
@@ -113,6 +117,21 @@
         outline: outset 2px rgba(107, 102, 102, 0.9);
       }
 
+      .intro {
+        margin: 6px 0 10px;
+        color: var(--muted);
+        line-height: 1.55;
+        max-width: 90ch;
+      }
+
+      .helper {
+        margin: 0 0 14px;
+        color: rgba(255,255,255,.72);
+        line-height: 1.55;
+        font-size: 13.5px;
+      }
+      .helper b { color: rgba(255,255,255,.92); }
+
       .row {
         display: grid;
         grid-template-columns: 1fr;
@@ -151,6 +170,12 @@
         box-shadow: 0 0 0 3px rgba(209, 167, 84, 0.18);
       }
 
+      .btnStack{
+        display:flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
       button {
         width: 100%;
         padding: 12px 12px;
@@ -168,6 +193,19 @@
         background: rgba(46, 40, 18, 0.819);
         border: 2px outset rgba(221, 170, 68, 0.367);
         outline: outset 2px rgba(114, 98, 61, 0.476);
+      }
+
+      .ghost{
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.14);
+        outline: none;
+        text-shadow: none;
+        font-weight: 650;
+      }
+      .ghost:hover{
+        background: rgba(0,0,0,.22);
+        border-color: rgba(255,255,255,.18);
+        outline: none;
       }
 
       .result {
@@ -259,18 +297,20 @@
         <h1>Verificar Certificado</h1>
 
         <div class="brandMark" aria-label="VOLYNX Lab">
-          <img
-            src="/assets/oficial-volynx-logo.png"
-            alt="Logo VOLYNX"
-            width="300"
-            height="150"
-          />
+          <img src="/assets/oficial-volynx-logo.png" alt="Logo VOLYNX" width="300" height="150" />
           <p class="hint">.Lab</p>
           <p class="educ">Education</p>
         </div>
       </header>
 
       <main class="panel">
+        <p class="intro">
+          Esta página é <b>apenas para verificação</b> de certificados já emitidos.
+        </p>
+        <p class="helper">
+          Se você é aluno e quer <b>emitir seu certificado</b>, use a página <b>Submeter Projeto</b> (botão abaixo).
+        </p>
+
         <div class="row">
           <div>
             <label for="certId">Certificate ID</label>
@@ -280,9 +320,13 @@
               style="text-shadow: 0px 0px 10px rgb(255, 255, 255)"
             />
           </div>
+
           <div>
             <label>&nbsp;</label>
-            <button id="btnVerify">Verificar</button>
+            <div class="btnStack">
+              <button id="btnVerify">Verificar</button>
+              <button class="ghost" id="goSubmit" type="button">Ir para Submeter Projeto</button>
+            </div>
           </div>
         </div>
 
@@ -399,6 +443,10 @@
           document.getElementById("details").innerHTML = "";
         }
       }
+
+      document.getElementById("goSubmit").addEventListener("click", () => {
+        window.location.href = "/submit";
+      });
 
       const initial = getIdFromUrl();
       document.getElementById("certId").value = initial;
