@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submeter Projeto — VOLYNX Lab</title>
+  <meta name="robots" content="noindex,nofollow" />
+
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --panel: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: rgba(255, 255, 255, 0.92);
+      --muted: rgba(255, 255, 255, 0.65);
+
+      --gold-a: rgb(255, 224, 155);
+      --gold-b: rgb(209, 167, 84);
+      --gold-c: rgb(125, 96, 40);
+
+      --accent: rgba(209, 167, 84, 0.95);
+      --ok: rgba(46, 204, 113, 0.95);
+      --bad: rgba(231, 76, 60, 0.95);
+
+      --logoW: 270px;
+      --logoH: 135px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(800px 500px at 20% 10%, rgba(214, 176, 101, 0.37), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(102, 72, 6, 0.16), transparent 55%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 60px 16px;
+      min-height: 100vh;
+    }
+
+    /* ===== Fade-in premium (igual vibe do reveal) ===== */
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(10px); filter: blur(1px); }
+      to   { opacity: 1; transform: translateY(0);  filter: blur(0); }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 40px 0px 0px 0px;
+      font-size: clamp(26px, 3vw, 35px);
+      letter-spacing: 3px;
+      font-weight: 900;
+    }
+
+    .brandMark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px inset rgba(174, 129, 39, 0.55);
+      background: rgba(206, 171, 89, 0.63);
+      padding: 15px 25px;
+      border-radius: 50px;
+      box-shadow: 0px 0px 17px 10px rgba(209, 167, 84, 0.55);
+      outline: inset 2px rgba(204, 177, 115, 0.98);
+    }
+
+    .brandMark img {
+      width: var(--logoW);
+      height: var(--logoH);
+      object-fit: fill;
+      display: block;
+      margin: -35px -20px -35px -51px;
+      filter: drop-shadow(0px 0px 2px rgb(2, 0, 5));
+    }
+
+    .hint {
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 35px;
+      letter-spacing: 2.3px;
+      margin: 0px -15px 3px -50px;
+      font-weight: 600;
+      text-shadow: 0px 0px 5px rgba(89, 68, 4, 0.91);
+      animation: labGlowPulse 2.2s cubic-bezier(.1,0,0.8,1) infinite;
+      will-change: filter, text-shadow, opacity;
+      animation-delay: .25s;
+    }
+
+    .educ {
+      color: rgba(255, 255, 255, 0.91);
+      font-size: 20px;
+      letter-spacing: 3px;
+      margin: 15px -5px -42px -110px;
+      font-weight: 600;
+      text-shadow: 0px 0px 10px rgb(237, 163, 11);
+    }
+
+    .panel {
+      border: 3px outset rgba(0, 0, 0, 0.52);
+      background: rgba(209, 167, 84, 0.10);
+      border-radius: 18px;
+      padding: 10px 30px 30px 30px;
+      backdrop-filter: blur(8px);
+      outline: outset 2px rgba(107, 102, 102, 0.9);
+    }
+
+    .intro {
+      margin: 6px 0 10px;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 92ch;
+    }
+
+    .helper {
+      margin: 0 0 14px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.55;
+      font-size: 13.5px;
+    }
+    .helper b { color: rgba(255,255,255,.92); }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 820px) {
+      .row {
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: end;
+        gap: 35px;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.91);
+      margin-bottom: 10px;
+      margin-left: 5px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 2px inset rgba(209, 167, 84, 0.28);
+      background: rgba(0, 0, 0, 0.20);
+      color: rgb(255, 255, 255);
+      outline: inset 1px rgba(255, 224, 155, 0.32);
+    }
+
+    input:focus {
+      border-color: rgba(255, 224, 155, 0.55);
+      box-shadow: 0 0 0 3px rgba(209, 167, 84, 0.18);
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    @media (min-width: 820px) {
+      .actions {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 2px outset rgba(209, 167, 84, 0.28);
+      background: rgba(0, 0, 0, 0.20);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 600;
+      outline: outset 1px rgba(255, 224, 155, 0.32);
+      text-shadow: 0px 0px 5px rgba(255, 224, 155, 0.30);
+    }
+
+    button:hover {
+      background: rgba(46, 40, 18, 0.819);
+      border: 2px outset rgba(221, 170, 68, 0.367);
+      outline: outset 2px rgba(114, 98, 61, 0.476);
+    }
+
+    .ghost {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      outline: none;
+      text-shadow: none;
+      font-weight: 650;
+    }
+    .ghost:hover{
+      background: rgba(0,0,0,.22);
+      border-color: rgba(255,255,255,.18);
+      outline: none;
+    }
+
+    .result {
+      margin-top: 16px;
+      display: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.22);
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .out {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.18);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12.5px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .status-ok .dot { background: var(--ok); }
+    .status-bad .dot { background: var(--bad); }
+
+    @keyframes labGlowPulse {
+      0%, 100% {
+        text-shadow:
+          0px 0px 4px rgba(255, 224, 155, 0.20),
+          0px 0px 10px rgba(209, 167, 84, 0.18),
+          0px 0px 18px rgba(140, 92, 18, 0.12);
+        filter: brightness(1);
+        opacity: 0.92;
+      }
+      50% {
+        text-shadow:
+          0px 0px 6px rgba(255, 224, 155, 0.42),
+          0px 0px 16px rgba(209, 167, 84, 0.38),
+          0px 0px 30px rgba(140, 92, 18, 0.22);
+        filter: brightness(1.12);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="brand">
+      <h1>Submeter Projeto</h1>
+
+      <div class="brandMark" aria-label="VOLYNX Lab">
+        <img src="/assets/oficial-volynx-logo.png" alt="Logo VOLYNX" width="300" height="150" />
+        <p class="hint">.Lab</p>
+        <p class="educ">Education</p>
+      </div>
+    </header>
+
+    <main class="panel">
+      <p class="intro">
+        Esta página é <b>apenas para submissão</b> do projeto final (aluno).
+      </p>
+      <p class="helper">
+        Se você só quer <b>verificar um certificado já emitido</b>, use a página <b>Verificar Certificado</b>.
+      </p>
+
+      <div class="row">
+        <div>
+          <label for="email">E-mail usado na compra (Hotmart)</label>
+          <input id="email" type="email" autocomplete="email" placeholder="seuemail@exemplo.com" />
+        </div>
+
+        <div>
+          <label for="repo">Repositório do projeto (GitHub)</label>
+          <input id="repo" type="url" placeholder="https://github.com/owner/repo" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="send">Validar e emitir certificado</button>
+        <button class="ghost" id="goVerify" type="button">Ir para Verificação</button>
+      </div>
+
+      <section id="result" class="result" aria-live="polite">
+        <div id="statusBadge" class="badge">
+          <span class="dot"></span>
+          <span id="statusText">—</span>
+        </div>
+        <div id="out" class="out" style="display:none"></div>
+      </section>
+    </main>
+  </div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const result = $("result");
+  const out = $("out");
+  const badge = $("statusBadge");
+  const statusText = $("statusText");
+
+  function setResultVisible(v){ result.style.display = v ? "block" : "none"; }
+  function setStatus(ok, text){
+    badge.classList.remove("status-ok","status-bad");
+    badge.classList.add(ok ? "status-ok" : "status-bad");
+    statusText.textContent = text;
+  }
+  function showOut(obj){
+    out.style.display = "block";
+    out.textContent = typeof obj === "string" ? obj : JSON.stringify(obj, null, 2);
+  }
+
+  $("goVerify").addEventListener("click", () => {
+    window.location.href = "/verify";
+  });
+
+  $("send").addEventListener("click", async () => {
+    const email = ($("email").value || "").trim();
+    const repoUrl = ($("repo").value || "").trim();
+
+    setResultVisible(true);
+
+    if(!email || !repoUrl){
+      setStatus(false, "Preencha e-mail e repositório.");
+      out.style.display = "none";
+      return;
+    }
+
+    setStatus(true, "Processando...");
+    showOut("Conectando na validação automática...");
+
+    try{
+      const res = await fetch("/.netlify/functions/submit-project", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ email, repoUrl })
+      });
+
+      const data = await res.json().catch(() => ({}));
+      showOut(data);
+
+      if(res.ok && data.ok && data.verifyUrl){
+        setStatus(true, "Aprovado. Redirecionando...");
+        setTimeout(() => { window.location.href = data.verifyUrl; }, 900);
+      } else {
+        setStatus(false, data?.error || "Não foi possível emitir o certificado.");
+      }
+    } catch(e){
+      setStatus(false, "Falha de conexão.");
+      showOut(String(e));
+    }
+  });
+</script>
+</body>
+</html>
