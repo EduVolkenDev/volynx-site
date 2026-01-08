@@ -6,35 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
     <title>VOLYNX — Building a Smarter Future</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="./assets/volynx-blue-aurora.webp" />
+
 
     <style>
-        /* =========================
-      FONT: Varino (pasta AO LADO do HTML)
-      ./assets-fonts/VarinoNormal-Regular.ttf  (nome original)
-      ou ./assets-fonts/Varino-Normal.ttf      (se você renomeou)
-    ========================= */
+      
         @font-face {
-            font-family: "Varino";
-            src:
-                url("./assets-fonts/VarinoNormal-Regular.ttf") format("truetype"),
-                url("./assets-fonts/Varino-Normal.ttf") format("truetype");
+            font-family: "Sora";
+            src: url("assets-fonts/Sora-Regular.ttf") format("truetype");
             font-weight: 400;
             font-style: normal;
             font-display: swap;
         }
 
         @font-face {
-            font-family: "Varino";
-            src:
-                url("./assets-fonts/VarinoNormal-Regular.ttf") format("truetype"),
-                url("./assets-fonts/Varino-Normal.ttf") format("truetype");
+            font-family: "Sora";
+            src: url("assets-fonts/Sora-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("assets-fonts/Sora-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("assets-fonts/Sora-ExtraBold.ttf") format("truetype");
             font-weight: 800;
             font-style: normal;
             font-display: swap;
         }
 
+        /* MANROPE (texto) — self-hosted */
+        @font-face {
+            font-family: "Manrope";
+            src: url("assets-fonts/Manrope-Light.ttf") format("truetype");
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("assets-fonts/Manrope-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("assets-fonts/Manrope-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("assets-fonts/Manrope-ExtraBold.ttf") format("truetype");
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+
         :root {
+            --sans: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            /* corpo */
+            --display: 'Sora', var(--sans);
+            /* destaques */
+
+
             --text-color: #c7c3ff;
             --glow-logo: #5d32df;
             --glow-ui: #ae93ff;
@@ -45,6 +94,14 @@
 
             /* mais “luxo”: fundo do hover com profundidade */
             --menu-hover-bg: rgb(33, 1, 59);
+
+            /* Fonte do menu separada do resto do site */
+            --nav-font: "Sora", "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+
+            /* “Lux” do botão no mobile */
+            --nav-mobile-btn-bg: rgba(10, 8, 24, 0.82);
+            --nav-mobile-btn-border: rgba(255, 255, 255, 0.18);
+            --nav-mobile-btn-glow: rgba(167, 139, 250, 0.28);
         }
 
         * {
@@ -61,7 +118,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Minimal e limpo (sem o “kill-switch” gigante) */
+        /* Minimal e limpo */
         a {
             text-decoration: none;
             color: inherit;
@@ -69,7 +126,28 @@
         }
 
         a:focus-visible {
+            outline: 2px solid rgba(0, 190, 196, 0.55);
+            outline-offset: 3px;
+        }
+
+        /* Focus premium (acessível + coerente com a identidade) */
+        .nav-links a:focus-visible {
             outline: none;
+            color: #fff;
+            filter: brightness(1.10);
+            box-shadow:
+                0 0 0 3px rgba(222, 225, 122, 0.75) inset,
+                0 0 0 2px rgba(0, 190, 196, 0.55),
+                0 0 22px rgba(167, 139, 250, 0.35);
+        }
+
+        .cta-button:focus-visible {
+            outline: none;
+            box-shadow:
+                0 0 0 3px rgba(222, 225, 122, 0.55) inset,
+                0 0 0 2px rgba(0, 190, 196, 0.45),
+                0 18px 38px rgba(0, 0, 0, 0.85),
+                0 0 20px rgba(48, 32, 120, 0.75);
         }
 
         body {
@@ -81,7 +159,7 @@
             justify-content: flex-start;
             align-items: center;
 
-            font-family: "Manrope", sans-serif;
+            font-family: var(--sans);
             user-select: none;
             color: var(--text-color);
             padding: 72px 24px 48px;
@@ -127,7 +205,7 @@
                 linear-gradient(180deg, rgba(7, 8, 20, .55), rgba(7, 8, 20, .72)),
                 radial-gradient(900px 650px at 20% 10%, rgba(167, 139, 250, .18), transparent 60%),
                 radial-gradient(900px 650px at 80% 20%, rgba(93, 50, 223, .16), transparent 62%),
-                url("assets/volynx-blue-aurora.png");
+                url("./assets/volynx-blue-aurora.webp");
 
             background-size: cover;
             background-position: center;
@@ -178,10 +256,8 @@
         }
 
         /* =========================
-  MENU (RESPONSIVO + LUXO)
-  Desktop: 3 colunas iguais, hover invade
-  Mobile: vira stack (3 linhas), sem quebrar/cortar
-========================= */
+      MENU (RESPONSIVO + LUXO)
+    ========================= */
 
         .top-nav {
             position: relative;
@@ -208,24 +284,33 @@
         .nav-panel {
             width: min(980px, 94vw);
             background: var(--menu-bg);
-            backdrop-filter: blur(1px) saturate(200%);
-            -webkit-backdrop-filter: blur(1px) saturate(200%);
-            border: 3px outset rgba(169, 255, 247, 0.76);
+            backdrop-filter: blur(4px) saturate(175%);
+            -webkit-backdrop-filter: blur(4px) saturate(175%);
+            border: 3px inset rgba(188, 139, 247, 0.82);
             position: relative;
             padding: 0;
             display: inline-flex;
             flex-direction: row;
             border-radius: var(--menu-radius);
-            box-shadow: 0 30px 130px rgba(185, 239, 245, 0.4), 0 150px 160px rgba(120, 68, 155, 0.56);
-            transition: box-shadow .3s ease-in-out;
 
+            /* “Spotlight” controlado: impacto sem gritaria constante */
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+                0 10px 28px rgba(0, 0, 0, 0.55),
+                0 0 16px rgba(4, 229, 255, 0.28),
+                0 0 44px rgba(120, 68, 155, 0.38);
+
+            transition: box-shadow .35s cubic-bezier(.2, .8, .2, 1);
             overflow: visible;
-            /* desktop hover pode “sair” */
             isolation: isolate;
         }
 
         .nav-panel:hover {
-            box-shadow: 0 3px 45px rgb(154, 9, 217), 0 7px 30px rgba(0, 190, 196, 0.949);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                0 14px 44px rgba(0, 0, 0, 0.58),
+                0 0 22px rgba(0, 190, 196, 0.48),
+                0 0 62px rgba(154, 9, 217, 0.52);
         }
 
         .nav-panel::before {
@@ -239,7 +324,7 @@
             z-index: 0;
         }
 
-        /* Divisórias DESKTOP (verticais, fixas, não deformam) */
+        /* Divisórias DESKTOP (verticais) */
         .nav-panel::after {
             content: "";
             position: absolute;
@@ -261,13 +346,11 @@
             opacity: .95;
         }
 
-        /* Sheen clipado só nele */
         .menu-sheen {
             position: absolute;
             inset: 0;
             border-radius: inherit;
             overflow: hidden;
-            /* clip do sheen */
             pointer-events: none;
             z-index: 1;
         }
@@ -326,6 +409,7 @@
             gap: 0;
         }
 
+        /* ===== MENU LINKS (desktop + base) ===== */
         .nav-links a {
             flex: 1 1 0;
             min-width: 0;
@@ -334,57 +418,59 @@
             justify-content: center;
             padding: 34px 12px;
             text-align: center;
-
             color: rgba(232, 236, 241, .88);
             font-weight: 800;
-            letter-spacing: 0.16em;
-            font-size: 14px;
-            line-height: 1.1;
-
+            letter-spacing: 0.09em;
+            font-size: 16px;
+            line-height: 2;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-
             position: relative;
             transform-origin: center;
             will-change: transform, filter;
             transition:
-                transform .26s cubic-bezier(.22, .61, .36, 1),
-                color .45s ease,
-                filter .45s ease;
-
+                transform .34s cubic-bezier(.22, .51, .46, 1),
+                color .15s ease,
+                filter .15s ease,
+                box-shadow .2s ease;
             border-radius: 20px;
-            font-family: "Varino", "Manrope", sans-serif;
+            font-family: var(--nav-font);
         }
 
-        /* fundo do hover que invade */
+        /* Chevron só no mobile (desktop fica limpo) */
+        .nav-chev {
+            display: none;
+        }
+
+        /* fundo do hover que invade (desktop) */
         .nav-links a::before {
             content: "";
             position: absolute;
-            top: -16px;
-            bottom: -16px;
-            left: -38%;
-            right: -38%;
-            border-radius: 18px;
+            top: -10px;
+            bottom: -10px;
+            left: -22%;
+            right: -22%;
+            border-radius: 16px;
             background: var(--menu-hover-bg);
             box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.75),
-                0 0 22px rgba(167, 139, 250, 0.35);
+                0 12px 26px rgba(0, 0, 0, 0.68),
+                0 0 18px rgba(167, 139, 250, 0.30);
             opacity: 0;
-            transform: scale(0.96);
-            transition: opacity .22s ease, transform .22s ease;
+            transform: scale(0.975);
+            transition: opacity .18s ease, transform .18s ease;
             z-index: -1;
             pointer-events: none;
         }
 
         .nav-links a:hover {
             color: #fff;
-            transform: scaleX(1.30) scaleY(1.45);
-            filter: brightness(1.22);
+            transform: translateY(-1px) scale(1.08);
+            filter: brightness(1.12);
             z-index: 10;
             box-shadow:
-                0 0 0 3px rgba(222, 225, 122, 0.85) inset,
-                0 0 24px rgba(222, 225, 122, 0.22);
+                0 0 0 3px rgba(222, 225, 122, 0.78) inset,
+                0 0 18px rgba(222, 225, 122, 0.18);
         }
 
         .nav-links a:hover::before {
@@ -392,17 +478,30 @@
             transform: scale(1);
         }
 
+
         /* =========================
-  MOBILE: vira stack (3 linhas)
-  - Sem corte
-  - Divisórias horizontais COM “risquinho” (não de canto a canto)
-  - Hover menos agressivo
-========================= */
+          MID BREAKPOINT (tablets / telas médias)
+          - mantém layout em 1 linha, mas evita corte de texto
+        ========================= */
+        @media (max-width: 980px) and (min-width: 769px) {
+            .nav-links a {
+                font-size: 14px;
+                letter-spacing: 0.06em;
+                padding: 26px 10px;
+                line-height: 1.25;
+                white-space: normal;
+                /* permite quebrar linha */
+            }
+        }
+
+        /* =========================
+      MOBILE: virar botões claros (resolve o “não parece botão”)
+    ========================= */
         @media (max-width: 768px) {
             .nav-panel {
                 width: min(980px, 94vw);
                 overflow: hidden;
-                /* no mobile, clip total evita “vazar” pra fora da tela */
+                /* garante que nada vaze na tela pequena */
             }
 
             /* Some com as divisórias verticais (desktop) */
@@ -412,69 +511,69 @@
 
             .nav-links {
                 flex-direction: column;
+                padding: 10px;
+                /* respiro interno no painel */
+                gap: 10px;
+                /* separa os “botões” */
+            }
+
+            /* Remove divisórias antigas */
+            .nav-links a+a {
+                border-top: none;
+            }
+
+            /* Desliga o “risquinho” antigo (se existir em versões anteriores) */
+            .nav-links a+a::after {
+                content: none;
             }
 
             .nav-links a {
                 width: 100%;
-                padding: 14px 12px;
-                font-size: 13px;
-                letter-spacing: 0.10em;
+                padding: 14px 14px;
+                border-radius: 14px;
+
+                /* VISUAL DE BOTÃO (sempre visível, não só no hover) */
+                background: var(--nav-mobile-btn-bg);
+                border: 1px solid var(--nav-mobile-btn-border);
+                box-shadow:
+                    0 10px 22px rgba(0, 0, 0, 0.55),
+                    0 0 18px var(--nav-mobile-btn-glow);
+
+                /* Tipografia mais “clean-lux” no mobile */
+                letter-spacing: 0.08em;
+
+                /* layout de CTA com chevron */
+                justify-content: space-between;
+                text-align: left;
+
                 white-space: normal;
-                /* permite quebrar linha */
                 text-overflow: clip;
                 overflow: visible;
-
-                /* ✅ necessário pro “risquinho” (pseudo-elemento) se posicionar no botão */
-                position: relative;
             }
 
-            /* ✅ REMOVIDO: border-top que ia de ponta a ponta (linha feia no mobile) */
-            .nav-links a+a {
-                border-top: 0;
-                box-shadow: none;
-            }
-
-            /* ✅ NOVO: “risquinho” centralizado (só no mobile)
-               - aparece apenas a partir do segundo item (a + a)
-               - fica no topo do botão, parecendo a divisória entre itens
-               - não encosta nos cantos (igual vibe do desktop)
-            */
-            .nav-links a+a::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%);
-
-                width: 62%;
-                /* ajuste: tamanho do risquinho */
-                height: 1px;
-                /* ajuste: espessura */
-                border-radius: 999px;
-
-                /* luxo: degrade + leve glow */
-                background: linear-gradient(90deg,
-                        transparent,
-                        rgba(222, 225, 122, .26),
-                        rgba(255, 255, 255, .18),
-                        rgba(222, 225, 122, .22),
-                        transparent);
-                box-shadow: 0 0 10px rgba(167, 139, 250, .14);
-
-                pointer-events: none;
-                opacity: .95;
-            }
-
-            /* Hover controlado no mobile */
-            .nav-links a:hover {
-                transform: scale(1.06);
-            }
-
+            /* No mobile, não precisa do fundo “invasivo” do hover */
             .nav-links a::before {
-                left: -6%;
-                right: -6%;
-                top: -10px;
-                bottom: -10px;
+                content: none;
+            }
+
+            /* Hover controlado no mobile (feedback sem show de circo) */
+            .nav-links a:hover {
+                transform: translateY(-1px) scale(1.02);
+                filter: brightness(1.08);
+                box-shadow:
+                    0 12px 24px rgba(0, 0, 0, 0.6),
+                    0 0 22px rgba(167, 139, 250, 0.36);
+            }
+
+            .nav-chev {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 22px;
+                line-height: 1;
+                opacity: .9;
+                transform: translateY(-1px);
+                text-shadow: 0 0 10px rgba(167, 139, 250, .25);
             }
         }
 
@@ -485,20 +584,18 @@
             }
 
             .nav-links a {
-                font-size: 12.5px;
-                letter-spacing: 0.08em;
-                padding: 12px 10px;
+                font-size: 14px;
+                letter-spacing: 0.06em;
+                padding: 10px 15px;
+                border-bottom: 2px inset #4f898491;
+                border-right: 2px inset #4f898491;
+                align-items: self-end;
+                text-shadow: 0px 0px 5px #6000eb;
             }
+        }
 
-            .nav-links a:hover {
-                transform: scale(1.045);
-            }
-
-            /* ✅ refinamento do risquinho no mobile bem pequeno */
-            .nav-links a+a::after {
-                width: 58%;
-                opacity: .9;
-            }
+        .nav-chev {
+            font-size: 20px;
         }
 
         /* ====== TOPO (OLHO/LOGO/SLOGAN) ====== */
@@ -634,6 +731,7 @@
             animation-delay: 1.4s;
             margin-top: -30px;
             letter-spacing: 7px;
+            font-family: "Sora"
         }
 
         /* ===== CTA (BOTÕES) ===== */
@@ -650,18 +748,21 @@
             font-size: 1.2rem;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: #000;
+            color: #ffffff;
             margin-bottom: 8px;
-            text-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 4px rgba(255, 255, 255, 1);
+            text-shadow: 0px 0px 5px rgb(54, 246, 230);
+            font-family: "Sora";
         }
 
         .cta-subtitle {
             font-weight: 300;
-            font-size: 1.09rem;
-            color: rgba(249, 232, 255, 0.9);
-            max-width: 540px;
-            margin: 20px auto 55px;
-            text-shadow: 0px 2px 4px rgb(255, 255, 255), 0px 2px 3px rgb(141, 239, 255);
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 520px;
+            margin: 25px auto 35px;
+            text-shadow: 0px 0px 1px rgb(255, 255, 255), 0px 3px 1px rgb(0, 0, 0);
+            font-family: "Sora";
+            text-align: center;
         }
 
         .cta-buttons {
@@ -672,7 +773,7 @@
         }
 
         .cta-button {
-            font-family: "Manrope", sans-serif;
+            font-family: "Sora", "Manrope", sans-serif;
             font-weight: 700;
             font-size: 0.9rem;
             padding: 13px 30px;
@@ -716,9 +817,10 @@
         .cta-button.primary {
             background:
                 radial-gradient(9% 100% at 50% 50%, rgba(245, 231, 145, 0.6) 20%, rgba(210, 202, 54, 0.5) 120%, rgba(223, 221, 121, 0.9) 250%, rgba(201, 196, 111, 0.69) 392%);
-            border-color: rgba(248, 244, 255, 0.9);
             color: #ffffff;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95), 0 0 30px rgba(167, 139, 250, 0.85);
+            border: 3px outset rgb(220, 218, 218);
+            font-family: "Sora";
         }
 
         .cta-button.secondary {
@@ -726,6 +828,7 @@
                     rgba(208, 208, 201, 0.9) 250%, rgba(152, 152, 150, 0.69) 392%);
             border: 3px outset rgb(220, 218, 218);
             color: #ffffff;
+            font-family: "Sora";
         }
 
         .cta-button:hover {
@@ -754,18 +857,21 @@
         }
 
         .future-products h2 {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             margin-bottom: 10px;
-            color: var(--glow-ui);
-            text-shadow: 0px 0px 2px;
+            color: #36d1d9;
+            text-shadow: 1px 1px 1px white, 0px 5px 5px black;
             margin-top: 70px;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            font-family: "Sora";
+            font-weight: 200;
         }
 
         .future-products p {
-            font-size: 0.98rem;
+            font-size: 1.2rem;
             margin-bottom: 22px;
             color: rgba(223, 219, 255, 0.9);
+            font-family: "Manrope";
         }
 
         .products-grid {
@@ -794,30 +900,34 @@
         }
 
         .product-card h3 {
-            font-size: 1.08rem;
-            margin: 0 0 6px 0;
-            color: #f9f5ff;
+            font-size: 19px;
+            margin: 0px 0px 6px;
+            color: #eec8ff;
+            font-family: "Sora";
+            letter-spacing: 0.5px;
         }
 
         .product-chip {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 3px 9px;
+            padding: 5px 13px 3px 15px;
             border-radius: 999px;
-            font-size: 0.7rem;
+            font-size: 0.9rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            background: rgba(15, 23, 42, 0.9);
-            color: #c7d2fe;
-            border: 1px solid rgba(167, 139, 250, 0.6);
+            background: rgba(4, 6, 13, 0.61);
+            color: #cda2ff;
+            border: 2px inset rgb(160, 252, 252);
             margin-bottom: 8px;
+            font-family: "Sora";
         }
 
         .product-card p {
-            font-size: 0.92rem;
-            color: #e5d6ff;
-            margin: 0;
+            font-size: 19px;
+            color: #a9f7ff;
+            margin: 0px;
+            font-weight: 300;
         }
 
         /* ===== Responsividade do topo e cards ===== */
@@ -873,7 +983,9 @@
             }
 
             .shell {
-                gap: 8px;
+                gap: 0px;
+                margin: -15px 0px;
+
             }
 
             .eye-container {
@@ -892,15 +1004,85 @@
             }
 
             .slogan {
-                font-size: 1.32rem;
-                margin-top: 12px;
-                letter-spacing: 3px;
+                font-size: 1.24rem;
+                margin-top: -50px;
+                letter-spacing: 1px;
+                margin-bottom: 60px;
+                border-bottom: 1px outset #5f9090d9;
+                padding: 0px 0px 55px;
             }
 
             .cta-button {
                 min-width: 100%;
-                font-size: 0.98rem;
+                font-size: 0.8rem;
                 padding: 12px 22px;
+            }
+
+            .future-products h2 {
+                font-size: 1.4rem;
+            }
+        }
+
+
+        /* =========================
+           PERF PATCH — Volynx Main
+           Mantém a identidade, reduz custo de repaints no mobile
+        ========================= */
+
+        /* Mobile/coarse pointer: remove filtros caros em camadas fixas e blur de backdrop */
+        @media (max-width: 768px),
+        (hover: none) and (pointer: coarse) {
+            :root {
+                /* Sem blur: aumenta opacidade do menu para manter leitura e “lux” */
+                --menu-bg: rgba(3, 5, 11, 0.68);
+            }
+
+            .universe-bg::after {
+                /* Filter em elemento full-screen + fixed é um dos maiores vilões no mobile */
+                filter: none;
+                opacity: .90;
+
+                /* Mantém o “Volynx look”: aurora + grade de profundidade, sem os glows extras */
+                background:
+                    linear-gradient(180deg, rgba(7, 8, 20, .55), rgba(7, 8, 20, .76)),
+                    url("./assets/volynx-blue-aurora.webp");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            .universe-bg::before {
+                opacity: .78;
+            }
+
+            .nav-panel {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+
+                /* Sombra mais barata (menos layers) mantendo presença premium */
+                box-shadow:
+                    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+                    0 10px 22px rgba(0, 0, 0, 0.62),
+                    0 0 18px rgba(167, 139, 250, 0.26);
+            }
+
+            /* Touch devices: hover não é UX, é custo. */
+            .brand-logo-img:hover {
+                transform: none;
+                filter: drop-shadow(0 0 2px rgba(109, 18, 236, 0.67)) drop-shadow(0 0 5px rgba(6, 249, 249, 0.59)) drop-shadow(0 0 10px #7606fd);
+            }
+        }
+
+        /* Acessibilidade + performance */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
@@ -913,9 +1095,11 @@
         <div class="nav-panel">
             <span class="menu-sheen"></span>
             <nav class="nav-links" aria-label="Navegação principal">
-                <a href="#sites">Volynx.Lab</a>
-                <a href="#products">Products & Services</a>
-                <a href="#devjourney">Courses and Programs</a>
+                <a href="#sites"><span>Volynx.Lab</span><span class="nav-chev" aria-hidden="true">›</span></a>
+                <a href="#products"><span>Products & Services</span><span class="nav-chev"
+                        aria-hidden="true">›</span></a>
+                <a href="#devjourney"><span>Courses and Programs</span><span class="nav-chev"
+                        aria-hidden="true">›</span></a>
             </nav>
         </div>
     </header>
@@ -933,7 +1117,7 @@
         <div class="slogan">Building a Smarter Future.</div>
 
         <div class="cta-section">
-            <div class="cta-title">Enter the VOLYNX Lab</div>
+            <div class="cta-title">ACCESS THE VOLYNX LAB</div>
             <div class="cta-subtitle">
                 Explore technology, social impact, and many possible futures in a unique environment.
             </div>
@@ -945,24 +1129,24 @@
 
         <div class="future-products" id="products">
             <h2>Innovative Products in Development</h2>
-            <p>Explore the future of sustainability and health with AI.</p>
+            <p>Contribute to the future of sustainability and health with AI.</p>
 
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-chip">IMPACT</div>
-                    <h3>🌱 Carbon Tracker</h3>
+                    <h3>Carbon Tracker</h3>
                     <p>Real-time tracking of personal and business carbon impact.</p>
                 </div>
 
                 <div class="product-card">
                     <div class="product-chip">SAFETY</div>
-                    <h3>🛡️ Safety Guardian</h3>
+                    <h3>Safety Guardian</h3>
                     <p>Smart tools to analyse, route and respond to critical abuse reports.</p>
                 </div>
 
                 <div class="product-card">
                     <div class="product-chip">HEALTH</div>
-                    <h3>🧬 Precision Health</h3>
+                    <h3>Precision Health</h3>
                     <p>AI tools for disease prevention and research, including HIV/AIDS and Cancer.</p>
                 </div>
             </div>
