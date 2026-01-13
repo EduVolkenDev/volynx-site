@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VOLYNX Lab • Converter</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <div class="bg"></div>
+
+    <header class="topbar">
+        <div class="topbar__inner">
+            <!--<div class="brand-icon"> 
+                <img src="assets/oficial-volynx-eye.png" alt="VOLYNX eye" class="volynx-eye-img" />
+                <span class="eye-sheen"></span>
+            </div>
+            --->
+            <a class="pill" href="../">Voltar</a>
+        </div>
+    </header>
+    <div class="brand-logo">
+        <img src="assets/oficial-volynx-logo.png" alt="VOLYNX Lab logo" class="brand-logo-img" />
+    </div>
+    <main class="wrap">
+        <section class="card">
+            <div class="card__head">
+                <h1>Converter</h1>
+            </div>
+
+            <div id="drop" class="drop">
+                <input id="file" type="file" accept="image/*" multiple />
+                <div class="drop__inner">
+                    <div class="drop__title">Arraste imagens aqui</div>
+                    <div class="drop__hint">ou clique para selecionar</div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <label class="field">
+                    <span>Formato</span>
+                    <select id="format">
+                        <option value="webp" selected>WebP (recomendado)</option>
+                        <option value="jpg">JPG</option>
+                        <option value="png">PNG</option>
+                        <option value="avif">AVIF (se suportado)</option>
+                    </select>
+                </label>
+
+                <label class="field">
+                    <span>Qualidade</span>
+                    <input id="quality" type="range" min="40" max="95" value="82" />
+                    <em id="qualityVal">82</em>
+                </label>
+
+                <label class="field">
+                    <span>Resize (largura máx)</span>
+                    <select id="maxw">
+                        <option value="0" selected>Original</option>
+                        <option value="3840">3840</option>
+                        <option value="2560">2560</option>
+                        <option value="1920">1920</option>
+                        <option value="1280">1280</option>
+                        <option value="1080">1080</option>
+                    </select>
+                </label>
+
+                <div class="actions">
+                    <button id="convert" class="btn">Converter</button>
+                    <button id="zip" class="btn btn--ghost" disabled>Baixar ZIP</button>
+                    <button id="clear" class="btn btn--ghost">Limpar</button>
+                </div>
+            </div>
+
+            <div class="listHead">
+                <div>Arquivos</div>
+                <div id="stats" class="stats"></div>
+            </div>
+
+            <ul id="list" class="list"></ul>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
