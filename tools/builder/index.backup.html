@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VOLYNX Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070A12;
+      --fg: #E7EEF7;
+      --mut: rgba(231, 238, 247, .7);
+      --line: rgba(231, 238, 247, .12);
+      --p: #7DD3FC;
+      --r: 22px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui;
+      color: var(--fg);
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(125, 211, 252, .16), transparent 60%),
+        radial-gradient(900px 500px at 80% 10%, rgba(99, 102, 241, .14), transparent 60%),
+        var(--bg);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px
+    }
+
+    .bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(7, 10, 18, .55);
+      backdrop-filter: blur(10px)
+    }
+
+    .mut {
+      color: var(--mut);
+      font-size: 12px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px
+    }
+
+    @media(max-width:900px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 16px;
+      background: rgba(231, 238, 247, .04)
+    }
+
+    input,
+    textarea,
+    button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(7, 10, 18, .65);
+      color: var(--fg);
+      outline: none
+    }
+
+    textarea {
+      min-height: 280px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px
+    }
+
+    @media(max-width:520px) {
+      .row {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .btn {
+      cursor: pointer;
+      font-weight: 700
+    }
+
+    .btnP {
+      background: linear-gradient(135deg, rgba(125, 211, 252, .30), rgba(99, 102, 241, .20));
+      border-color: rgba(125, 211, 252, .28)
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(231, 238, 247, .03)
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--p);
+      box-shadow: 0 0 0 6px rgba(125, 211, 252, .10)
+    }
+
+    .list button {
+      margin-top: 8px;
+      text-align: left
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace
+    }
+
+    a {
+      color: inherit
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="bar">
+      <div>
+        <b>VOLYNX Builder</b>
+        <span class="mut">• clean tech minimal MVP</span>
+      </div>
+      <div class="pill"><span class="dot"></span><span class="mut" id="who">offline</span></div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3 style="margin:0 0 10px">Login</h3>
+        <p class="mut" style="margin-top:0">Magic link (passwordless) via Supabase.</p>
+        <input id="email" placeholder="seu email" />
+        <button class="btn btnP" id="sendLink" style="margin-top:10px">Enviar link</button>
+        <p class="mut" id="authMsg" style="margin:10px 0 0"></p>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 10px">Criar projeto</h3>
+        <div class="row">
+          <input id="pname" placeholder="Nome (ex: Studio Aurora)" />
+          <input id="pslug" placeholder="Slug (ex: studio-aurora)" />
+        </div>
+        <div class="row" style="margin-top:10px">
+          <input id="ctaText" placeholder="CTA (ex: Agendar)" />
+          <input id="ctaHref" placeholder="Link CTA (ex: https://wa.me/...)" />
+        </div>
+        <button class="btn" id="create" style="margin-top:10px">Criar</button>
+        <p class="mut" style="margin:10px 0 0">Publicação futura: <code>https://slug.volynx.world</code></p>
+      </div>
+
+      <div class="card list">
+        <h3 style="margin:0 0 10px">Meus projetos</h3>
+        <div id="projects" class="mut">Faça login para listar.</div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 10px">Editor JSON</h3>
+        <p class="mut" style="margin-top:0">Edite e clique <b>Salvar</b>.</p>
+        <textarea id="json"></textarea>
+        <div class="row" style="margin-top:10px">
+          <button class="btn" id="save">Salvar</button>
+          <button class="btn" id="copy">Copiar</button>
+        </div>
+        <p class="mut" id="status" style="margin:10px 0 0"></p>
+        <p class="mut" id="link" style="margin:8px 0 0"></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+    // Supabase (Project Settings -> API)
+    const SUPABASE_URL = "https://yrqaonqflpspjszjkbbs.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlycWFvbnFmbHBzcGpzemprYmJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk0Njk3NzAsImV4cCI6MjA4NTA0NTc3MH0.88ksLpLxDj9bVZrGpNn3O-bSl-1A0VZk3PJRJjGP8fE";
+
+    const supa = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const $ = (id) => document.getElementById(id);
+
+    // Força o magic link sempre pro domínio fixo
+    const REDIRECT_TO = "https://volynx-builder.pages.dev";
+
+    let currentProject = null;
+
+    const setStatus = (t) => ($("status").textContent = t || "");
+    const slugify = (s) =>
+      (s || "")
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+    const rand4 = () => Math.random().toString(16).slice(2, 6);
+
+    const defaultJSON = (name, slug, ctaText, ctaHref) => ({
+      brand: { name, primary: "#7DD3FC", bg: "#070A12", fg: "#E7EEF7" },
+      content: {
+        headline: `${name} — clean tech minimal`,
+        sub: "Estrutura premium, rápida e pronta para converter.",
+        ctaText: ctaText || "Falar agora",
+        ctaHref: ctaHref || "#contato",
+        features: ["Layout minimal e elegante", "Performance e SEO-friendly", "Publicação em 1 clique"],
+        faq: [{ q: "Como funciona?", a: "Você edita, publica e pronto." }],
+      },
+    });
+
+    async function refreshUser() {
+      const { data } = await supa.auth.getUser();
+      const email = data?.user?.email || "offline";
+      $("who").textContent = email;
+      return data?.user || null;
+    }
+
+    async function listProjects() {
+      const user = await refreshUser();
+      if (!user) return;
+
+      const { data, error } = await supa
+        .from("projects")
+        .select("id,name,slug,site_json,created_at")
+        .order("created_at", { ascending: false });
+
+      if (error) return setStatus(error.message);
+
+      $("projects").innerHTML =
+        (data || [])
+          .map(
+            (p) => `
+              <button data-id="${p.id}">
+                <b>${p.name}</b> <span class="mut">(${p.slug})</span><br>
+                <span class="mut">draft</span>
+              </button>
+            `
+          )
+          .join("") || `<span class="mut">Nenhum projeto ainda.</span>`;
+
+      $("projects").querySelectorAll("button").forEach((btn) => {
+        btn.onclick = () => openProject((data || []).find((x) => x.id === btn.dataset.id));
+      });
+    }
+
+    function openProject(p) {
+      currentProject = p;
+      $("json").value = JSON.stringify(p.site_json || {}, null, 2);
+      $("link").innerHTML = `Slug: <code>${p.slug}</code>`;
+      setStatus("Projeto carregado.");
+    }
+
+    $("sendLink").onclick = async () => {
+      const email = $("email").value.trim();
+      if (!email) return;
+
+      const { error } = await supa.auth.signInWithOtp({
+        email,
+        options: { emailRedirectTo: REDIRECT_TO },
+      });
+
+      $("authMsg").textContent = error ? error.message : "Link enviado. Abra seu email e clique.";
+    };
+
+    $("create").onclick = async () => {
+      const user = await refreshUser();
+      if (!user) return setStatus("Faça login primeiro.");
+
+      const name = $("pname").value.trim() || "Novo Site";
+      const baseSlug = slugify($("pslug").value.trim() || name) || "site";
+      const slug = `${baseSlug}-${rand4()}`;
+
+      const ctaText = $("ctaText").value.trim();
+      const ctaHref = $("ctaHref").value.trim();
+
+      const site_json = defaultJSON(name, slug, ctaText, ctaHref);
+
+      const { data, error } = await supa
+        .from("projects")
+        .insert({ user_id: user.id, name, slug, site_json, status: "draft" })
+        .select("id,name,slug,site_json,created_at")
+        .single();
+
+      if (error) return setStatus(error.message);
+
+      setStatus("Projeto criado.");
+      await listProjects();
+      openProject(data);
+    };
+
+    $("save").onclick = async () => {
+      if (!currentProject) return setStatus("Selecione um projeto.");
+
+      let parsed;
+      try {
+        parsed = JSON.parse($("json").value);
+      } catch {
+        return setStatus("JSON inválido.");
+      }
+
+      const { error } = await supa.from("projects").update({ site_json: parsed }).eq("id", currentProject.id);
+      if (error) return setStatus(error.message);
+
+      setStatus("Salvo.");
+      await listProjects();
+    };
+
+    $("copy").onclick = async () => {
+      try {
+        await navigator.clipboard.writeText($("json").value);
+        setStatus("Copiado.");
+      } catch {
+        setStatus("Não consegui copiar (permissão do navegador).");
+      }
+    };
+
+    // init
+    await refreshUser();
+    await listProjects();
+
+    // (opcional) limpa o hash de token da URL depois do login
+    if (window.location.hash.includes("access_token")) {
+      history.replaceState(null, "", window.location.pathname);
+    }
+  </script>

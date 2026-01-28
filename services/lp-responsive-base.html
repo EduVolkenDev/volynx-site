@@ -1,0 +1,199 @@
+/* =========================================================
+RESPONSIVE BASE — MOBILE FIRST (SAFE MODE)
+========================================================= */
+
+/* Evita QUALQUER scroll horizontal invisível */
+<style>
+    html,
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    /* Segurança universal contra estouro de grid/flex */
+    *,
+    *::before,
+    *::after {
+        min-width: 0;
+    }
+
+    /* -------------------------
+HERO — mobile limpo
+-------------------------- */
+
+    .hero {
+        margin-top: 0;
+        padding-top: 16px;
+    }
+
+    .hero-copy {
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    .hero-logo {
+        margin-inline: auto;
+    }
+
+    .hero-logo img {
+        scale: 1;
+        max-width: 100%;
+    }
+
+    /* -------------------------
+HEADER / LOGO
+-------------------------- */
+
+    .brand-logo img {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* -------------------------
+CTA ROW (mobile)
+-------------------------- */
+
+    .cta-row {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        margin: 16px 0 0;
+    }
+
+    .cta-row .btn,
+    .cta-row .currency-select {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* -------------------------
+PLAN FEATURES — SEM MARGEM NEGATIVA
+-------------------------- */
+
+    .plan .features {
+        margin: 12px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+        letter-spacing: normal;
+    }
+
+    .plan .features li {
+        font-size: 14px;
+        align-items: flex-start;
+    }
+
+    /* -------------------------
+PLAN VISUAL
+-------------------------- */
+
+    .plan-visual {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .plan-visual-thumb {
+        height: 160px;
+    }
+
+    /* -------------------------
+BACKGROUND FIX (iOS SAFE)
+-------------------------- */
+
+    @media (max-width: 900px) {
+        body {
+            transform: none !important;
+        }
+
+        body::before,
+        body::after,
+        html::before {
+            background-attachment: scroll !important;
+        }
+    }
+
+    /* =========================================================
+DESKTOP ENHANCEMENTS (>= 900px)
+========================================================= */
+
+    @media (min-width: 900px) {
+
+        /* HERO premium */
+        .hero {
+            margin-top: -50px;
+        }
+
+        .hero-copy {
+            margin-bottom: -80px;
+            text-align: left;
+        }
+
+        .hero-logo img {
+            scale: 1.4;
+        }
+
+        /* CTA alinhada à direita */
+        .cta-row {
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        /* PLAN GRID PREMIUM */
+        .plan {
+            display: grid;
+            grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+            gap: 18px;
+        }
+
+        .plan-head {
+            border-right: 1px solid rgba(31, 41, 55, 0.9);
+            padding-right: 14px;
+        }
+
+        .plan-body {
+            padding-left: 6px;
+        }
+
+        /* FEATURES — efeito premium com margem negativa */
+        .plan .features {
+            padding: 5px 90px 0 14px;
+            margin: 14px -110px 7px -142px;
+            gap: 20px;
+        }
+
+        /* Thumb maior no desktop */
+        .plan-visual-thumb {
+            height: 150px;
+        }
+    }
+
+    /* =========================================================
+   EXTRA SMALL DEVICES (<= 480px)
+   ========================================================= */
+
+    @media (max-width: 480px) {
+
+        .hero h1 {
+            font-size: 26px;
+        }
+
+        .hero p {
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 22px;
+        }
+
+        .btn {
+            font-size: 12px;
+            padding: 10px 12px;
+        }
+
+        .plan-visual-thumb {
+            height: 140px;
+        }
+    }
+</style>

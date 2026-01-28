@@ -1,0 +1,3119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="#080610" name="theme-color" />
+  <title>Dev Journey • VOLYNX.Lab Education</title>
+  <meta
+    content="Dev Journey: trilha prática, sem vídeo, com projetos reais e checklists. Do zero ao primeiro projeto online — e pronto para portfólio."
+    name="description" />
+  <meta content="Dev Journey • VOLYNX.Lab Education" property="og:title" />
+  <meta
+    content="Trilha prática, sem vídeo, com projetos reais e checklists. Do zero ao primeiro projeto online — e pronto para portfólio."
+    property="og:description" />
+  <meta content="website" property="og:type" />
+  <meta content="index,follow" name="robots" />
+  <link rel="preload" as="image" href="./assets/stardust-galaxy.webp" />
+
+
+  <style>
+    @font-face {
+      font-family: "Sora";
+      src: url("./assets-fonts/Sora-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Sora";
+      src: url("./assets-fonts/Sora-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Sora";
+      src: url("./assets-fonts/Sora-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Manrope";
+      src: url("./assets-fonts/Sora-ExtraBold.ttf") format("truetype");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Sora";
+      src: url("./assets-fonts/Manrope-ExtraBold.ttf") format("truetype");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Manrope";
+      src: url("./assets-fonts/Manrope-Medium.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Manrope";
+      src: url("./assets-fonts/Manrope-Light.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Manrope";
+      src: url("./assets-fonts/Manrope-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --base: clamp(16px, 1.05vw, 18px);
+      --sm: clamp(14.5px, .98vw, 16px);
+      --xs: clamp(13.5px, .92vw, 14.5px);
+      --xxs: clamp(12.8px, .88vw, 13.5px);
+
+      --bg0: #080610;
+      --bg1: #0a0718;
+      --bg2: #0d0825;
+
+      --text: rgba(255, 255, 255, .92);
+      --muted: rgba(255, 255, 255, .70);
+      --muted2: rgba(255, 255, 255, .58);
+
+      --card: rgba(255, 255, 255, .055);
+      --card2: rgba(255, 255, 255, .04);
+
+      --stroke: rgba(255, 255, 255, .12);
+      --stroke2: rgba(255, 255, 255, .16);
+
+      --accent: #007aff;
+      --accent2: #ffb86b;
+
+      --shadow: 0 12px 28px rgba(0, 0, 0, .25);
+      --shadow2: 0 8px 20px rgba(0, 0, 0, .18);
+
+      --radius: 22px;
+      --radius2: 16px;
+
+      --max: 1120px;
+      --pad: clamp(18px, 3vw, 28px);
+
+      --h1: clamp(34px, 4.2vw, 56px);
+      --h2: clamp(22px, 2.4vw, 30px);
+      --h3: clamp(18px, 2.1vw, 22px);
+      --p: clamp(15px, 1.3vw, 17px);
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      --display: 'Sora', var(--sans);
+
+      --stagger: .14s;
+      --revealDur: .85s;
+
+      --navOffset: 92px;
+      /* offset do menu fixo (fallback) */
+    }
+
+
+    html {
+      scroll-padding-top: var(--navOffset);
+      scroll-behavior: smooth;
+    }
+
+    /* Para qualquer âncora (#id) não ficar escondida sob o header sticky */
+    section[id],
+    [id] {
+      scroll-margin-top: var(--navOffset);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg0);
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: var(--sans);
+      min-height: 100vh;
+      width: 100%;
+      overflow-x: hidden;
+      position: relative;
+      isolation: isolate;
+      -webkit-text-size-adjust: none;
+      font-size: var(--base);
+      letter-spacing: .01em;
+      background: none;
+    }
+
+    /* IMAGEM (camada 1) */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("./assets/stardust-galaxy.webp") center / cover no-repeat;
+      transform: translateZ(0);
+      z-index: 0;
+      opacity: .45;
+    }
+
+    /* OVERLAYS / AURORA (camada 2) */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(1200px 900px at 15% 10%, rgba(0, 122, 255, .10), transparent 58%),
+        radial-gradient(900px 700px at 85% 20%, rgba(255, 184, 107, .08), transparent 62%),
+        radial-gradient(1200px 900px at 50% 120%, rgba(255, 255, 255, .04), transparent 62%),
+        linear-gradient(180deg,
+          rgba(8, 6, 16, .72) 0%,
+          rgba(10, 7, 24, .70) 38%,
+          rgba(13, 8, 37, .78) 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* iOS/Safari: evita bug de "fixed" em background pesado */
+    @media (max-width: 980px) {
+
+      body::before,
+      body::after {
+        position: fixed;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    /* =========================
+     Reveal (fail-safe)
+     - SEM JS: tudo visível (evita tela preta)
+     - COM JS: anima
+     ========================= */
+    @keyframes revealFade {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .js .reveal.is-visible {
+      animation: revealFade var(--revealDur) cubic-bezier(.2, .8, .2, 1) both;
+      animation-delay: min(calc(var(--d, 0) * var(--stagger)), .25s);
+      background: #0000;
+    }
+
+    @media (min-width: 981px) {
+      @keyframes revealFadeDesktop {
+        0% {
+          opacity: 0;
+          transform: translateY(14px);
+          filter: blur(2px);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+
+      .js .reveal {
+        filter: blur(5px);
+      }
+
+      .js .reveal.is-visible {
+        animation-name: revealFadeDesktop;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .reveal,
+      .js .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+
+      .js .reveal.is-visible {
+        animation: none !important;
+      }
+    }
+
+    /* Accessibility */
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 10px;
+      background: rgba(10, 10, 16, .92);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+      z-index: 9999;
+    }
+
+    .skip:focus {
+      left: var(--pad);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid rgba(255, 184, 107, .75);
+      outline-offset: 3px;
+      border-radius: 14px;
+    }
+
+    /* Header */
+
+    header {
+
+      position: relative;
+
+      top: 0;
+
+      z-index: 50;
+
+      backdrop-filter: blur(18px);
+
+      -webkit-backdrop-filter: blur(18px);
+
+      background: linear-gradient(180deg, rgba(8, 6, 16, .70), rgba(8, 6, 16, .35));
+
+      border-bottom: 1px solid var(--stroke);
+
+      overflow: visible;
+      /* Permite que elementos não sejam cortados */
+
+    }
+
+
+    /* Desktop: GRID (anti-overlap garantido) */
+
+    .topbar {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas:
+        "brand nav cta";
+      align-items: center;
+      gap: 20px;
+      padding: 0px 0;
+      width: 100%;
+      justify-items: center;
+      margin-bottom: -10px;
+      margin-top: -10px;
+      align-content: initial;
+    }
+
+
+    /* Brand */
+
+    .brand {
+      grid-area: brand;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 0 0 auto;
+      padding: 0px 0;
+      left: 0px;
+      margin-left: -50px;
+    }
+
+
+    /* Eye decorativo (não empurra layout) */
+
+    .brandEye {
+
+      position: absolute;
+
+      left: -42px;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      height: 54px;
+
+      z-index: 1;
+
+      opacity: .35;
+
+      pointer-events: none;
+
+      filter: drop-shadow(0px 0px 7px rgb(192, 100, 255));
+
+    }
+
+
+    /* “Scale” só na imagem (evita transform duplicado/conflitante) */
+
+    .brandEye img {
+
+      width: 120px;
+
+      height: auto;
+
+      object-fit: contain;
+
+      max-width: none;
+
+      display: block;
+
+      transform: scale(.62);
+
+      transform-origin: left center;
+
+      filter: drop-shadow(0 0 12px rgba(0, 122, 255, .10));
+
+    }
+
+
+    .brandLogo {
+      width: 260px;
+      height: 130px;
+      object-fit: contain;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 0 5px rgba(82, 197, 224, 0.75));
+      top: -5px;
+    }
+
+    .brand .txt {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.0;
+      font-family: var(--display);
+      right: 70px;
+      top: 7px;
+    }
+
+
+    .brand .txt strong {
+      font-size: var(--sm);
+      letter-spacing: 2.1px;
+      text-transform: uppercase;
+      margin: 4px 0 4px 0;
+      text-shadow: 0px 0px 10px rgba(0, 122, 255, .30);
+
+    }
+
+
+    .brand .txt span {
+
+      color: rgba(255, 255, 255, .86);
+
+      text-shadow: 0px 0px 1px rgba(0, 122, 255, .20);
+
+      font-size: 13px;
+
+      letter-spacing: 2.2px;
+
+      display: inline-block;
+
+      transform: translateX(-12px);
+
+    }
+
+
+    /* Nav */
+
+    nav {
+
+      grid-area: nav;
+
+      display: flex;
+
+      gap: 2px;
+
+      align-items: center;
+
+      justify-content: center;
+
+      min-width: 0;
+
+      /* Removi overflow: hidden para não cortar */
+
+    }
+
+    nav a {
+      flex: 0 0 auto;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.86);
+      padding: 12px 13px 10px 10px;
+      border-radius: 12px;
+      transition: 180ms ease;
+      font-family: var(--display);
+      box-shadow: 0 0px 5px inset rgba(255, 214, 214, 0.63);
+      background: #403c3c45;
+      right: 10%;
+      position: relative;
+
+    }
+
+
+    nav a:hover {
+      background: rgba(132, 122, 122, 0.701);
+      box-shadow: 0 0 20px rgba(7, 18, 30, 0.69);
+      scale: 1.1;
+    }
+
+
+    /* CTA */
+
+    .ctaRow {
+      grid-area: cta;
+      gap: 5px;
+      align-items: center;
+      font-family: var(--display);
+      letter-spacing: -0.2px;
+      display: grid;
+      grid-template-areas: inherit;
+      position: relative;
+      left: 5px;
+    }
+
+
+    /* Botões (consolidado) */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      border-radius: 12px;
+      background: linear-gradient(31deg, rgb(33, 73, 228), transparent 40%, rgb(166, 28, 215, 0.72), transparent 120%);
+      color: white;
+      transition: 180ms ease;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      font-size: 12px;
+      padding: 10px 0px;
+      text-shadow: 0 0 3px white;
+      width: 105px;
+    }
+
+
+    .btn:hover {
+      box-shadow: 0 0 20px rgba(7, 18, 30, 0.69);
+      scale: 0.9;
+      background: #f0f8ff3d;
+    }
+
+
+    .btn.primary {
+
+      background: linear-gradient(31deg, rgb(33, 73, 228), transparent 40%, rgb(166, 28, 215, 0.72), transparent 120%);
+      border-color: rgba(0, 122, 255, .22);
+      box-shadow: 0 0 0 1px rgba(0, 122, 255, .08), var(--shadow2);
+
+    }
+
+
+    .btn.primary:hover {
+      box-shadow: 0 0 20px rgba(7, 18, 30, 0.69);
+      scale: 0.9;
+      background: #f0f8ff3d;
+    }
+
+    .btn.home {
+      background: linear-gradient(31deg, rgb(33, 73, 228), transparent 40%, rgb(166, 28, 215, 0.72), transparent 120%);
+      border-color: rgba(0, 122, 255, .22);
+      box-shadow: 0 0 0 1px rgba(0, 122, 255, .08), var(--shadow2);
+    }
+
+    .btn.home:hover {
+      box-shadow: 0 0 20px rgba(7, 18, 30, 0.69);
+      scale: 0.9;
+      background: #f0f8ff3d;
+    }
+
+    .btn.ghost {
+
+      background: linear-gradient(215deg, #00ffff94, transparent 47%, #ffffff8c, transparent 177%);
+      box-shadow: none;
+
+    }
+
+
+    .btn.ghost:hover {
+
+      box-shadow: 0 0 20px rgba(7, 18, 30, 0.69);
+      scale: 0.9;
+      background: #f0f8ff3d;
+
+    }
+
+
+    button.btn {
+
+      -webkit-appearance: none;
+
+      appearance: none;
+
+    }
+
+
+    /* Mobile menu */
+
+    .menuBtn {
+
+      display: none;
+
+    }
+
+
+    .mobileMenu {
+
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0, 0, 0, .58);
+
+      backdrop-filter: blur(10px);
+
+      -webkit-backdrop-filter: blur(10px);
+
+      z-index: 80;
+
+      padding: 84px var(--pad) 20px;
+
+    }
+
+
+    .mobileMenuCard {
+
+      margin: 0 auto;
+
+      border-radius: 18px;
+
+      border: 1px solid rgba(255, 255, 255, .14);
+
+      background: rgba(10, 10, 16, .72);
+
+      box-shadow: var(--shadow);
+
+      padding: 10px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 6px;
+
+      max-width: min(420px, 100%);
+
+    }
+
+
+    .mobileMenuCard a {
+
+      padding: 12px 12px;
+
+      border-radius: 14px;
+
+      border: 1px solid rgba(255, 255, 255, .10);
+
+      background: rgba(255, 255, 255, .03);
+
+    }
+
+
+    .mobileMenuCard a:hover {
+
+      background: rgba(255, 255, 255, .05);
+
+      border-color: rgba(255, 255, 255, .16);
+
+    }
+
+    /* =========================================================
+     HERO
+     ========================================================= */
+    .hero {
+      padding: clamp(26px, 4.5vw, 54px) 0 26px;
+    }
+
+    .heroGrid {
+      display: grid;
+      grid-template-columns: 1.25fr .85fr;
+      gap: clamp(16px, 3vw, 28px);
+      align-items: stretch;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 20px;
+      border-radius: 30px;
+      border: 2px outset rgba(255, 255, 255, 0.91);
+      color: rgb(255, 255, 255);
+      font-size: 16px;
+      letter-spacing: 0.03em;
+      margin: 0px 0px 0;
+      background: radial-gradient(80% 220% at 50% 50%, rgba(0, 0, 0, 0.7), rgba(12, 172, 221, 0.49) 50%);
+      text-shadow: 0 0 2px white;
+    }
+
+    .kicker i {
+      width: 7px;
+      height: 7px;
+      border-radius: 20px;
+      background: #4f0;
+      box-shadow: 0 0 0 6px rgba(145, 249, 235, 0.24);
+    }
+
+    .hero h1 {
+      font-size: var(--h1);
+      line-height: 1.06;
+      margin: 15px 0 20px;
+      letter-spacing: .6px;
+      font-family: var(--display);
+    }
+
+    .lead {
+      font-size: var(--p);
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 18px;
+      max-width: 58ch;
+    }
+
+    /* CTAs do hero (usa a mesma .ctaRow, mas com comportamento correto) */
+    .hero .ctaRow {
+      margin-top: 10px;
+      white-space: normal;
+      letter-spacing: 1.1px;
+    }
+
+    /* Bullets */
+    .bullets {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 22px 0 0;
+    }
+
+    .bulletCard {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(5, 4, 4, 0.22);
+      box-shadow: 0 0px 10px inset white;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 184, 107, .85);
+      box-shadow: 0 0 0 6px rgba(255, 184, 107, .08);
+      margin-top: 5px;
+      flex: 0 0 auto;
+    }
+
+    .bulletCard b {
+      font-size: var(--sm);
+      letter-spacing: .3px;
+      font-family: var(--display);
+    }
+
+    .bulletCard span {
+      font-size: var(--xs);
+      color: var(--muted2);
+      line-height: 1.6;
+    }
+
+    /* Side panel */
+    .panel {
+      position: relative;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .06), rgba(255, 255, 255, .035));
+      box-shadow: var(--shadow);
+      padding: 20px;
+      overflow: hidden;
+      height: auto;
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: -140px -160px auto auto;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle at 35% 35%, rgba(114, 36, 224, 0.542), transparent 62%);
+      transform: rotate(18deg);
+      pointer-events: none;
+    }
+
+    .seal {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 62px;
+      height: 48px;
+      border-radius: 18px;
+      background: rgba(97, 186, 230, 0.36);
+      box-shadow: 0 0px 6px inset rgba(251, 249, 255, 0.94);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .seal img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 18px rgba(0, 0, 0, .55));
+    }
+
+    .panel h3 {
+      font-size: var(--h3);
+      margin: 4px 0 8px;
+      letter-spacing: -.01em;
+      font-family: var(--display);
+    }
+
+    .panel p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .stat {
+      padding: 15px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.35);
+      box-shadow: 0px 0 7px inset #00dbff, 0 0 10px white;
+      line-break: anywhere;
+      letter-spacing: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: var(--sm);
+      letter-spacing: -0.01em;
+      font-family: var(--display);
+    }
+
+    .stat span {
+      display: block;
+      font-size: var(--xxs);
+      color: var(--muted2);
+      line-height: 1.35;
+    }
+
+    .panel .mini {
+      margin-top: 12px;
+      padding-top: 31px;
+      border-top: 2px outset rgba(255, 255, 255, 0.2);
+      display: grid;
+      gap: clamp(10px, 1.7vw, 30px);
+    }
+
+    .tag {
+      padding: clamp(16px, 1.2vw, 14px) clamp(14px, 3.4vw, 34px);
+      box-shadow: -15px -15px 34px inset #5516c06e, 15px 15px 34px inset #12ccc482;
+      border-radius: 15px;
+      font-size: clamp(18px, 1.9vw, 28px);
+      margin: -2px;
+      display: flex;
+      font-family: var(--display);
+      font-weight: 800;
+      color: #eae9ece3;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      background: #fcfcfc54;
+      text-shadow: 0px 1px 9px #177cd5;
+      place-content: center;
+    }
+
+    .uptag {
+      width: 100px;
+      border-radius: 15px;
+      padding: 13px 13px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      place-self: end;
+      box-shadow: 0 0px 20px inset #7effff, 0 0 10px greenyellow;
+      background: #2ec2c285;
+      text-shadow: 0 0 5px #ffffff8f;
+      bottom: 6px;
+    }
+
+    .chipcur:hover {
+      border: 2px inset white;
+      background: radial-gradient(9% 100% at 50% 50%, rgba(255, 255, 255, 0.6) 20%, rgba(208, 208, 208, 0.6) 120%, rgba(195, 195, 195, 0.38) 250%, rgba(168, 168, 168, 0.87) 392%);
+      transition: transform 0.25s ease, background .22s ease, border-color .25s ease, box-shadow .28s ease;
+    }
+
+    /* =========================================================
+     BREAKPOINTS (header + hero)
+     ========================================================= */
+
+    /* Ajuste fino antes de “quebrar” linha */
+    @media (max-width: 1350px) {
+      nav a {
+        font-size: 15px;
+        padding: 12px 12px;
+      }
+
+      .btn {
+        padding: 10px 13px;
+      }
+
+      .brandLogo {
+        width: 140px;
+      }
+    }
+
+    /* Quando apertar: nav desce (sem atropelar CTA) */
+    @media (max-width: 1180px) and (min-width: 981px) {
+      .ctaRow {
+        margin-right: 0;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "brand cta"
+          "nav   nav";
+        row-gap: 12px;
+      }
+
+      nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      nav a {
+        font-size: 14px;
+        padding: 11px 11px;
+      }
+
+      .brandLogo {
+        width: 135px;
+      }
+    }
+
+    /* Pode esconder o CTA secundário quando ficar apertado */
+    @media (max-width: 1060px) and (min-width: 981px) {
+      .ctaRow .btn:not(.primary) {
+        display: none;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 980px) {
+      .ctaRow {
+        margin-right: 0;
+      }
+
+      header {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(8, 6, 16, .88) !important;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .sectiontitle h2 {
+        line-height: 1.5;
+      }
+
+      .brandEye {
+        display: none !important;
+      }
+
+      .menuBtn {
+        display: inline-flex;
+        justify-self: end;
+        min-height: 44px;
+      }
+
+
+      .topbar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 12px;
+        padding: 12px 0;
+        align-items: center;
+        grid-template-areas:
+          "brand menu"
+          "cta   cta";
+      }
+
+      .brand {
+        grid-area: brand;
+        width: 120px;
+        height: 60px;
+        scale: 1.7;
+        margin-bottom: 20px;
+        margin-right: 108px;
+        margin-top: 15px;
+        margin-left: -22px;
+      }
+
+      .brand .txt {
+        right: 32px;
+        top: 6.5px;
+        line-height: 1.0;
+      }
+
+      #menuBtn {
+        margin-right: -9px;
+        grid-area: brand-start;
+        box-shadow: 0 0 10px #e77575cf;
+        width: 159px;
+        height: 46px;
+      }
+
+      #homeBtn {
+        grid-area: inherit;
+        margin-right: -15px;
+        width: 60px;
+        box-shadow: 0 0 10px #e77575cf;
+
+      }
+
+      .ctaRow {
+        grid-area: cta;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        justify-content: stretch;
+        white-space: normal;
+      }
+
+      .ctaRow a {
+        width: 100%;
+        min-height: 44px;
+      }
+
+      .heroGrid {
+        grid-template-columns: 1fr;
+      }
+
+      .bullets {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Mini mobile */
+    @media (max-width: 560px) and (min-width: 481px) {
+      .brandLogo {
+        width: 108px;
+        margin: -8px 12px -8px -5px;
+        scale: 1.5;
+      }
+
+      .brand .txt strong {
+        letter-spacing: 2.4px;
+        margin-top: 10px;
+      }
+
+      .brand .txt span {
+        font-size: 12px;
+        letter-spacing: 2px;
+        transform: translateX(-10px);
+      }
+
+      .btn {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 20px 0 16px;
+
+      }
+
+      .kicker {
+        padding: 10px 10px;
+        font-size: 12px;
+      }
+
+      .lead {
+        max-width: 100%;
+      }
+
+      .bulletCard {
+        padding: 10px 10px;
+      }
+
+      .panel {
+        padding: 22px;
+        margin-bottom: 10px;
+      }
+
+      .sectionTitle h2 {
+        line-height: 1.5;
+        font-size: 13px;
+      }
+
+      .brand .txt {
+        right: 32px;
+        top: 2.8px;
+        line-height: 1;
+      }
+
+      @media (max-width: 360px) {
+        :root {
+          --pad: 12px;
+        }
+
+        .heroGrid {
+          gap: 16px;
+        }
+
+        .btn {
+          padding: 15px 12px;
+          font-size: 14px;
+        }
+
+        .foot small {
+          font-size: 12px;
+        }
+      }
+    }
+
+    /* Sections */
+    section {
+      padding: 26px 0;
+    }
+
+    .sectionTitle {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 40px 5px 0px;
+      flex-wrap: wrap;
+      border-top: 1px outset #dbdbdb3b;
+      padding-top: 45px;
+    }
+
+    .sectionTitle h2 {
+      font-size: var(--h2);
+      letter-spacing: 0.95px;
+      margin: 0px 1px;
+      line-height: 1.2;
+      /* era 0.5 (isso causava sobreposição) */
+      font-family: var(--display);
+      text-shadow: 0 0 3px #f5e7ff, 0 0 5px #00f6f6;
+    }
+
+    @media (max-width: 350px) {
+      .sectionTitle h2 {
+        line-height: 1.2;
+        /* !important não precisa se a ordem estiver certa */
+      }
+    }
+
+    .sectionTitle p {
+      margin: 10px 5px 0;
+      color: rgba(255, 255, 255, 0.87);
+      max-width: 78ch;
+      font-size: var(--sm);
+      line-height: 1.65;
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .card {
+      border-radius: var(--radius2);
+      background: rgba(255, 255, 255, 0.13);
+      padding: 16px;
+      box-shadow: 0 0px 7px inset rgb(181, 181, 181);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: .2px;
+      font-weight: 600;
+      font-family: var(--display);
+    }
+
+    .card p {
+      margin: 0px 10px;
+      color: white;
+      font-size: 15px;
+      line-height: 1.3;
+      padding: 0px 0px 3px 10px;
+      text-shadow: 0 0 16px black, 0 0 1px white;
+    }
+
+    /* Roadmap chips */
+    .chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .chip {
+      appearance: none;
+      border: 2px outset rgba(255, 255, 255, 0.68);
+      background: rgba(255, 255, 255, 0.26);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      cursor: pointer;
+      transition: transform .12s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      user-select: none;
+      box-shadow: 0px 0px 15px inset #fff9f959;
+    }
+
+    .chip:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, .18);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .25);
+    }
+
+    .chip.active {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.432), rgba(216, 71, 146, 0.558));
+      border: 2px inset rgba(252, 254, 255, 0.737);
+    }
+
+    .chipcur {
+      appearance: none;
+      border: 3px inset rgb(6, 3, 3);
+      background: radial-gradient(9% 100% at 50% 50%, rgba(245, 231, 145, 0.6) 20%, rgba(210, 202, 54, 0.5) 120%, rgba(223, 221, 121, 0.9) 250%, rgba(201, 196, 111, 0.69) 392%);
+      color: rgba(255, 252, 252, 0.92);
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      cursor: pointer;
+      transition: transform .12s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      user-select: none;
+      box-shadow: 0px 0px 10px inset #0009;
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .blockCard {
+      grid-column: span 6;
+      background: rgba(255, 255, 255, 0.11);
+      border-radius: var(--radius2);
+      padding: 16px;
+      box-shadow: 0px 0 15px inset black;
+      position: relative;
+      overflow: hidden;
+      transition: transform .18s ease, opacity .18s ease, filter .18s ease, border-color .18s ease;
+    }
+
+    .blockCard::before {
+      content: "";
+      position: absolute;
+      inset: -50%;
+      background: radial-gradient(500px 260px at 18% 22%, rgba(0, 122, 255, .09), transparent 60%);
+      filter: blur(28px);
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .blockCard.arsenal::before {
+      background: radial-gradient(540px 280px at 18% 22%, rgba(255, 184, 107, .10), transparent 62%);
+    }
+
+    .blockCard:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, .16);
+    }
+
+    .blockCard.is--dim {
+      opacity: 1 !important;
+      /* remove opacity antiga */
+      filter: saturate(.75) contrast(.92);
+      /* sensação de dim */
+    }
+
+    .blockCard.is--dim::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: rgba(0, 0, 0, .62);
+      /* ajuste: mais alto = mais “apagado” */
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .blockCard.is--dim .planChip {
+      position: relative;
+      z-index: 2;
+      opacity: 1 !important;
+    }
+
+    .blockTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .blockNum {
+      font-family: var(--mono);
+      font-weight: 800;
+      color: rgba(255, 255, 255, .86);
+      font-size: var(--xxs);
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+
+    .badge {
+      font-size: var(--xxs);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px inset rgba(255, 255, 255, 0.77);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.432), rgba(216, 71, 146, 0.558));
+      color: rgb(255, 255, 255);
+      white-space: nowrap;
+    }
+
+    .blockCard h3 {
+      margin: 0px 6px 6px;
+      font-size: 17px;
+      font-family: var(--display);
+    }
+
+    .blockCard .mini {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(255, 255, 255, .78);
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .blockCard .mini li {
+      margin: 6px 0;
+    }
+
+    .muted {
+      color: var(--muted);
+      padding: 0px 10px;
+    }
+
+    .muted2 {
+      color: white;
+      text-shadow: 0 0 5px red, 0 0 3px white;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    /* Accordions */
+    .accordions {
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      box-shadow: 0 0 5px inset white;
+      margin-top: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    details {
+      border-top: 2px outset rgba(2, 2, 2, 0.17);
+      padding: 0;
+    }
+
+    details:first-child {
+      border-top: none;
+    }
+
+    details .content {
+      overflow: hidden;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .sumLeft {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .sumTxt b {
+      display: block;
+      font-size: 14px;
+      letter-spacing: .01em;
+      margin-top: 2px;
+      font-family: var(--display);
+    }
+
+    .sumTxt span {
+      display: block;
+      color: var(--muted2);
+      font-size: 14px;
+      line-height: 1.35;
+      margin-top: 3px;
+    }
+
+    .chev {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(38, 36, 36, 0.14);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      transition: 180ms ease;
+      color: rgb(255, 255, 255);
+      box-shadow: 0px 0 4px inset white;
+    }
+
+    details[open] .chev {
+      transform: rotate(90deg);
+      border-color: rgba(0, 122, 255, .35);
+      box-shadow: 0 0 18px rgba(0, 122, 255, .18);
+    }
+
+    .content {
+      padding: 0 16px 16px;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .content ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    .content li {
+      margin: 6px 0;
+    }
+
+    /* Pricing */
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+      margin-top: 12px;
+    }
+
+    .priceCardUpgrade {
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
+      box-shadow: 0 0 5px inset white;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      backdrop-filter: blur(10px);
+    }
+
+    .priceCardComplete {
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
+      box-shadow: 0 0 5px inset white;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      backdrop-filter: blur(10px);
+    }
+
+    .priceCardHighlight {
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
+      box-shadow: 0 0 5px inset white;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      backdrop-filter: blur(10px);
+    }
+
+    .priceCardHighlight h3 {
+      margin: 9px 0px 17px;
+      font-size: 20px;
+      font-family: var(--display);
+
+    }
+
+    .priceCardComplete h3 {
+      margin: 8px 0 10px;
+      font-size: 20px;
+      font-family: var(--display);
+
+    }
+
+    .priceCardUpgrade h3 {
+
+      margin: -40px 0px 8px;
+      font-size: 20px;
+      font-family: Sora;
+    }
+
+
+
+    .priceCardHighlight p {
+      margin: 8px 0px -6px;
+      color: rgb(255, 255, 255);
+      font-size: 14px;
+      padding: 0px 0px 9px;
+    }
+
+    .priceCardUpgrade p {
+      font-size: 14px;
+      margin: 13px 0px 5px;
+    }
+
+    .priceCardComplete p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+
+    .price {
+
+      display: flex;
+
+      align-items: baseline;
+
+      gap: 8px;
+
+      margin: 10px 0 14px;
+
+    }
+
+
+    .price strong {
+
+      font-size: 28px;
+
+      letter-spacing: -0.02em;
+
+      font-family: var(--display);
+
+    }
+
+    .price3 strong {
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      font-family: var(--display);
+      padding: 0px 5px 0px 0px;
+      margin: 0px 0px 5px 0px;
+      position: relative;
+      top: -4px;
+    }
+
+    .price span {
+      color: rgba(252, 251, 251, 0.76);
+      font-size: 15px;
+      margin-right: -20px;
+    }
+
+    .price3 span {
+      color: rgba(252, 251, 251, 0.76);
+      font-size: 15px;
+      position: relative;
+      bottom: 3px;
+    }
+
+    .list {
+
+      margin: 0;
+
+      padding-left: 18px;
+
+      color: var(--muted);
+
+      font-size: 13.5px;
+
+      line-height: 1.65;
+
+    }
+
+    .list3 {
+
+      margin: 0;
+
+      padding-left: 18px;
+
+      color: var(--muted);
+
+      font-size: 13.5px;
+
+      line-height: 1.65;
+    }
+
+
+    .list li {
+
+      margin: 0px 15px 10px;
+      padding: 0px 0px 0px 5px;
+      position: relative;
+      display: list-item;
+    }
+
+    .list3 li {
+      margin: 10px 15px 10px 10px;
+      padding: 0px 0px 0px 5px;
+      position: relative;
+      display: list-item;
+    }
+
+    .priceCard .ctaRow {
+
+      margin-top: auto;
+      padding-top: 12px;
+      flex-wrap: wrap;
+      width: fit-content;
+
+    }
+
+
+    .priceCard .btn {
+
+      flex: 1 1 auto;
+
+    }
+
+    .card.big {
+      padding: 30px;
+      margin-top: -15px;
+      margin-left: 20px;
+      margin-bottom: 10px;
+      padding-top: 10px;
+    }
+
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .split h2 {
+      margin-top: 35px;
+      margin-bottom: 24px;
+      margin-left: 20px;
+    }
+
+
+    .ctaCol {
+      display: grid;
+      gap: 10px;
+      justify-content: center;
+      padding: 8px;
+      margin-top: 25px;
+      margin-right: 10px;
+    }
+
+
+    .fineprint {
+
+      color: var(--muted2);
+
+      font-size: 13px;
+
+      line-height: 1.55;
+
+    }
+
+
+    /* =========================================================
+     Responsive: grids / pricing / checkout
+     (ref: patterns from index.html)
+     ========================================================= */
+
+    @media (max-width: 980px) {
+      .grid3 {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing {
+        grid-template-columns: 1fr;
+      }
+
+      .blockCard {
+        grid-column: span 12;
+      }
+
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .panel .mini {
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .sectionTitle {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .chips {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .priceCard .ctaRow {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .priceCard .btn {
+        width: 100%;
+      }
+
+      .ctaRow {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        gap: 15px;
+        position: revert;
+      }
+
+      #menuBtn {
+        margin-right: -9px;
+        grid-area: brand-start;
+        width: 100%;
+        height: 46px;
+        border: 1px outset white;
+      }
+
+      #homeBtn {
+        grid-area: inherit;
+        width: 100%;
+        box-shadow: 0 0 10px #e77575cf;
+      }
+
+
+
+
+      /* =========================================================
+     RESPONSIVIDADE (ref: index.html)
+     - Ajusta grids (cards, preços, checkout) para telas menores
+     - Remove margem negativa do CTA quando a largura apertar
+     ========================================================= */
+
+      @media (max-width: 1180px) {
+        .ctaRow {
+          margin-right: 0;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .grid3 {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing {
+          grid-template-columns: 1fr;
+        }
+
+        .roadmap {
+          grid-template-columns: repeat(12, 1fr);
+        }
+
+        .blockCard {
+          grid-column: span 12;
+        }
+
+        .split {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .sectionTitle {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .chips {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .priceCard .ctaRow {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .priceCard .btn {
+          width: 100%;
+        }
+      }
+
+      /* Footer */
+
+      footer {
+
+        padding: 34px 0 48px;
+
+        border-top: 1px solid rgba(255, 255, 255, .10);
+
+        background: rgba(0, 0, 0, .08);
+
+        margin-top: 18px;
+
+        position: relative;
+
+        z-index: 1;
+
+      }
+
+
+      .foot {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        justify-content: space-between;
+
+        gap: 18px;
+
+        flex-wrap: wrap;
+
+        margin-top: 20px;
+
+      }
+
+
+      .foot small {
+        color: rgba(255, 255, 255, 0.81);
+        line-height: 1.8;
+      }
+
+
+      .footBrand {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0px;
+        border-radius: 999px;
+        border: 2px inset rgb(2, 231, 255);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 0px 10px inset rgb(255, 255, 255), 0 0 20px white;
+      }
+
+
+      .footBrandEye img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        filter: drop-shadow(0px 0px 18px rgba(0, 122, 255, .20));
+        scale: 1.2;
+        margin-left: 21px;
+        margin-right: -23px;
+      }
+
+
+      .footBrandLogo img {
+        height: 100px;
+        width: 212px;
+        display: inline-flex;
+        object-fit: cover;
+        padding-left: 50px;
+        margin-left: -30px;
+        overflow: clip;
+
+      }
+
+      /* Blur nos cards para melhor legibilidade */
+      .card,
+      .priceCard,
+      .blockCard,
+      .panel,
+      .bulletCard,
+      .stat,
+      .seal,
+      .footBrand {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      /* =========================================================
+   PATCH: “respiro” no NAV (desktop) sem quebrar
+   ========================================================= */
+      @media (min-width: 981px) {
+
+        /* mais espaço entre brand | nav | ctas */
+        .topbar {
+          gap: clamp(12px, 2.2vw, 34px);
+        }
+
+        /* cria uma “zona de respiro” pro menu */
+        nav {
+          justify-content: center;
+          padding-inline: clamp(14px, 3.2vw, 64px);
+          margin-inline: clamp(6px, 1.8vw, 22px);
+          overflow: visible;
+          /* evita cortar glow/sombra */
+        }
+
+        /* garante que as pontas não invadam o centro */
+        .brand {
+          justify-self: start;
+        }
+
+        .ctaRow {
+          justify-self: end;
+        }
+
+        /* =========================================================
+   RESPONSIVE PATCH (mobile-first overrides)
+   Cola no FINAL do <style>
+   ========================================================= */
+
+        /* 1) Evita “corte”/overlap por z-index e garante conteúdo acima do bg */
+        header,
+        main,
+        footer {
+          position: relative;
+          z-index: 1;
+        }
+
+        /* 2) Desktop grid: remove centralização que pode gerar “empurra-empurra” */
+        .topbar {
+          justify-items: stretch;
+          /* era center */
+        }
+
+        .brand {
+          justify-self: start;
+        }
+
+        nav {
+          justify-self: center;
+        }
+
+        .ctaRow {
+          justify-self: end;
+          margin-right: 0 !important;
+        }
+
+        /* mata o -10% */
+
+        /* 3) Títulos: line-height muito baixo estava “cortando” visualmente */
+        .sectionTitle h2 {
+          line-height: 1.2 !important;
+          /* era 0.5 */
+        }
+
+        /* 4) Pricing: remove hardcodes que estouram no mobile */
+        .priceCardHighlight p,
+        .priceCardUpgrade p,
+        .priceCardComplete p {
+          width: auto !important;
+          /* era 320px */
+          max-width: 60ch;
+        }
+
+
+
+
+        /* 5) Tags do painel: nowrap + font gigante = overflow */
+        .panel .mini {
+          grid-template-columns: 1fr;
+        }
+
+        .tag {
+          white-space: normal !important;
+          /* permite quebrar linha */
+          overflow: visible !important;
+          font-size: clamp(14px, 4.2vw, 20px) !important;
+          padding: 12px 14px !important;
+        }
+
+        /* 6) Header mobile: remove SCALE/OFFSETS que detonam responsividade */
+        @media (max-width: 980px) {
+
+          .topbar {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto auto;
+            gap: 12px;
+            padding: 0px 25px 0px 25px;
+            align-items: center;
+            grid-template-areas:
+              "brand menu"
+              "cta   cta ";
+          }
+
+          .priceCardUpgrade h3 {
+            margin-top: 8px !important;
+          }
+
+          .brand {
+            width: auto !important;
+            height: auto !important;
+            scale: 1 !important;
+            /* era 1.8 */
+            margin: 0 !important;
+            padding: 6px 0;
+          }
+
+          .brandLogo {
+            width: clamp(104px, 30vw, 150px) !important;
+            margin: 0 !important;
+            /* mata margens negativas */
+            filter: drop-shadow(0 0 6px rgba(82, 197, 224, .55));
+          }
+
+          .brand .txt {
+            right: auto !important;
+            top: auto !important;
+            transform: none !important;
+            margin-left: 8px;
+          }
+
+          .brand .txt strong {
+            margin: 0 0 4px 0 !important;
+            letter-spacing: 2.2px;
+          }
+
+          .brand .txt span {
+            transform: none !important;
+            letter-spacing: 1.6px;
+          }
+
+          #menuBtn {
+            margin: 0 !important;
+            /* era margin-bottom:25px */
+            box-shadow: none !important;
+            /* se quiser glow, faz via hover */
+          }
+
+          .ctaRow {
+            margin: 0 !important;
+            width: 100%;
+          }
+
+          .ctaRow .btn {
+            width: 100%;
+            min-height: 44px;
+          }
+
+          /* Kicker/hero mais “respirado” */
+          .kicker {
+            padding: 12px 14px;
+            font-size: 13px;
+          }
+
+          /* Bullets/cards com menos sombra “pesada” no mobile */
+          .bulletCard,
+          .stat,
+          .card,
+          .blockCard,
+          .accordions {
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, .10), var(--shadow2);
+          }
+        }
+
+        /* 7) Footer: imagens estavam com padding/margem que estouram em telas menores */
+        @media (max-width: 720px) {
+          .foot {
+            flex-direction: column;
+            align-items: stretch;
+          }
+
+          .footBrand {
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 12px;
+          }
+
+          .footBrandEye img {
+            width: 56px;
+            height: 56px;
+            margin: 0 !important;
+            scale: 1 !important;
+          }
+
+          .footBrandLogo img {
+            height: auto !important;
+            width: min(220px, 70vw) !important;
+            padding-left: 0 !important;
+            margin-left: 0 !important;
+          }
+
+          .priceCardUpgrade h3 {
+            margin-top: 8px !important;
+          }
+        }
+
+        @media (max-width: 350px) {
+          .sectionTitle h2 {
+            line-height: 1.2 !important;
+          }
+        }
+      }
+
+      #toTop {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, .14);
+        background: rgba(255, 255, 255, .06);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: rgba(255, 255, 255, .92);
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+
+        display: grid;
+        place-items: center;
+
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition: opacity .18s ease, transform .18s ease, border-color .18s ease, background-color .18s ease;
+        z-index: 9999;
+      }
+
+      #toTop.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      #toTop:hover {
+        border-color: rgba(217, 177, 95, .34);
+        background: rgba(255, 255, 255, .09);
+      }
+
+      #toTop:active {
+        transform: translateY(1px);
+      }
+
+      #toTop:focus-visible {
+        outline: 2px solid rgba(217, 177, 95, .55);
+        outline-offset: 3px;
+      }
+
+      @media (max-width: 420px) {
+        #toTop {
+          right: 14px;
+          bottom: 14px;
+          width: 42px;
+          height: 42px;
+        }
+      }
+
+      /* ===== LOCK CORRETO (sem opacity no card) ===== */
+      .blockCard {
+        position: relative;
+      }
+
+      /* Card travado: NÃO use opacity aqui (isso deixaria o chip transparente junto) */
+      .blockCard.is-locked {
+        filter: saturate(.9);
+      }
+
+      /* Garante que o chip fique sempre por cima do overlay */
+      .planChip {
+        margin-left: 5px;
+        display: flex;
+        padding: 5px;
+        border-radius: 999px;
+        border: 2px inset rgb(56, 92, 51);
+        background: rgba(56, 255, 0, 0.21);
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 10px;
+        font-weight: 800;
+        cursor: pointer;
+        white-space: collapse;
+        pointer-events: auto;
+        height: 40px;
+        width: 115px;
+      }
+
+      /* Chip ativo no topo (seu estilo) */
+      .chip.active {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.432), rgba(216, 71, 146, 0.558));
+        border: 2px inset rgba(252, 254, 255, 0.737);
+      }
+
+      .planChip.is-selected {
+        border-color: rgba(216, 71, 146, 0.75);
+        background: linear-gradient(180deg, rgba(0, 0, 0, .35), rgba(236, 54, 148, 0.564));
+        color: rgba(255, 255, 255, .96);
+        box-shadow: 0 10px 26px rgba(216, 71, 146, .18);
+      }
+
+      .planChip:hover {
+        border-color: rgba(179, 190, 209, 0.9);
+        background: linear-gradient(180deg, rgba(42, 184, 172, 0.638), rgba(216, 71, 146, .55));
+      }
+  </style>
+
+  <!-- ativa modo JS antes de renderizar -->
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
+</head>
+
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="reveal" style="--d:0;">
+    <div class="container">
+      <div class="topbar">
+        <a aria-label="VOLYNX Lab Education" class="brand" href="#">
+          <img alt="VOLYNX Lab" class="brandLogo" src="assets/oficial-volynx-logo.png" />
+          <div class="txt">
+            <strong>.LAB</strong>
+            <span>Education</span>
+          </div>
+        </a>
+
+        <nav aria-label="Navegação">
+          <a href="#curriculo">Currículo</a>
+          <a href="#metodo">Método</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#planos">Planos</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+
+
+        <div class="ctaRow">
+          <a class="btn" href="#planos">Ver planos</a>
+          <a class="btn primary" href="#planos">Começar agora</a>
+          <a class="btn home" href="#home">Home</a>
+          <button aria-expanded="false" aria-label="Abrir menu" class="btn" id="menuBtn" type="button">Menu</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div aria-hidden="true" class="mobileMenu" id="mobileMenu">
+    <div class="mobileMenuCard">
+      <a href="#curriculo">Currículo</a>
+      <a href="#metodo">Método</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#planos">Planos</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+
+  <main id="conteudo">
+    <div class="container">
+      <section aria-label="Apresentação do curso" class="hero reveal" style="--d:1;">
+        <div class="heroGrid">
+          <div>
+            <div class="kicker"><i aria-hidden="true"></i> Dev Journey, sem ruído. Só execução.</div>
+            <h1>Faça seu primeiro projeto online em 10 dias — autoguiado, sem distraçōes e com entrega.</h1>
+            <p class="lead">
+              Trilha autoguiada (texto + arquivos + checklists), com projetos que viram portfólio. Você sai do “eu
+              entendi” direto para o “eu publiquei”.
+            </p>
+            <div class="ctaRow" style="margin-top:10px;">
+              <a class="btn primary" href="#planos">Quero entrar</a>
+              <a class="btn" href="#curriculo">Ver currículo</a>
+            </div>
+            <div aria-label="Destaques" class="bullets">
+              <div class="bulletCard">
+                <div aria-hidden="true" class="dot"></div>
+                <div>
+                  <b>Sprint com entregas</b><br />
+                  <span>Curto, direto e publicável. Se apareceu na tela, você aprendeu.</span>
+                </div>
+              </div>
+              <div class="bulletCard">
+                <div aria-hidden="true" class="dot"></div>
+                <div>
+                  <b>Portfólio first</b><br />
+                  <span>Entregas apresentáveis: landing + interação + mini-app (Pro e Bundle).</span>
+                </div>
+              </div>
+              <div class="bulletCard">
+                <div aria-hidden="true" class="dot"></div>
+                <div>
+                  <b>Autoguiado, sem enrolação</b><br />
+                  <span>Texto + exemplos + checklists. Método profissional e modo DEV do inicio ao fim!.</span>
+                </div>
+              </div>
+              <div class="bulletCard">
+                <div aria-hidden="true" class="dot"></div>
+                <div>
+                  <b>Acelerador de aprendizado e material para portfolio!</b><br />
+                  <span>Prompts prontos + checklist de validação. Você usa o que criou e escala de diferentes
+                    formas.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <aside aria-label="Resumo do programa" class="panel">
+            <div aria-label="Selo VOLYNX" class="seal">
+              <img alt="Olho oficial VOLYNX" src="assets/oficial-volynx-eye.png" />
+            </div>
+            <h3>O que você vai ter na mão</h3>
+            <p>Uma trilha que vira execução. E execução vira resultado. Simples, mas não simplista.</p>
+            <div class="stats" role="list">
+              <div class="stat" role="listitem">
+                <strong>Sprint guiada</strong>
+                <span>Blocos curtos + checkpoints (o que deve aparecer na tela).</span>
+              </div>
+              <div class="stat" role="listitem">
+                <strong>Entregas</strong>
+                <span>Social (7 dias), Pro (14 dias), Bundle (30 dias). Publicado e versionado.</span>
+              </div>
+              <div class="stat" role="listitem">
+                <strong>Checkpoints</strong>
+                <span>“Se deu certo” + “se deu erro” (debug sem adivinhação).</span>
+              </div>
+              <div class="stat" role="listitem">
+                <strong>Formato</strong>
+                <span>Sem vídeos longos e sem distraçōes, aqui o método é criar!. Texto + arquivos + checklists.</span>
+              </div>
+            </div>
+            <div aria-label="Tags do curso" class="mini">
+              <span class="tag">Social Sprint</span>
+              <span class="tag">HTML • CSS • JS</span>
+              <span class="tag">Checklists</span>
+              <span class="tag">Publicado</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section aria-label="Trilha por blocos" class="reveal" id="curriculo" style="--d:2;">
+        <div class="sectionTitle">
+          <div>
+            <h2>Trilha por blocos (sem confusão)</h2>
+            <p>Você avança por entregas pequenas e visíveis. Se não aparece na tela, ainda não virou habilidade.
+              Selecione seu nível para ver os blocos incluídos:</p>
+          </div>
+          <div aria-label="Filtrar por plano" class="chips" role="tablist">
+            <button class="chip active" data-filter="social" type="button">Social Sprint</button>
+            <button class="chip" data-filter="pro" type="button">Pro (Upgrade)</button>
+            <button class="chip" data-filter="bundle" type="button">Bundle</button>
+            <button class="chip" data-filter="all" type="button">Ver tudo</button>
+          </div>
+        </div>
+        <div aria-label="Blocos do Dev Journey" class="roadmap">
+          <article class="blockCard" data-in="social pro bundle">
+            <div class="blockTop">
+              <span class="blockNum">Bloco 0</span>
+              <span class="badge">Start Here</span>
+            </div>
+            <h3>Setup + como estudar do jeito certo</h3>
+            <p class="muted">Ambiente pronto, pasta organizada e o método VOLYNX para sair de erros sem travar por
+              horas.</p>
+            <ul class="mini">
+              <li>Editor + navegador + Live Server (o “porquê” e o “como”)</li>
+              <li>Checklist validável (você sabe quando está pronto)</li>
+              <li>Regras do certificado + links de submissão</li>
+            </ul>
+          </article>
+
+          <article class="blockCard" data-in="social pro bundle">
+            <div class="blockTop">
+              <span class="blockNum">Bloco 1</span>
+              <span class="badge">Fundamentos</span>
+            </div>
+            <h3>HTML + CSS + JS básico (com clique na tela)</h3>
+            <p class="muted">Primeiro projeto real: 3 arquivos conectados e uma interação funcionando na página (não só
+              no console).</p>
+            <ul class="mini">
+              <li>Estrutura semântica + layout responsivo simples</li>
+              <li>Botões, formulário e feedback visível</li>
+              <li>Debug básico: console, erros comuns e correções</li>
+            </ul>
+          </article>
+
+          <article class="blockCard" data-in="social pro bundle">
+            <div class="blockTop">
+              <span class="blockNum">Bloco 2</span>
+              <span class="badge">JavaScript + DOM</span>
+            </div>
+            <h3>Interatividade de verdade</h3>
+            <p class="muted">Você aprende a manipular a página: eventos, validação, lógica e dados (inclui JSON com
+              exemplos práticos).</p>
+            <ul class="mini">
+              <li>Tipos, operadores, funções e eventos</li>
+              <li>DOM: selecionar, alterar, criar elementos</li>
+              <li>JSON: o que é, por que existe e onde você usa</li>
+            </ul>
+          </article>
+
+          <article class="blockCard" data-in="pro bundle">
+            <div class="blockTop">
+              <span class="blockNum">Bloco 3</span>
+              <span class="badge">Projeto incremental</span>
+              <button class="planChip" type="button" data-plan="pro">
+                Desbloquear com Pro</button>
+            </div>
+            <h3>Um app que cresce módulo a módulo</h3>
+            <p class="muted">Cada módulo adiciona uma feature visível. Você termina com
+              um app apresentável e fácil de explicar.</p>
+            <ul class="mini">
+              <li>Estado, componentes simples e organização de código</li>
+              <li>Persistência básica (ex.: localStorage) + UX</li>
+              <li>Publicação + checklist de qualidade</li>
+            </ul>
+          </article>
+
+          <article class="blockCard" data-in="bundle">
+            <div class="blockTop">
+              <span class="blockNum">Bloco 4</span>
+              <span class="badge">Camada avançada</span>
+              <button class="planChip" type="button" data-plan="bundle">
+                Desbloquear com Bundle</button>
+            </div>
+            <h3>Arquitetura + integração</h3>
+            <p class="muted">Você aprende padrões de projeto, integração e decisões “de produto”
+              (o que fazer primeiro e por quê).</p>
+            <ul class="mini">
+              <li>Refactor guiado: clareza desde nomes e tags até responsabilidade</li>
+              <li>Integrações e dados (fluxos comuns do mercado)</li>
+              <li>Checklist anti-bugs antes de publicar</li>
+            </ul>
+          </article>
+
+          <article class="blockCard" data-in="bundle">
+            <div class="blockTop">
+              <span class="blockNum">Bloco 5</span>
+              <span class="badge">Entrega final</span>
+              <button class="planChip" type="button" data-plan="bundle">
+                Desbloquear com Bundle</button>
+            </div>
+            <h3>Deploy + finalização profissional</h3>
+            <p class="muted">Você fecha o curso entregando algo completo: documentação e submissão, a
+              versão final do seu projeto.</p>
+            <ul class="mini">
+              <li>Publicação e validação (GitHub)</li>
+              <li>Checklist final (responsivo, acessível, funcional)</li>
+              <li>Submissão + emissão do certificado</li>
+            </ul>
+          </article>
+
+          <article class="blockCard arsenal" data-in="bundle">
+            <div class="blockTop">
+              <span class="blockNum">Kit Arsenal</span>
+              <span class="badge">Bundle Only</span>
+              <button class="planChip" type="button" data-plan="bundle">
+                Desbloquear com Bundle </button>
+            </div>
+            <h3>Um brinde da VOLYNX pra acelerar seu progresso durante e depois do curso!</h3>
+            <p class="muted">Arquivos reutilizáveis para você construir mais rápido
+              (e aprender por engenharia reversa).</p>
+            <ul class="mini">
+              <li>1 site completo + 1 landing page</li>
+              <li>2 apps JavaScript prontos</li>
+              <li>Cheatcodes (atalhos e padrões de uso diário)</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section aria-label="Método" class="reveal" id="metodo" style="--d:3;">
+        <div class="sectionTitle">
+          <h2>Método VOLYNX.Lab Education</h2>
+          <p>Treinar execução. Aumentar clareza. Reduzir fricção. Parece simples porque é o caminho certo!</p>
+        </div>
+        <div class="grid3">
+          <div class="card">
+            <h3>1) Direção</h3>
+            <p>Você sabe o que fazer e por quê. Nada de “vou tentar”.</p>
+          </div>
+          <div class="card">
+            <h3>2) Entrega</h3>
+            <p>Todo módulo fecha com um resultado publicável. Progresso visível, não subjetivo.</p>
+          </div>
+          <div class="card">
+            <h3>3) Refinamento</h3>
+            <p>Revisão e melhoria: a diferença entre “funciona” e “profissional”.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Projetos" class="reveal" id="projetos" style="--d:4;">
+        <div class="sectionTitle">
+          <h2>Projetos que viram portfólio</h2>
+          <p>Não é só sobre “aprender”. É sobre construir ativos: páginas, apps e cases que te representam.</p>
+        </div>
+        <div class="grid3">
+          <div class="card">
+            <h3>Landing premium</h3>
+            <p>Grid, hierarquia, responsividade e micro-interações. A estética certa vende.</p>
+          </div>
+          <div class="card">
+            <h3>App web</h3>
+            <p>Dados, estados e UX: interfaces que respondem rápido e podem se tornar produto.</p>
+          </div>
+          <div class="card">
+            <h3>Projeto final</h3>
+            <p>Planejar, executar, publicar e apresentar. O ciclo inteiro, como no mundo real.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Planos" class="reveal" id="planos" style="--d:5;">
+        <div class="sectionTitle">
+          <div>
+            <h2>Escolha seu plano</h2>
+          </div>
+          <div class="chips" aria-label="Moeda" style="justify-content:flex-end;">
+            <label class="muted2" for="currency" style="font-size:12.5px; margin-right:8px;">Moeda</label>
+            <select id="currency" class="chipcur" style="padding:8px 14px;">
+              <option value="BRL">BRL (R$)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pricing">
+          <div class="priceCardHighlight">
+            <h3>Social Sprint</h3>
+            <p>Comece já com evolução rápida: landing + interatividade + publish. Foco em execução.</p>
+            <div class="price"><strong data-price="social">R$ 345</strong><span data-note="social">Founder (por tempo
+                limitado)</span></div>
+            <ul class="list">
+              <li><b>Inclui:</b> Blocos 0–2</li>
+              <li><b>Entrega:</b> landing publicada + form com validação + JSON na UI</li>
+              <li><b>Certificado:</b> Social (por entrega)</li>
+              <li><b>Ideal se:</b> você quer tração rápida e portfólio pra já!</li>
+            </ul>
+            <div class="ctaRow">
+              <a class="btn primary" data-plan="social" href="#checkout">Comprar Social</a>
+              <a class="btn ghost" href="#curriculo">Ver trilha</a>
+            </div>
+          </div>
+
+          <div class="priceCardUpgrade">
+            <div class="uptag">Upgrade</div>
+            <h3>Pro</h3>
+            <p>Adiciona o Bloco 3: app incremental (React) para elevar o portfólio.</p>
+            <div class="price"><strong data-price="pro">R$ 685</strong><span data-note="pro">Upgrade pós-Social</span>
+            </div>
+            <ul class="list">
+              <li><b>Inclui:</b> Blocos 0–3</li>
+              <li><b>Entrega:</b> app React publicado + documentação curta (README)</li>
+              <li><b>Certificado:</b> Pro (por entrega)</li>
+              <li><b>Ideal se:</b> você quer “subir de nível” rápido</li>
+            </ul>
+            <div class="ctaRow">
+              <a class="btn primary" data-plan="pro" href="#checkout">Comprar Pro</a>
+              <a class="btn ghost" href="#curriculo">Ver trilha</a>
+            </div>
+          </div>
+
+          <div class="priceCardComplete">
+            <h3>Bundle + Arsenal</h3>
+            <p>Curso completo + arquivos prontos para acelerar execução.</p>
+            <div class="price3"><strong data-price="bundle">R$ 999 </strong><span data-note="bundle">Para quando você
+                quiser ir até o fim</span></div>
+            <ul class="list3">
+              <li><b>Inclui:</b> Blocos 0–5 + Arsenal</li>
+              <li><b>Entrega:</b> projeto final + pacote de reutilização</li>
+              <li><b>Certificado:</b> Bundle (por entrega)</li>
+              <li><b>Ideal se:</b> você quer profundidade máxima</li>
+            </ul>
+            <div class="ctaRow">
+              <a class="btn primary" data-plan="bundle" href="#checkout">Comprar Bundle</a>
+              <a class="btn ghost" href="#curriculo">Ver trilha</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Checkout" class="reveal" id="checkout" style="--d:6;">
+        <div class="card big">
+          <div class="split">
+            <div>
+              <h2>Vamos começar?</h2>
+              <p class="muted">
+                Escolha um plano acima e finalize a compra. Após a confirmação do seu pagamento, você recebe o acesso ao
+                curso e todos
+                os arquivos do seu plano (com os projetos e checklists).
+              </p>
+              <p class="muted2" style="margin-top:10px">
+                Dica: se você é totalmente iniciante, comece pelo Social. Se quer portfólio mais forte, vá de Pro. Se
+                quer acelerar com arquivos prontos, Bundle.
+              </p>
+            </div>
+            <div class="ctaCol">
+              <div class="stat" style="margin-bottom:10px;">
+                <strong id="selPlan">Plano: Social Sprint</strong>
+                <span id="selMeta">• Acesso imediato após confirmação do pagamento!</span>
+              </div>
+              <a class="btn primary" href="#" id="hotmartLink">Ir para o checkout</a>
+              <a class="btn ghost" href="#faq">Ler o FAQ</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="FAQ" class="reveal" id="faq" style="--d:6;">
+        <div class="sectionTitle">
+          <h2>FAQ</h2>
+        </div>
+        <div aria-label="Perguntas frequentes" class="accordions" role="region">
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTxt"><b>Eu sou totalmente iniciante. Tenho chances?</b><span class="muted">Sim — o curso
+                    ensina do
+                    “onde clicar” ao “o que deve aparecer”.</span></div>
+              </div>
+              <div aria-hidden="true" class="chev">›</div>
+            </summary>
+            <div class="content">
+              <ul>
+                <li>Você vai aprender a editar arquivos, salvar e atualizar o navegador.</li>
+                <li>Quando algo der errado, você terá “o que fazer” (não só teoria).</li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTxt"><b>Tem vídeo, comunidade ou suporte?</b><span class="muted">Autoguiado (texto +
+                    arquivos + projetos).</span></div>
+              </div>
+              <div aria-hidden="true" class="chev">›</div>
+            </summary>
+            <div class="content">
+              <p style="margin:0;">É autoguiado: você recebe documentos + exemplos + arquivos + checklists. Curso em
+                formato de apostila profissional.
+                Clareza, método e execução. Sem vídeos longos, sem distrações, com validação por checklist.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTxt"><b>Preciso de computador forte?</b><span class="muted">Não. Um PC básico já dá
+                    conta.</span></div>
+              </div>
+              <div aria-hidden="true" class="chev">›</div>
+            </summary>
+            <div class="content">
+              <ul>
+                <li>Windows, macOS ou Linux.</li>
+                <li>Recomendado: 8GB RAM, navegador atualizado e espaço livre.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTxt"><b>Como funciona o certificado?</b><span class="muted">Por entrega (projeto
+                    enviado).</span></div>
+              </div>
+              <div aria-hidden="true" class="chev">›</div>
+            </summary>
+            <div class="content">
+              <p style="margin:0;">Você entrega o projeto do seu plano e emite o certificado correspondente (Social /
+                Pro / Bundle).</p>
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer aria-label="Rodapé" class="reveal" style="--d:7;">
+    <div class="container">
+      <div class="foot">
+        <div>
+          <small>
+            <b>VOLYNX.Lab Education</b><br />
+            Foco em performance e impacto social a nível mundial.<br />
+            Contato: <span class="mono">hello@volynx.world</span>
+          </small>
+          <small style="margin-top:10px;">© <span id="year">
+            </span> VOLYNX - Todos os direitos reservados.</small>
+        </div>
+
+        <div aria-label="Marca VOLYNX" class="footBrand">
+          <div class="footBrandEye">
+            <img alt="Olho oficial VOLYNX" src="assets/oficial-volynx-eye.png" />
+          </div>
+          <div class="footBrandLogo">
+            <img alt="Logo oficial VOLYNX" src="assets/oficial-volynx-logo.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="toTop" type="button" aria-label="Ir para o topo" title="Ir para o topo">↑</button>
+
+  <script>
+    /* =========================================================
+       Menu mobile + scroll lock (robusto)
+       ========================================================= */
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+
+    function unlockScroll() { document.body.style.overflow = ''; }
+    function lockScroll() { document.body.style.overflow = 'hidden'; }
+
+    function closeMenu() {
+      if (mobileMenu) {
+        mobileMenu.style.display = 'none';
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      }
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+      unlockScroll();
+    }
+
+    function openMenu() {
+      if (!mobileMenu || !menuBtn) return;
+      mobileMenu.style.display = 'block';
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      menuBtn.setAttribute('aria-expanded', 'true');
+      lockScroll();
+    }
+
+    closeMenu();
+    document.addEventListener('DOMContentLoaded', function () { closeMenu(); }, { once: true });
+    window.addEventListener('pageshow', closeMenu);
+
+    var yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', function () {
+        var isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+        if (isOpen) closeMenu(); else openMenu();
+      });
+    }
+
+    if (mobileMenu) {
+      mobileMenu.addEventListener('click', function (e) {
+        if (e.target === mobileMenu) closeMenu();
+      });
+
+      var links = mobileMenu.querySelectorAll('a');
+      for (var i = 0; i < links.length; i++) links[i].addEventListener('click', closeMenu);
+    }
+
+    /* =========================================================
+       Accordion: suave + apenas 1 aberto
+       ========================================================= */
+    var accordionEls = Array.prototype.slice.call(document.querySelectorAll('.accordions details'));
+
+    function collapseDetails(details) {
+      var summary = details.querySelector('summary');
+      var content = details.querySelector('.content');
+      if (!summary || !content) return;
+
+      var startHeight = details.offsetHeight;
+      var endHeight = summary.offsetHeight;
+
+      details.style.overflow = 'hidden';
+
+      var anim = details.animate(
+        [{ height: startHeight + 'px' }, { height: endHeight + 'px' }],
+        { duration: 260, easing: 'cubic-bezier(.2,.8,.2,1)' }
+      );
+
+      anim.onfinish = function () {
+        details.open = false;
+        details.style.height = '';
+        details.style.overflow = '';
+      };
+    }
+
+    function expandDetails(details) {
+      var summary = details.querySelector('summary');
+      var content = details.querySelector('.content');
+      if (!summary || !content) return;
+
+      for (var k = 0; k < accordionEls.length; k++) {
+        var o = accordionEls[k];
+        if (o !== details && o.open) collapseDetails(o);
+      }
+
+      var startHeight = details.offsetHeight;
+      details.open = true;
+
+      requestAnimationFrame(function () {
+        var endHeight = summary.offsetHeight + content.scrollHeight;
+        details.style.overflow = 'hidden';
+
+        var anim = details.animate(
+          [{ height: startHeight + 'px' }, { height: endHeight + 'px' }],
+          { duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' }
+        );
+
+        anim.onfinish = function () {
+          details.style.height = '';
+          details.style.overflow = '';
+        };
+      });
+    }
+
+    for (var j = 0; j < accordionEls.length; j++) {
+      (function (d) {
+        var summary = d.querySelector('summary');
+        if (!summary) return;
+        summary.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (d.open) collapseDetails(d);
+          else expandDetails(d);
+        });
+      })(accordionEls[j]);
+    }
+
+    /* =========================================================
+       Reveal on scroll (IntersectionObserver)
+       ========================================================= */
+    var revealEls = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { root: null, threshold: 0.02, rootMargin: '0px 0px -22% 0px' });
+
+      revealEls.forEach(function (el) { io.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+
+    /* =========================================================
+       Pricing + checkout (plan selection + currency)
+       ========================================================= */
+    (function () {
+      var currencySel = document.getElementById('currency');
+
+      // Substitua estes links pelos seus links reais (Hotmart/Gumroad/Lemon)
+      var PLAN_LINKS = {
+        BRL: { social: "#", pro: "#", bundle: "#" },
+        EUR: { social: "#", pro: "#", bundle: "#" },
+        GBP: { social: "#", pro: "#", bundle: "#" }
+      };
+
+      var PRICES = {
+        BRL: { social: "R$ 197", pro: "R$ 397", bundle: "R$ 697" },
+        EUR: { social: "€ 39", pro: "€ 99", bundle: "€ 249" },
+        GBP: { social: "£ 35", pro: "£ 89", bundle: "£ 219" }
+      };
+
+      var NOTES = {
+        BRL: { social: "Founder (por tempo limitado)", pro: "Upgrade pós-Social", bundle: "Curso completo" },
+        EUR: { social: "Founder", pro: "Upgrade", bundle: "Full bundle" },
+        GBP: { social: "Founder", pro: "Upgrade", bundle: "Full bundle" }
+      };
+
+      var selectedPlan = "social";
+      var selectedCur = "BRL";
+
+      function setText(id, text) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = text;
+      }
+
+      function updatePrices() {
+        var cur = selectedCur;
+        var nodes = document.querySelectorAll('[data-price]');
+        for (var i = 0; i < nodes.length; i++) {
+          var plan = nodes[i].getAttribute('data-price');
+          nodes[i].textContent = (PRICES[cur] && PRICES[cur][plan]) ? PRICES[cur][plan] : nodes[i].textContent;
+        }
+
+        var noteNodes = document.querySelectorAll('[data-note]');
+        for (var j = 0; j < noteNodes.length; j++) {
+          var p = noteNodes[j].getAttribute('data-note');
+          noteNodes[j].textContent = (NOTES[cur] && NOTES[cur][p]) ? NOTES[cur][p] : noteNodes[j].textContent;
+        }
+
+        setText('selMeta', 'Moeda: ' + cur + ' • Acesso imediato após compra');
+      }
+
+      function updateCheckout() {
+        var linkBtn = document.getElementById('hotmartLink');
+        if (linkBtn) {
+          var href = (PLAN_LINKS[selectedCur] && PLAN_LINKS[selectedCur][selectedPlan]) ? PLAN_LINKS[selectedCur][selectedPlan] : "#";
+          linkBtn.setAttribute('href', href);
+        }
+        var planName = (selectedPlan === "social") ? "Social Sprint" : (selectedPlan === "pro") ? "Pro (Upgrade)" : "Bundle + Arsenal";
+        setText('selPlan', 'Plano: ' + planName);
+      }
+
+      // Currency default via querystring (?currency=EUR)
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var q = (params.get('currency') || '').toUpperCase();
+        if (q === 'EUR' || q === 'GBP' || q === 'BRL') selectedCur = q;
+      } catch (e) { }
+
+      if (currencySel) {
+        currencySel.value = selectedCur;
+        currencySel.addEventListener('change', function () {
+          selectedCur = currencySel.value || 'BRL';
+          updatePrices();
+          updateCheckout();
+        });
+      }
+
+      // Plan selection
+      var buyBtns = document.querySelectorAll('[data-plan]');
+      for (var k = 0; k < buyBtns.length; k++) {
+        buyBtns[k].addEventListener('click', function (e) {
+          var p = this.getAttribute('data-plan');
+          if (p) selectedPlan = p;
+          updateCheckout();
+        });
+      }
+
+      updatePrices();
+      updateCheckout();
+    })();
+
+  </script>
+
+  <script>
+    (function () {
+      const header = document.querySelector('header');
+      if (!header) return;
+
+      const apply = () => {
+        const h = Math.ceil(header.getBoundingClientRect().height);
+
+        document.documentElement.style.setProperty('--navOffset', (h + 14) + 'px');
+      };
+
+      apply();
+      window.addEventListener('resize', apply, { passive: true });
+    })();
+  </script>
+  <script>
+    (function () {
+      const btn = document.getElementById('toTop');
+      if (!btn) return;
+
+      const showAfter = 320; // px de rolagem para aparecer
+      let ticking = false;
+
+      function update() {
+        const y = window.scrollY || document.documentElement.scrollTop;
+        btn.classList.toggle('is-visible', y > showAfter);
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      update();
+    })();
+  </script>
+  <script>
+    (function () {
+      const TOP = '.chips .chip[data-filter]';
+      const CARDS = '.roadmap .blockCard[data-in]';
+      const CARD_CHIP = '.planChip[data-plan]';
+
+      // salva o texto original de cada chip (1x)
+      function cacheOriginalChipLabels() {
+        document.querySelectorAll(CARD_CHIP).forEach(chip => {
+          if (!chip.dataset.label) chip.dataset.label = chip.textContent.trim();
+        });
+      }
+
+      function resetChipLabels() {
+        document.querySelectorAll(CARD_CHIP).forEach(chip => {
+          if (chip.dataset.label) chip.textContent = chip.dataset.label;
+          chip.classList.remove('is-selected');
+        });
+      }
+
+      function setPlan(plan) {
+        document.querySelectorAll(TOP).forEach(b => {
+          b.classList.toggle('active', b.dataset.filter === plan);
+        });
+
+        document.querySelectorAll(CARDS).forEach(card => {
+          if (plan === 'all') { card.classList.remove('is--dim'); return; }
+          const allowed = (card.dataset.in || '').trim().split(/\s+/);
+          card.classList.toggle('is--dim', !allowed.includes(plan));
+        });
+
+        try { localStorage.setItem('dj_plan', plan); } catch (e) { }
+      }
+
+      cacheOriginalChipLabels();
+
+      document.addEventListener('click', (e) => {
+        const top = e.target.closest(TOP);
+        if (top) { e.preventDefault(); resetChipLabels(); setPlan(top.dataset.filter); return; }
+
+        const chip = e.target.closest(CARD_CHIP);
+        if (chip) {
+          e.preventDefault();
+
+          // 1) muda texto do chip clicado
+          resetChipLabels();
+          chip.textContent = 'Plano selecionado ✓';
+          chip.classList.add('is-selected');
+
+          // 2) aplica o plano correspondente
+          setPlan(chip.dataset.plan);
+          return;
+        }
+      });
+
+      let initial = 'social';
+      try { initial = localStorage.getItem('dj_plan') || initial; } catch (e) { }
+      const active = document.querySelector(TOP + '.active');
+      if (active) initial = active.dataset.filter;
+      setPlan(initial);
+    })();
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1091 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>Dev Journey Social • VOLYNX.Lab Education</title>
+    <meta name="description"
+        content="Dev Journey Social: autoguiado, sem vídeo, sem suporte. Texto + arquivos + checklists. Entrega publicável." />
+
+    <style>
+        :root {
+            --bg-img: url("./assets/stardust-galaxy.webp");
+            /* troque se seu arquivo tiver outro nome */
+            --ink: rgba(255, 255, 255, .92);
+            --muted: rgba(255, 255, 255, .70);
+            --line: rgba(255, 255, 255, .10);
+
+            --card: rgba(12, 14, 20, .58);
+            --card2: rgba(12, 14, 20, .36);
+
+            --gold1: rgba(255, 214, 141, 1);
+            --gold2: rgba(255, 184, 92, 1);
+            --cyan: rgba(82, 197, 224, 1);
+
+            --radius: 18px;
+
+            --eye: clamp(34px, 7vw, 56px);
+            --logoW: clamp(150px, 34vw, 260px);
+            --logoH: clamp(56px, 12vw, 92px);
+
+            --headerH: 78px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            background: #070A12;
+            /* fallback */
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: transparent;
+            /* quem manda é o ::before */
+        }
+
+        /* fundo “infinito” sem emenda */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: var(--bg-img);
+            background-size: cover;
+            background-position: right top;
+            background-repeat: no-repeat;
+            filter: saturate(1.35) contrast(0.75);
+            z-index: -3;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--headerH);
+            z-index: 50;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: linear-gradient(180deg, rgba(8, 10, 16, .78), rgba(8, 10, 16, .36));
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 18px;
+            height: 100%;
+        }
+
+        .topbar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        /* cada item tem seu próprio stacking context -> glow fica atrás sem “grudar” */
+        .brandEye,
+        .brandLogoWrap {
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            align-items: center;
+        }
+
+        .brandEye::before,
+        .brandLogoWrap::before {
+            content: "";
+            position: absolute;
+            inset: -14px;
+            border-radius: 999px;
+            filter: blur(18px);
+            opacity: .55;
+            z-index: -1;
+            pointer-events: none;
+            transform: translateZ(0);
+        }
+
+        .brandEye::before {
+            background: radial-gradient(circle, rgba(82, 197, 224, .28), transparent 62%);
+        }
+
+        .brandLogoWrap::before {
+            background: radial-gradient(circle, rgba(255, 198, 120, .24), transparent 62%);
+        }
+
+        .brand-eye {
+            width: var(--eye);
+            height: auto;
+            display: block;
+            filter: brightness(1.7);
+            scale: 1.3;
+            position: relative;
+            left: 50px;
+            bottom: 6px;
+        }
+
+        .brand-logo {
+            width: var(--logoW);
+            height: var(--logoH);
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255, 198, 120, .16));
+            scale: 1.2;
+            position: relative;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-left: -70px;
+        }
+
+        .nav a {
+            color: rgba(255, 255, 255, .78);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            padding: 10px 10px;
+            border-radius: 12px;
+            background: #00000040;
+            box-shadow: 0 0 3px inset #ffffffbf;
+        }
+
+        .nav a:hover {
+            background: rgba(231, 214, 214, 0.749);
+            color: rgb(0, 0, 0);
+        }
+
+        .cta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 11px 14px;
+            border-radius: 14px;
+            border: 3px outset rgba(16, 143, 255, 0.99);
+            ;
+            text-decoration: none;
+            color: rgba(255, 255, 255, .92);
+            background: linear-gradient(180deg, rgb(64, 162, 220), rgba(9, 29, 77, 0.91));
+            box-shadow: 0 0px 20px 5px rgba(193, 175, 29, 0.35);
+            font-weight: 650;
+            letter-spacing: .02em;
+            white-space: nowrap;
+            width: 70%;
+            margin-left: 80px;
+        }
+
+        .btnPrimary {
+            border: 3px outset rgba(16, 143, 255, 0.99);
+            background: linear-gradient(180deg, rgb(64, 162, 220), rgba(9, 29, 77, 0.91));
+            max-width: 100%;
+            width: 70%;
+            margin-left: 80px;
+        }
+
+        .btnPrimary:hover {
+            filter: brightness(1.15);
+            border: 3px inset rgba(94, 169, 234, 0.99);
+        }
+
+        .btn:hover {
+            filter: brightness(1.7);
+            border: 3px inset rgba(94, 169, 234, 0.99);
+        }
+
+        .menuBtn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: linear-gradient(180deg, rgb(64, 162, 220), rgba(9, 29, 77, 0.91));
+            color: rgba(255, 255, 255, .92);
+        }
+
+        .trustBadge img {
+            max-width: 60%;
+            width: 100%;
+            display: grid;
+            justify-content: center;
+            margin-left: 49px;
+            filter: contrast(10) brightness(10);
+            background: #ffffff78;
+            backdrop-filter: saturate(5) blur(20px);
+            padding: 5px 5px;
+            border-radius: 10px;
+            border: 2px outset crimson;
+        }
+
+        .trustBadge {
+            display: grid;
+            justify-content: center;
+            font-size: 17px;
+            line-height: 2;
+            margin: 0px 0px 20px;
+
+        }
+
+
+        /* MAIN */
+        main {
+            padding-top: calc(var(--headerH) + 34px);
+        }
+
+        section {
+            padding: 42px 0;
+        }
+
+        .hero {
+            padding-top: 22px;
+        }
+
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 3px inset rgb(255, 255, 255);
+            background: rgba(38, 36, 36, 0.57);
+            color: rgb(255, 255, 255);
+            font-size: 14px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 16px 0 10px;
+            font-size: clamp(34px, 5vw, 52px);
+            line-height: 1.02;
+            letter-spacing: -.02em;
+        }
+
+        .grad {
+            display: inline-table;
+            padding: 12px 0px;
+        }
+
+        .w1,
+        .w2,
+        .w3 {
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            font-weight: 800;
+        }
+
+        .w1 {
+            background-image: linear-gradient(90deg, rgb(255, 255, 255), rgb(11, 209, 255));
+        }
+
+        .w2 {
+            background-image: linear-gradient(90deg, rgb(247, 0, 255), rgba(97, 90, 90, 0.82));
+        }
+
+        .w3 {
+            background-image: linear-gradient(90deg, rgb(255, 0, 0), rgb(255, 144, 1));
+        }
+
+        .sub {
+            max-width: 56ch;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 0 25px;
+            font-weight: 700;
+            padding: 3px;
+            text-shadow: 2px 1px 2px black, 1px 2px 3px black;
+            text-align: left;
+        }
+
+
+        .heroGrid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 20px;
+        }
+
+        .card {
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: linear-gradient(180deg, var(--card), var(--card2));
+            box-shadow: 0 26px 60px rgba(0, 0, 0, .45);
+            padding: 20px;
+            position: relative;
+            isolation: isolate;
+            backdrop-filter: blur(5px);
+        }
+
+        .card2 {
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: linear-gradient(180deg, var(--card), var(--card2));
+            box-shadow: 0 26px 60px rgba(0, 0, 0, .45);
+            padding: 20px;
+            position: relative;
+            isolation: isolate;
+            backdrop-filter: blur(5px);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: radial-gradient(900px 240px at 20% 10%, rgba(141, 180, 255, 0.68), transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+            box-shadow: 0px 0px 20px inset white, 0px 0px 8px #4beefe;
+        }
+
+        .card2::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: radial-gradient(900px 240px at 20% 10%, rgba(141, 180, 255, 0.68), transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+            box-shadow: 0px 0px 20px inset white, 0px 0px 8px #4beefe;
+        }
+
+        .list {
+            margin: 25px 10px 46px;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 10px 12px;
+            border-radius: 14px;
+            border: 2px inset;
+            background: rgba(0, 37, 96, 0.43);
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            margin-top: 6px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(255, 214, 141, 1), rgba(255, 184, 92, .75));
+            box-shadow: 0 0 18px rgba(255, 214, 141, .18);
+            flex: 0 0 auto;
+        }
+
+        .li strong {
+            display: block;
+            font-size: 15px;
+            letter-spacing: 0.05em;
+        }
+
+        .li span {
+            display: block;
+            color: white;
+            font-size: 15px;
+            line-height: 1.45;
+            margin-top: 2px;
+        }
+
+        .price {
+            display: grid;
+            gap: 10px;
+            margin-bottom: -10px;
+            margin-top: -40px;
+            padding: 13px;
+        }
+
+        .priceTag {
+            font-size: 40px;
+            font-weight: 850;
+            letter-spacing: -.02em;
+            margin: 4px 0 0;
+        }
+
+        .badge {
+            display: flex;
+            padding: 5px 5px 7px;
+            border-radius: 999px;
+            border: 3px inset rgb(31, 115, 246);
+            background: rgba(199, 238, 229, 0.7);
+            color: rgb(0, 0, 0);
+            font-size: 16px;
+            width: fit-content;
+            font-weight: bold;
+            position: inherit;
+            margin-bottom: 3px;
+            margin-top: 35px;
+            height: 36px;
+        }
+
+        .micro {
+            margin: -2px 0 6px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .72);
+            text-align: left;
+        }
+
+
+        hr.sep {
+            border: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, .10);
+            margin: 10px;
+            margin-top: 10px;
+            margin-top: 7px;
+        }
+
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .h2 {
+            margin: 3px 15px 15px;
+            font-size: 18px;
+        }
+
+        .grid2 p {
+            margin: 0;
+            margin-top: 0px;
+            margin-top: 0px;
+            margin-top: 0px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.65;
+            font-size: 15px;
+            margin-top: -45px;
+            padding: 0px 15px 30px 10px;
+            display: contents;
+            font-weight: 400;
+            width: 100%;
+        }
+
+        .faq details {
+            border: 2px outset rgba(255, 255, 255, 0.89);
+            background: rgba(255, 12, 12, 0.27);
+            border-radius: 16px;
+            padding: 12px 14px;
+        }
+
+        .faq summary {
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: .01em;
+        }
+
+        .faq details p {
+            margin: 10px 0 0;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        .footer {
+            padding: 40px 0 60px;
+            color: rgba(255, 255, 255, .68);
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .35));
+        }
+
+        /* MOBILE */
+        @media (max-width: 920px) {
+            .heroGrid {
+                grid-template-columns: 1fr
+            }
+
+            .nav {
+                display: none
+            }
+
+            .btn {
+                margin: 0;
+                justify-self: center;
+            }
+
+            #o-que-recebe .btnWide {
+                width: 90%;
+                padding: 14px 18px;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .nav {
+                display: none
+            }
+
+            .menuBtn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center
+            }
+
+            .cta a.btn {
+                display: none
+            }
+
+            body.menuOpen .nav {
+                display: flex;
+                position: fixed;
+                top: var(--headerH);
+                left: 0;
+                right: 0;
+                padding: 10px 12px 14px;
+                background: rgba(8, 10, 16, .88);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                border-bottom: 1px solid rgba(255, 255, 255, .08);
+                justify-content: center;
+                gap: 6px;
+                flex-wrap: wrap;
+                z-index: 49;
+            }
+
+            .brand-logo {
+                max-width: max-content;
+                left: 135px;
+                scale: 1.9;
+            }
+
+            .brand-eye {
+                scale: 2.4;
+                margin-left: -20px;
+                margin-right: 20px;
+            }
+
+            .btn {
+                margin: 10px 0px 0px 22px;
+                justify-self: center;
+                width: 90%;
+            }
+
+            .list {
+                margin: auto;
+            }
+
+            .price {
+                padding: 0px 20px 0px 0px;
+            }
+
+            #o-que-recebe .btnWide {
+                width: 100%;
+            }
+        }
+
+        @media(max-width:500px) {
+            .grid2 {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 24px;
+                text-align: center;
+            }
+
+            .brand-logo {
+                margin-left: 50px;
+                scale: 1.5;
+            }
+
+            .brand-eye {
+                scale: 1.7;
+                transform: translateX(-25px);
+            }
+
+            .kicker {
+                padding: 10px 74px;
+                font-weight: 450;
+            }
+
+            .btn.btnPrimary {
+                width: 90%;
+                margin: 0px;
+                justify-self: center;
+            }
+
+            .trustBadge span {
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .btn {
+                margin: 0;
+                justify-self: center;
+            }
+
+            .card2 p {
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .h2 {
+                margin: 3px 15px 15px;
+                font-size: 20px;
+            }
+        }
+
+        @media(min-width: 320px) and (max-width:450px) {
+            .brand-logo {
+                max-width: 100vw;
+                width: 40vw;
+                height: auto;
+                margin-left: -100px;
+            }
+
+            .brand-eye {
+                margin: 0px;
+                left: 40px;
+            }
+
+            .btn.btnPrimary {
+                justify-self: end;
+            }
+
+            .btn {
+                justify-self: end;
+            }
+
+            .kicker {
+                padding: 15px;
+                font-weight: 450;
+                text-align: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .brandEye::before,
+            .brandLogoWrap::before,
+            .card::before {
+                filter: none
+            }
+        }
+
+        @keyframes revealFade {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* CTA wide só na seção "o-que-recebe" */
+        #o-que-recebe .card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #o-que-recebe .grid2 {
+            flex: 1 1 auto;
+            /* conteúdo cresce */
+        }
+
+        #o-que-recebe .sectionCtaRow {
+            margin-top: 22px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #o-que-recebe .btnWide {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 0;
+        }
+
+        /* Sheen automático (com pausa) */
+        .btnSheen {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .btnSheen::after {
+            content: "";
+            position: absolute;
+            top: -35%;
+            left: -70%;
+            width: 45%;
+            height: 170%;
+            transform: rotate(18deg);
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, .18),
+                    transparent);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: sheenLoop 4.5s ease-in-out infinite;
+            /* <- intervalo */
+        }
+
+        @keyframes sheenLoop {
+            0% {
+                left: -70%;
+                opacity: 0;
+            }
+
+            68% {
+                left: -70%;
+                opacity: 0;
+            }
+
+            /* pausa */
+            72% {
+                opacity: 1;
+            }
+
+            86% {
+                left: 135%;
+                opacity: 1;
+            }
+
+            /* varredura */
+            92% {
+                opacity: 0;
+            }
+
+            100% {
+                left: 135%;
+                opacity: 0;
+            }
+
+            /* fim */
+        }
+
+        /* Respeita usuários que preferem menos animação */
+        @media (prefers-reduced-motion: reduce) {
+            .btnSheen::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="wrap">
+            <div class="topbar">
+                <a class="brand" href="./">
+                    <span class="brandEye" aria-hidden="true">
+                        <img class="brand-eye" src="./assets/oficial-volynx-eye.png" alt="Olho oficial VOLYNX" />
+                    </span>
+
+                    <span class="brandLogoWrap">
+                        <img class="brand-logo" src="./assets/new-wordmark.webp" alt="VOLYNX Lab" />
+                    </span>
+                </a>
+
+                <nav class="nav" aria-label="Navegação">
+                    <a href="#o-que-e">O que é</a>
+                    <a href="#o-que-recebe">Conteúdo</a>
+                    <a href="#plano">Plano</a>
+                    <a href="#faq">FAQ</a>
+                </nav>
+
+                <div class="cta">
+                    <a class="btn btnPrimary btnSheen"
+                        href="https://pay.hotmart.com/G103546029A?utm_source=github&utm_medium=landing&utm_campaign=devjourney_social&sck=gh_social"
+                        target="_blank" rel="noopener">Comprar Social</a>
+                    <button class="menuBtn" id="menuBtn" type="button" aria-label="Abrir menu"
+                        aria-expanded="false">☰</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="o-que-e">
+            <div class="wrap">
+                <span class="kicker">VOLYNX.Lab Education • Dev Journey Social</span>
+
+                <h1>
+                    <span class="grad">
+                        <span class="w1">Entre.</span>
+                        <span class="w2">Foque.</span>
+                        <span class="w3">Entregue.</span>
+                    </span>
+                </h1>
+
+                <p class="sub">
+                    Trilha autoguiada (texto + arquivos + checklists), focada em execução e entrega publicável.
+                    Formato direto ao ponto e com liberdade — sem encontros ao vivo e sem acompanhamento individual.
+                </p>
+
+
+                <div class="heroGrid">
+                    <div class="card">
+                        <div class="grid2">
+                            <div>
+                                <h2 class="h2">O que você faz</h2>
+                                <p class="p">
+                                    Segue uma sequência curta de checkpoints. Cada etapa termina com algo que aparece na
+                                    tela
+                                    (e que você consegue publicar).
+                                </p>
+                            </div>
+                            <div>
+                                <h2 class="h2">Auto-guiado e com liberdade</h2>
+                                <p class="p">
+                                    Formato Social: trilha autoguiada com texto, arquivos e checklists. Direto e eficaz,
+                                    no seu ritmo, focada em entrega publicável + método.
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr class="sep" />
+
+                        <ul class="list">
+                            <li class="li">
+                                <span class="dot"></span>
+                                <div>
+                                    <strong>Entrega visível</strong>
+                                    <span>Se aparece na tela, conta. Se não aparece, ainda não virou entrega.</span>
+                                </div>
+                            </li>
+
+                            <li class="li">
+                                <span class="dot"></span>
+                                <div>
+                                    <strong>Texto + arquivos + checklists</strong>
+                                    <span>Conteúdo enxuto e aplicável, desenhado para você executar e publicar.</span>
+
+                                </div>
+                            </li>
+
+                            <li class="li">
+                                <span class="dot"></span>
+                                <div>
+                                    <strong>Portfólio first</strong>
+                                    <span>Objetivo final: publicar e ter algo apresentável (não só “eu entendi”).</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <aside class="card2" id="plano">
+                        <div class="price">
+                            <span class="badge">Plano único • Social</span>
+                            <div class="priceTag">R$ 370,00</div>
+                            <p class="p">Acesso ao conteúdo autoguiado do Dev Journey Social.</p>
+                            <p class="micro">Acesso imediato após pagamento aprovado.</p>
+
+
+                            <hr class="sep" />
+
+                            <a class="btn btnPrimary btnSheen"
+                                href="https://pay.hotmart.com/G103546029A?utm_source=github&utm_medium=landing&utm_campaign=devjourney_social&sck=gh_social"
+                                target="_blank" rel="noopener">Comprar
+                                Social</a>
+                            <div class="trustBadge" aria-label="Pagamento processado pela Hotmart">
+                                <img src="./assets/hotmart.svg" alt="Hotmart" />
+                                <span>Pagamento processado pela Hotmart</span>
+                            </div>
+                            <a class="btn" href="#o-que-recebe">Ver o que inclui</a>
+
+                            <hr class="sep" />
+
+                            <p class="p">
+                                Observação: este plano é autoguiado (texto + arquivos + checklists) e não inclui
+                                acompanhamento individual.
+                            </p>
+
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="o-que-recebe">
+            <div class="wrap">
+                <div class="card">
+                    <h2 class="h2">O que você recebe (Social)</h2>
+                    <p class="p">
+                        Pacote autoguiado para sair do “zero prático” e fechar uma entrega publicada com clareza de
+                        processo.
+                        Conteúdo focado em fundamentos e execução (HTML + CSS + JS).
+                    </p>
+
+                    <hr class="sep" />
+
+                    <div class="grid2">
+                        <div>
+                            <h2 class="h2">Inclui</h2>
+                            <ul class="list">
+                                <li class="li">
+                                    <span class="dot"></span>
+                                    <div>
+                                        <strong>Bloco 0 — Start Here</strong>
+                                        <span>Setup, organização e checkpoints “o que deve aparecer”.</span>
+                                    </div>
+                                </li>
+                                <li class="li">
+                                    <span class="dot"></span>
+                                    <div>
+                                        <strong>Bloco 1 — Fundamentos</strong>
+                                        <span>Estrutura + layout responsivo simples + primeiras interações.</span>
+                                    </div>
+                                </li>
+                                <li class="li">
+                                    <span class="dot"></span>
+                                    <div>
+                                        <strong>Bloco 2 — JavaScript + DOM</strong>
+                                        <span>Eventos, validação, manipulação de UI e uso prático de JSON.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h2 class="h2">Entrega alvo</h2>
+                            <ul class="list">
+                                <li class="li">
+                                    <span class="dot"></span>
+                                    <div>
+                                        <strong>Landing publicada</strong>
+                                        <span>Responsiva, com hierarquia e layout limpo.</span>
+                                    </div>
+                                </li>
+                                <li class="li">
+                                    <span class="dot"></span>
+                                    <div>
+                                        <strong>Form com validação</strong>
+                                        <span>Feedback visível na UI (não só console).</span>
+                                    </div>
+                                </li>
+                                <li class="li">
+                                    <span class="dot"></span>
+                                    <div>
+                                        <strong>JSON na interface</strong>
+                                        <span>Render de dados na página com fluxo claro.</span>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <hr class="sep" />
+                        </div>
+                    </div>
+                    <div class="sectionCtaRow">
+                        <a class="btn btnPrimary btnWide btnSheen"
+                            href="https://pay.hotmart.com/G103546029A?utm_source=github&utm_medium=landing&utm_campaign=devjourney_social&sck=gh_social"
+                            target="_blank" rel="noopener noreferrer">
+                            Comprar Social
+                        </a>
+                    </div>
+                    <hr class="sep" />
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="wrap">
+                <div class="card faq">
+                    <h2 class="h2">FAQ</h2>
+
+                    <div style="display:grid;gap:10px">
+                        <details>
+                            <summary>Sou iniciante. Tenho chances?</summary>
+                            <p>Com certeza! O Social começa no básico prático: editar arquivos, salvar, atualizar, e
+                                validar por
+                                checklist.</p>
+                        </details>
+
+                        <details>
+                            <summary>Tem vídeo, comunidade, mentoria ou suporte?</summary>
+                            <p>
+                                Este plano é 100% autoguiado: texto + arquivos + checklists. Não inclui mentoria,
+                                comunidade ou encontros ao vivo.
+                            </p>
+
+                        </details>
+
+                        <details>
+                            <summary>O que eu preciso pra fazer?</summary>
+                            <p>Um PC/Mac com navegador atualizado e editor (VS Code). O foco é execução simples e
+                                publicável.</p>
+                        </details>
+
+                        <details>
+                            <summary>Como eu compro?</summary>
+                            <p>Clique em “Comprar Social”, preencha seus dados de pagamento e pronto! Assim que o
+                                pagamento for aprovado você ganha acesso a todo o material do curso!
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="wrap">
+                <div>VOLYNX.Lab Education • Dev Journey Social</div>
+                <div style="margin-top:6px">Contato: hello@volynx.world • © VOLYNX — Todos os direitos reservados.</div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        (() => {
+            const btn = document.getElementById("menuBtn");
+            if (!btn) return;
+
+            btn.addEventListener("click", () => {
+                const open = document.body.classList.toggle("menuOpen");
+                btn.setAttribute("aria-expanded", open ? "true" : "false");
+            });
+
+            document.addEventListener("click", (e) => {
+                const a = e.target.closest && e.target.closest("a");
+                if (a && a.getAttribute("href") && a.getAttribute("href").startsWith("#")) {
+                    document.body.classList.remove("menuOpen");
+                    btn.setAttribute("aria-expanded", "false");
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dev Journey — Checklists</title>
+
+    <style>
+        @font-face {
+            font-family: "Sora";
+            src: url("./assets-fonts/Sora-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("./assets-fonts/Sora-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("./assets-fonts/Sora-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("./assets-fonts/Sora-ExtraBold.ttf") format("truetype");
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("./assets-fonts/Manrope-ExtraBold.ttf") format("truetype");
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("./assets-fonts/Manrope-Medium.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("./assets-fonts/Manrope-Light.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("./assets-fonts/Manrope-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg0: #050610;
+            --bg1: #070a18;
+            --ink: #eaf2ff;
+            --muted: rgba(234, 242, 255, .72);
+            --line: rgba(255, 255, 255, .12);
+            --glass: rgba(255, 255, 255, .06);
+            --shadow: 0 24px 80px rgba(0, 0, 0, .55);
+            --tiffany: #2fe6c9;
+            --tiffany2: #19cbb2;
+            --danger: #ff6b7a;
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+            background:
+                radial-gradient(900px 700px at 20% 10%, rgba(47, 230, 201, .18), transparent 55%),
+                radial-gradient(900px 700px at 85% 30%, rgba(93, 120, 255, .18), transparent 55%),
+                radial-gradient(700px 550px at 50% 95%, rgba(188, 76, 255, .16), transparent 55%),
+                linear-gradient(180deg, var(--bg0), var(--bg1));
+            overflow-x: hidden;
+        }
+
+        .wrap {
+            padding: 22px 16px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+            background: linear-gradient(180deg, rgba(5, 6, 16, .86), rgba(5, 6, 16, .55));
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 16px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--gap);
+            min-width: 0;
+            flex: 0 0 auto;
+            left: auto;
+            margin-left: 0;
+            padding: 22px 0px;
+            scale: 1.4;
+            position: relative;
+            bottom: 10px;
+            margin-bottom: -10px;
+        }
+
+        .logoSlot {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            border: 1px dashed rgba(47, 230, 201, .35);
+            background: rgba(47, 230, 201, .05);
+            display: grid;
+            place-items: center;
+            font-size: 11px;
+            color: rgba(234, 242, 255, .75);
+        }
+
+        .brand b {
+            letter-spacing: .2px;
+        }
+
+        .pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .pill {
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .06);
+            padding: 10px 12px;
+            border-radius: 999px;
+            color: rgba(234, 242, 255, .92);
+            font-weight: 650;
+            font-size: 12.5px;
+        }
+
+        .pill strong {
+            color: var(--tiffany);
+            font-weight: 800;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        @media (min-width: 980px) {
+            .grid {
+                grid-template-columns: 1.2fr .8fr;
+                align-items: start;
+            }
+        }
+
+        .panel {
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .04));
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background:
+                radial-gradient(700px 300px at 15% 12%, rgba(47, 230, 201, .18), transparent 60%),
+                radial-gradient(700px 300px at 85% 42%, rgba(93, 120, 255, .18), transparent 60%);
+            opacity: .9;
+            pointer-events: none;
+        }
+
+        .panel>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .panelPad {
+            padding: 18px 16px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            letter-spacing: -.2px;
+        }
+
+        h1 {
+            font-size: 18px;
+        }
+
+        h2 {
+            font-size: 16px;
+            opacity: .92;
+        }
+
+        .mini {
+            color: var(--muted);
+            font-size: 12.5px;
+            line-height: 1.45;
+            margin: 8px 0 0 0;
+        }
+
+        .blocks {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .blockBtn {
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(0, 0, 0, .18);
+            border-radius: 999px;
+            padding: 10px 12px;
+            color: rgba(234, 242, 255, .92);
+            font-weight: 750;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .blockBtn.is-active {
+            border-color: rgba(47, 230, 201, .35);
+            background: rgba(47, 230, 201, .10);
+            box-shadow: 0 0 0 6px rgba(47, 230, 201, .10);
+        }
+
+        .task {
+            margin-top: 12px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(0, 0, 0, .22);
+            border-radius: 18px;
+            padding: 12px 12px;
+        }
+
+        .taskHead {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .chk {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .chk input {
+            margin-top: 4px;
+            transform: scale(1.15);
+        }
+
+        .taskTitle {
+            font-weight: 800;
+        }
+
+        .taskSub {
+            color: var(--muted);
+            font-size: 12.5px;
+            margin-top: 4px;
+        }
+
+        .answer {
+            margin-top: 10px;
+            display: grid;
+            gap: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 84px;
+            resize: vertical;
+            padding: 12px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(0, 0, 0, .24);
+            color: var(--ink);
+            outline: none;
+            line-height: 1.4;
+        }
+
+        textarea:focus {
+            border-color: rgba(47, 230, 201, .35);
+            box-shadow: 0 0 0 6px rgba(47, 230, 201, .10);
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .16);
+            text-decoration: none;
+            font-weight: 800;
+            color: var(--ink);
+            background: rgba(255, 255, 255, .06);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            border-color: rgba(47, 230, 201, .32);
+            background: linear-gradient(180deg, rgba(47, 230, 201, .20), rgba(47, 230, 201, .08));
+        }
+
+        .btn-danger {
+            border-color: rgba(255, 107, 122, .28);
+            background: rgba(255, 107, 122, .10);
+        }
+
+        .progress {
+            margin-top: 14px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 999px;
+            background: rgba(0, 0, 0, .18);
+            overflow: hidden;
+            height: 12px;
+        }
+
+        .progress>div {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, rgba(47, 230, 201, .92), rgba(93, 120, 255, .82));
+            transition: width .35s ease;
+        }
+
+        .badgeOk {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(47, 230, 201, .22);
+            background: rgba(47, 230, 201, .06);
+            margin-top: 12px;
+            font-weight: 800;
+            color: rgba(234, 242, 255, .95);
+        }
+
+        .toast {
+            display: none;
+            margin-top: 12px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(0, 0, 0, .35);
+            color: rgba(234, 242, 255, .9);
+            font-size: 13px;
+        }
+
+        .toast.ok {
+            border-color: rgba(47, 230, 201, .35);
+        }
+
+        .toast.bad {
+            border-color: rgba(255, 120, 120, .35);
+        }
+
+        .small {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="topbar">
+            <div class="brand">
+                <div class="logoSlot">LOGO</div>
+                <div>
+                    <b>Dev Journey</b>
+                    <div class="small">Área do Aluno</div>
+                </div>
+            </div>
+
+            <div class="pills">
+                <div class="pill">Plano: <strong id="pillPlan">—</strong></div>
+                <div class="pill">Progresso: <strong id="pillPct">0%</strong></div>
+                <button class="btn btn-danger" id="btnLogout" type="button">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrap">
+        <div class="grid">
+            <section class="panel">
+                <div class="panelPad">
+                    <h1>Checklists e respostas</h1>
+                    <p class="mini">
+                        Marque as entregas, responda os exercícios e finalize o bloco. Quando tudo estiver completo,
+                        você gera o pacote de validação.
+                    </p>
+
+                    <div class="blocks" id="blocks"></div>
+
+                    <div class="progress" aria-label="Progresso do bloco">
+                        <div id="bar"></div>
+                    </div>
+
+                    <div id="tasks"></div>
+
+                    <div class="row">
+                        <button class="btn" id="btnSave" type="button">Salvar progresso</button>
+                        <button class="btn btn-primary" id="btnExport" type="button">Gerar validação</button>
+                    </div>
+
+                    <div class="toast" id="toast"></div>
+                </div>
+            </section>
+
+            <aside class="panel">
+                <div class="panelPad">
+                    <h2>Como isso vira certificado</h2>
+                    <p class="mini">
+                        Você vai gerar um “pacote de validação” com:
+                        <br />• seu email
+                        <br />• checklists marcados
+                        <br />• respostas dos exercícios
+                        <br />• link do repositório e página publicada
+                    </p>
+
+                    <div class="task">
+                        <div class="taskHead">
+                            <div>
+                                <div class="taskTitle">Links obrigatórios</div>
+                                <div class="taskSub">Cole aqui pra validar seu certificado.</div>
+                            </div>
+                        </div>
+
+                        <div class="answer">
+                            <textarea id="repo" placeholder="Link do GitHub (repositório)"></textarea>
+                            <textarea id="live"
+                                placeholder="Link do site publicado (GitHub Pages / Cloudflare etc.)"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="seal"></div>
+
+                    <p class="mini">
+                        Dica: não tente “parecer perfeito”. Faça funcionar, organize, publique. Isso é mundo real.
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!--   <script>
+        const $ = (s) => document.querySelector(s);
+
+        function toast(msg, kind) {
+            const el = $("#toast");
+            el.className = "toast " + (kind || "");
+            el.textContent = msg;
+            el.style.display = "block";
+            clearTimeout(window.__t);
+            window.__t = setTimeout(() => el.style.display = "none", 3600);
+        }
+
+        function getSession() {
+            try {
+                return JSON.parse(localStorage.getItem("dj_session") || "null");
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function requireAuth() {
+            const sess = getSession();
+            if (!sess || !sess.user) {
+                window.location.href = "login.html";
+                return null;
+            }
+            return sess;
+        }
+
+        const sess = requireAuth();
+        if (sess) {
+            $("#pillPlan").textContent = (sess.user.plan || "social").toUpperCase();
+        }
+
+        $("#btnLogout").addEventListener("click", () => {
+            localStorage.removeItem("dj_session");
+            window.location.href = "login.html";
+        });
+
+        // ===== DATA (MVP) — ajuste como quiser
+        const BLOCKS = [
+            {
+                id: "b1",
+                title: "Bloco 1 — HTML + CSS",
+                tasks: [
+                    {
+                        id: "b1_t1",
+                        title: "Página estruturada (header/main/footer)",
+                        sub: "Sua página tem seções e conteúdo legível.",
+                        prompt: "Cole o HTML final do seu <main> (ou descreva as seções)."
+                    },
+                    {
+                        id: "b1_t2",
+                        title: "CSS conectado e funcionando",
+                        sub: "Você provou que o CSS está aplicando mudanças.",
+                        prompt: "Explique como você comprovou a conexão do CSS (ex.: teste visível) e o que ajustou."
+                    },
+                    {
+                        id: "b1_t3",
+                        title: "Layout base aplicado",
+                        sub: "max-width + padding + line-height aplicados no main.",
+                        prompt: "Cole seu CSS do main e explique por que isso melhora leitura."
+                    },
+                    {
+                        id: "b1_t4",
+                        title: "Responsividade básica (Aula 1.4.1)",
+                        sub: "Sem scroll lateral, legível no mobile.",
+                        prompt: "Quais 3 coisas você fez para evitar estouro no mobile?"
+                    }
+                ]
+            },
+            {
+                id: "b2",
+                title: "Bloco 2 — JavaScript",
+                tasks: [
+                    {
+                        id: "b2_t1",
+                        title: "JS conectado ao HTML",
+                        sub: "Mensagem no console aparece corretamente.",
+                        prompt: "Cole a linha do <script> e descreva por que usamos defer."
+                    },
+                    {
+                        id: "b2_t2",
+                        title: "Variáveis + if/else",
+                        sub: "O código decide e imprime resultado.",
+                        prompt: "Cole um exemplo seu usando idade + if/else."
+                    },
+                    {
+                        id: "b2_t3",
+                        title: "Loop + função",
+                        sub: "Repetição e organização do código.",
+                        prompt: "Cole um exemplo de função que você chama mais de uma vez."
+                    },
+                    {
+                        id: "b2_t4",
+                        title: "Mini-projeto final do bloco",
+                        sub: "Tudo junto, funcionando.",
+                        prompt: "Descreva seu mini-projeto e o que você aprendeu ao final."
+                    }
+                ]
+            }
+        ];
+
+        const stateKey = "dj_checklists_state_v1";
+
+        function loadState() {
+            try {
+                return JSON.parse(localStorage.getItem(stateKey) || "null") || {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveState(s) {
+            localStorage.setItem(stateKey, JSON.stringify(s));
+        }
+
+        let state = loadState();
+        let activeBlock = state.activeBlock || BLOCKS[0].id;
+
+        function pctForBlock(block) {
+            const done = (block.tasks || []).filter(t => state[t.id]?.done).length;
+            const total = (block.tasks || []).length || 1;
+            return Math.round((done / total) * 100);
+        }
+
+        function updateProgress(block) {
+            const pct = pctForBlock(block);
+            $("#pillPct").textContent = pct + "%";
+            $("#bar").style.width = pct + "%";
+
+            const seal = $("#seal");
+            if (pct === 100) {
+                seal.innerHTML = `<div class="badgeOk">✓ Bloco completo — pronto para validação</div>`;
+            } else {
+                seal.innerHTML = "";
+            }
+        }
+
+        function renderBlocks() {
+            const el = $("#blocks");
+            el.innerHTML = "";
+            BLOCKS.forEach(b => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "blockBtn" + (b.id === activeBlock ? " is-active" : "");
+                btn.textContent = b.title;
+                btn.addEventListener("click", () => {
+                    activeBlock = b.id;
+                    state.activeBlock = activeBlock;
+                    saveState(state);
+                    render();
+                });
+                el.appendChild(btn);
+            });
+        }
+
+        function renderTasks(block) {
+            const el = $("#tasks");
+            el.innerHTML = "";
+
+            block.tasks.forEach(t => {
+                const s = state[t.id] || { done: false, answer: "" };
+
+                const card = document.createElement("div");
+                card.className = "task";
+
+                card.innerHTML = `
+					<div class="taskHead">
+						<div class="chk">
+							<input type="checkbox" ${s.done ? "checked" : ""} data-task="${t.id}" />
+							<div>
+								<div class="taskTitle">${t.title}</div>
+								<div class="taskSub">${t.sub}</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="answer">
+						<label class="small">Resposta (para validação)</label>
+						<textarea data-answer="${t.id}" placeholder="${t.prompt}">${s.answer || ""}</textarea>
+					</div>
+				`;
+
+                el.appendChild(card);
+            });
+
+            el.querySelectorAll("input[type=checkbox][data-task]").forEach(chk => {
+                chk.addEventListener("change", (e) => {
+                    const id = e.target.getAttribute("data-task");
+                    state[id] = state[id] || {};
+                    state[id].done = e.target.checked;
+                    saveState(state);
+                    updateProgress(block);
+                });
+            });
+
+            el.querySelectorAll("textarea[data-answer]").forEach(tx => {
+                tx.addEventListener("input", (e) => {
+                    const id = e.target.getAttribute("data-answer");
+                    state[id] = state[id] || {};
+                    state[id].answer = e.target.value;
+                    saveState(state);
+                });
+            });
+        }
+
+        function render() {
+            renderBlocks();
+            const block = BLOCKS.find(b => b.id === activeBlock) || BLOCKS[0];
+            renderTasks(block);
+            updateProgress(block);
+
+            $("#repo").value = state.repo || "";
+            $("#live").value = state.live || "";
+        }
+
+        $("#repo").addEventListener("input", (e) => {
+            state.repo = e.target.value;
+            saveState(state);
+        });
+        $("#live").addEventListener("input", (e) => {
+            state.live = e.target.value;
+            saveState(state);
+        });
+
+        $("#btnSave").addEventListener("click", () => {
+            saveState(state);
+            toast("Progresso salvo.", "ok");
+        });
+
+        $("#btnExport").addEventListener("click", async () => {
+            const sess = getSession();
+            if (!sess?.user?.email) {
+                toast("Sessão inválida. Faça login novamente.", "bad");
+                return;
+            }
+
+            const payload = {
+                product: "Dev Journey",
+                plan: sess.user.plan || "social",
+                email: sess.user.email,
+                createdAt: new Date().toISOString(),
+                links: {
+                    repo: (state.repo || "").trim(),
+                    live: (state.live || "").trim()
+                },
+                blocks: BLOCKS.map(b => ({
+                    id: b.id,
+                    title: b.title,
+                    progress: pctForBlock(b),
+                    tasks: b.tasks.map(t => ({
+                        id: t.id,
+                        title: t.title,
+                        done: !!state[t.id]?.done,
+                        answer: (state[t.id]?.answer || "").trim()
+                    }))
+                }))
+            };
+
+            // MVP: baixar JSON (pra você validar manualmente ou mandar pra API depois)
+            const json = JSON.stringify(payload, null, 2);
+            const blob = new Blob([json], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "devjourney-validacao.json";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+
+            toast("Validação gerada (JSON baixado).", "ok");
+        });
+
+        render();
+    </script>-->
+</body>
+
+</html>

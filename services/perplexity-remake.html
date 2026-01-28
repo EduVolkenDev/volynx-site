@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VOLYNX — Premium Web Design</title>
+    <meta name="description"
+        content="VOLYNX crafts premium, conversion-focused websites and brand identities with fast delivery and intelligent design." />
+
+    <!-- Removi o CSS externo pra não “embaralhar” nada.
+       Se quiser manter, re-adicione depois: <link rel="stylesheet" href="./lp-responsive-base.css"> -->
+
+    <style>
+        /* =========================================================
+   FONTS (mesmo código que você já tem)
+   ========================================================= */
+        @font-face {
+            font-family: "Manrope";
+            src: url("./assets-fonts/Manrope-Light.ttf") format("truetype");
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("./assets-fonts/Manrope-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("./assets-fonts/Manrope-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("./assets-fonts/Manrope-ExtraBold.ttf") format("truetype");
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("./assets-fonts/Sora-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("./assets-fonts/Sora-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("./assets-fonts/Sora-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("./assets-fonts/Sora-ExtraBold.ttf") format("truetype");
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* =========================================================
+   TOKENS
+   ========================================================= */
+        :root {
+            --enter-dur: 1.15s;
+            --bg0: #080610;
+            --card: rgba(18, 24, 39, 0.56);
+            --stroke: rgba(255, 255, 255, 0.10);
+            --muted: rgba(230, 232, 255, 0.78);
+            --text: #dde3ec;
+
+            --brand: #a78bfa;
+            --brand2: #a06efd;
+            --ok: #34d399;
+            --warn: #f59e0b;
+        }
+
+        /* =========================================================
+   RESET / BASE (mobile-first)
+   ========================================================= */
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family: Manrope, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg0);
+            overflow-x: hidden;
+
+            opacity: 0;
+            transform: translateY(14px);
+            animation: pageIn var(--enter-dur) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        @keyframes pageIn {
+            0% {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            70% {
+                opacity: 1;
+                transform: translateY(2px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================================
+   BACKGROUND
+   ========================================================= */
+        html {
+            position: relative;
+            isolation: isolate;
+        }
+
+        html::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background: url("/assets/nebula-abstract.webp") center/cover no-repeat;
+            opacity: .92;
+            transform: translateZ(0);
+        }
+
+        html::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(1100px 820px at 14% 10%, rgba(0, 122, 255, .10), transparent 60%),
+                radial-gradient(980px 720px at 86% 18%, rgba(255, 184, 107, .08), transparent 64%),
+                linear-gradient(180deg, rgba(8, 6, 16, .18) 0%, rgba(10, 7, 24, .22) 45%, rgba(13, 8, 37, .28) 100%);
+        }
+
+        /* =========================================================
+   LAYOUT SHELL (mobile: padding menor)
+   ========================================================= */
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 16px 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main {
+            position: relative;
+            z-index: 1;
+        }
+
+        .homepage-section {
+            padding: 24px 0;
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        /* =========================================================
+   BUTTONS
+   ========================================================= */
+        .btn {
+            position: relative;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #e8ecf1;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            white-space: nowrap;
+
+            border: 1px solid transparent;
+            background:
+                linear-gradient(135deg, #070b11, #101624) padding-box,
+                linear-gradient(135deg, #f5f7ff, #c2ccdd, #7f8fb3, #2f5fd1) border-box;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+            transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.08);
+            box-shadow: 0 18px 38px rgba(0, 0, 0, .45);
+        }
+
+        .btn:active {
+            transform: translateY(0px);
+        }
+
+        .btn.primary {
+            background:
+                linear-gradient(150deg, #bb9de8, #7c3aed, #a855f7) padding-box,
+                linear-gradient(150deg, #000, #f1f0f5, #7c3aed) border-box;
+        }
+
+        .btn.alt {
+            opacity: .92;
+            background:
+                linear-gradient(150deg, #dd7474, #710f0f, #f55858) padding-box,
+                linear-gradient(150deg, #fbfbfb, #f1f0f5, #000) border-box;
+        }
+
+        .btn.whats {
+            opacity: .92;
+            color: #fff;
+            text-shadow: 0 0 1px rgba(255, 255, 255, .75);
+            background:
+                linear-gradient(150deg, #b1e89d, #0d7504, #6fd161) padding-box,
+                linear-gradient(150deg, #fbfbfb, #f1f0f5, #020301) border-box;
+        }
+
+        /* select “parecendo botão” */
+        select.btn {
+            -webkit-appearance: none;
+            appearance: none;
+            padding-right: 42px;
+            background-image:
+                linear-gradient(135deg, transparent 50%, rgba(226, 232, 240, .95) 50%),
+                linear-gradient(225deg, transparent 50%, rgba(226, 232, 240, .95) 50%);
+            background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+            background-size: 6px 6px, 6px 6px;
+            background-repeat: no-repeat;
+        }
+
+        /* =========================================================
+   GLOBAL NAV (mobile-first)
+   ========================================================= */
+        header.globalnav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+
+            padding: 10px 12px;
+            border-radius: 16px;
+            border: 2px outset rgba(93, 116, 116, .9);
+            background: rgba(0, 0, 0, .18);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-bottom: 12px;
+        }
+
+        .globalnav-left {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        /* marca menor no mobile */
+        .globalnav-brand .brand-eye {
+            width: 46px;
+            height: auto;
+            filter: drop-shadow(0 10px 25px rgba(160, 110, 253, .22)) brightness(1.25);
+        }
+
+        .globalnav-brand .brand-wordmark {
+            height: 18px;
+            width: auto;
+            filter: drop-shadow(0 10px 25px rgba(160, 110, 253, .18));
+            opacity: .98;
+        }
+
+        .globalnav-center {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: space-between;
+        }
+
+        .globalnav-center a {
+            flex: 1;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(230, 232, 255, 0.88);
+            text-decoration: none;
+            opacity: 0.92;
+            padding: 8px 6px;
+            border-radius: 10px;
+            transition: opacity .25s ease, background .25s ease;
+            box-shadow: 0 0 10px inset rgba(0, 0, 0, .7), 0 0 25px inset rgba(255, 255, 255, .16);
+        }
+
+        .globalnav-center a:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, .06);
+        }
+
+        /* no mobile, direita vira linha abaixo em row */
+        .hero-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        /* hamburger se você quiser no futuro – por enquanto, escondido */
+        .nav-toggle,
+        .mobile-drawer {
+            display: none;
+        }
+
+        /* =========================================================
+   HERO (mobile: coluna)
+   ========================================================= */
+        .hero-unit {
+            border-radius: 26px;
+            border: 2px outset rgb(19, 3, 3);
+            background:
+                radial-gradient(1200px 700px at 30% 25%, rgba(255, 124, 92, 0.18), transparent 60%),
+                radial-gradient(900px 600px at 85% 10%, rgba(56, 189, 248, 0.14), transparent 55%),
+                rgba(12, 16, 26, 0.62);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            padding: 26px 18px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-unit::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background: radial-gradient(600px 240px at 20% 0%, rgba(160, 110, 253, .18), transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .hero-copy {
+            position: relative;
+        }
+
+        .globalnav-eyebrow {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            opacity: 0.85;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .hero-logo {
+            max-width: 600px;
+            margin: -95px 0px 10px 0px;
+            display: block;
+            width: auto;
+            height: auto;
+        }
+
+        .hero-logo img {
+            width: 100vw;
+            height: 20vh;
+            filter: drop-shadow(0 0 6px rgba(192, 151, 250, 0.75)) drop-shadow(0 0 8px rgba(6, 176, 242, 0.40));
+            position: relative;
+            right: 75%;
+            bottom: 35%;
+            min-width: 70vw;
+            scale: 1.3;
+            display: flex;
+            max-width: 100vw;
+        }
+
+        .hero-subhead {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(230, 232, 255, 0.84);
+        }
+
+        .cta-links {
+            margin-top: 16px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* hero visual abaixo no mobile */
+        .hero-visual {
+            border-radius: 22px;
+            border: 1px solid var(--stroke);
+            background: rgba(8, 10, 16, 0.35);
+            padding: 16px;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle at 10px 20px, rgba(248, 250, 252, 0.2), transparent 45%),
+                radial-gradient(circle at 100% 30px, rgba(192, 132, 252, 0.4), transparent 70%),
+                #020617;
+            border: 1px solid rgba(209, 213, 219, 0.35);
+            color: #e5e7eb;
+            box-shadow: 0 0 0 1px rgba(71, 55, 107, .7), 0 18px 60px rgba(127, 88, 198, .22);
+            margin-bottom: 8px;
+        }
+
+        .chip::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: radial-gradient(circle, #a855f7 0%, #22c55e 60%, transparent 100%);
+            box-shadow: 0 0 12px rgba(94, 234, 212, 0.55);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .kpi {
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .kpi .n {
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .kpi .l {
+            font-size: 10px;
+            opacity: 0.78;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* =========================================================
+   SECTION TITLES / ICONS
+   ========================================================= */
+        .sec-title {
+            font-size: 18px;
+            margin: 0 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fbfbfb;
+        }
+
+        .sec-title::after {
+            content: "";
+            flex: 1;
+            height: 4px;
+            background: linear-gradient(90deg, rgb(112, 58, 166), rgba(0, 0, 0, 0) 97%);
+            filter: drop-shadow(-7px 0px 10px rgba(209, 213, 219, .25));
+            border-radius: 999px;
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            opacity: .95;
+            color: var(--brand2);
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        /* =========================================================
+   GRIDS / CARDS (mobile = 1 coluna)
+   ========================================================= */
+        .grid {
+            display: grid;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .grid.cols-2 {
+            grid-template-columns: 1fr;
+        }
+
+        .grid.cols-3 {
+            grid-template-columns: 1fr;
+        }
+
+        .card {
+            border: 1px solid rgba(255, 255, 255, .10);
+            border-radius: 20px;
+            padding: 18px 16px;
+            background: rgba(18, 24, 39, 0.54);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .25);
+        }
+
+        .card h3 {
+            margin: 10px 0 10px;
+            color: #f3f4f6;
+        }
+
+        /* =========================================================
+   PLANS (mobile-first)
+   ========================================================= */
+        .plan-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .plan-tile {
+            border-radius: 26px;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
+            background: rgba(18, 24, 39, 0.54) !important;
+            overflow: hidden;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .plan-media {
+            position: relative;
+            padding: 12px;
+            background:
+                radial-gradient(900px 280px at 30% 0%, rgba(255, 124, 92, 0.14), transparent 60%),
+                rgba(0, 0, 0, 0.22);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .plan-media a {
+            display: block;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .plan-media img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .plan-content {
+            padding: 16px 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .plan-content .headline {
+            font-size: 18px;
+            margin: 2px 0 0;
+        }
+
+        .plan-content .muted {
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .price-label {
+            font-size: 10px;
+            opacity: .85;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #ae5eff;
+        }
+
+        .price-label .currency {
+            color: #e5e7eb;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: 900;
+            margin: 0;
+            color: #f9fafb;
+        }
+
+        .plan-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 0;
+            display: grid;
+            gap: 6px;
+            font-size: 13px;
+        }
+
+        .plan-bullets li {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            color: rgba(230, 232, 255, .86);
+        }
+
+        .ok {
+            color: var(--ok);
+        }
+
+        .warn {
+            color: var(--warn);
+        }
+
+        .plans-note {
+            margin-top: 14px;
+            font-size: 12px;
+            color: rgba(230, 232, 255, 0.70);
+            border: 1px dashed rgba(255, 255, 255, 0.18);
+            border-radius: 18px;
+            padding: 12px 14px;
+            background: rgba(0, 0, 0, 0.20);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* =========================================================
+   ADD-ONS
+   ========================================================= */
+        .promo-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .promo-tile {
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(18, 24, 39, 0.46);
+            padding: 18px;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .promo-tile h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+        }
+
+        .promo-tile p {
+            margin: 0;
+            color: rgba(230, 232, 255, 0.82);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* =========================================================
+   WHY VOLYNX
+   ========================================================= */
+        #why-volynx .card {
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        #why-volynx .card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.25), transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(45, 212, 191, 0.18), transparent 55%);
+            opacity: .16;
+            pointer-events: none;
+        }
+
+        #why-volynx .card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        #why-volynx .why-features {
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        #why-volynx .why-features li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 13px;
+            line-height: 1.55;
+            color: rgba(230, 232, 255, .86);
+        }
+
+        #why-volynx .why-features .icon {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            color: var(--brand2);
+        }
+
+        #why-volynx .why-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            margin: 18px 0 14px;
+        }
+
+        #why-volynx .metric {
+            padding: 12px 10px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            background:
+                radial-gradient(circle at 30% 80%, rgba(105, 184, 227, 0.18), rgba(198, 109, 251, 0.10) 72%, transparent 96%),
+                rgba(28, 22, 49, 0.42);
+        }
+
+        #why-volynx .metric-number {
+            font-size: 16px;
+            font-weight: 800;
+            color: #e5e7eb;
+        }
+
+        #why-volynx .metric-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: #9ba3b4;
+            margin-top: 4px;
+        }
+
+        #why-volynx .why-note {
+            font-size: 11px;
+            color: rgba(230, 232, 255, .70);
+            margin: 16px 0 0;
+        }
+
+        #why-volynx .why-tagline {
+            font-size: 13px;
+            color: #cbd5f5;
+            margin: 12px 0 0;
+        }
+
+        /* =========================================================
+   FORMS / ROW
+   ========================================================= */
+        .row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        form {
+            display: grid;
+            gap: 12px;
+        }
+
+        input,
+        textarea {
+            background: #020617;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            padding: 12px;
+            font: inherit;
+            color: #e5e7eb;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, .25);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(148, 163, 184, .65);
+        }
+
+        /* =========================================================
+   FOOTER DIRECTORY (mobile: 1 coluna)
+   ========================================================= */
+        .footer-dir {
+            margin-top: 26px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .footer-dir .cols {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .footer-dir h4 {
+            margin: 0 0 6px;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            opacity: 0.82;
+        }
+
+        .footer-dir a {
+            display: block;
+            text-decoration: none;
+            color: rgba(230, 232, 255, 0.82);
+            font-size: 13px;
+            padding: 4px 0;
+            opacity: .95;
+        }
+
+        .footer-dir a:hover {
+            color: rgba(255, 255, 255, .98);
+        }
+
+        .footer-legal {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+            color: rgba(230, 232, 255, 0.70);
+            font-size: 11px;
+        }
+
+        .footer-legal .links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal .links a {
+            color: rgba(230, 232, 255, 0.70);
+            text-decoration: none;
+        }
+
+        .footer-legal .links a:hover {
+            color: rgba(255, 255, 255, .95);
+        }
+
+        /* =========================================================
+   MOTION PREFERENCES
+   ========================================================= */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            body {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 559px) and (min-width: 320px) {
+            body {
+                font-size: 15px;
+            }
+
+            .globalnav-center {
+                display: grid;
+                gap: 6px;
+                justify-content: space-between;
+                position: relative;
+                max-width: 100vw;
+                min-width: 60vw;
+                height: auto;
+                width: auto;
+            }
+
+            .globalnav-center a {
+                display: none;
+            }
+
+            .hero-btn {
+                gap: 0px;
+                bottom: 90%;
+                position: inherit;
+                right: 45%;
+                margin-top: 12%;
+                opacity: 0.9;
+                left: 30%;
+            }
+
+            header.globalnav {
+                display: flex;
+                align-items: first baseline;
+                gap: 28px;
+                padding: 0px 20px;
+                padding-top: 0px;
+                border-radius: 16px;
+                border: 2px outset rgba(93, 116, 116, .9);
+                background: rgba(0, 0, 0, .18);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                margin-bottom: 0px;
+                width: auto;
+                max-width: 100vw;
+                height: 25vh;
+                padding-top: 5%;
+            }
+
+            select.btn,
+            .btn.primary {
+                padding: 11px;
+                min-width: 30vw;
+                height: 4.5vh;
+                position: relative;
+                bottom: 10px;
+                text-align: center;
+                width: 40vw;
+            }
+
+            .globalnav-brand .brand-eye {
+                filter: drop-shadow(0 10px 25px rgba(160, 110, 253, .22)) brightness(1.25);
+                max-width: 60vw;
+                position: relative;
+                left: 50%;
+                margin: -25px 6px;
+                color: inherit;
+                width: auto;
+                height: auto;
+                display: inherit;
+                opacity: 0.3;
+            }
+
+            .hero-logo {
+                max-width: 80vw;
+                margin: -25vw 0vw 0vw 65vw;
+                display: flex;
+                width: auto;
+                height: 100%;
+                scale: 1.1;
+            }
+        }
+
+        /* =========================================================
+   BREAKPOINTS (desktop / tablet para expandir)
+   ========================================================= */
+
+        /* >= 640px: melhora grids e NAV */
+        @media (min-width: 560px) {
+            .wrap {
+                padding: 24px 20px 34px;
+            }
+
+            header.globalnav {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .globalnav-center {
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .hero-btn {
+                justify-content: flex-end;
+                flex: 0 0 auto;
+            }
+
+            .btn {
+                position: relative;
+                padding: 15px 15px;
+                padding-right: 15px;
+                border-radius: 999px;
+                font-weight: 510;
+                font-size: 11px;
+                text-transform: uppercase;
+                color: #e8ecf1;
+                text-decoration: none;
+                display: inline-flex;
+                cursor: pointer;
+                border: 1px solid transparent;
+                box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+                transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+                max-width: 50%;
+                width: 39vw;
+                height: auto;
+                bottom: 28px;
+                text-align: end;
+                justify-content: end;
+                align-items: center;
+            }
+
+            .hero-grid {
+                gap: 22px;
+            }
+
+            .plan-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .promo-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .grid.cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* >= 960px: layout “desktop” cheio */
+        @media (min-width: 960px) {
+            .hero-grid {
+                display: grid;
+                grid-template-columns: 1.25fr 0.9fr;
+                align-items: center;
+            }
+
+            .plan-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .promo-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .grid.cols-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .footer-dir .cols {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="globalnav" role="navigation" aria-label="VOLYNX global navigation">
+            <div class="globalnav-eyebrow">INTELLIGENCE • DESIGN • CONVERSION</div>
+
+            <div class="globalnav-left">
+                <div class="hero-logo" aria-label="VOLYNX">
+                    <img src="./assets/oficial-volynx-logo.png"
+                        onerror="this.onerror=null;this.src='./assets/oficial-volynx-logo.svg';" alt="VOLYNX"
+                        decoding="async" loading="eager" />
+                </div>
+            </div>
+
+            <nav class="globalnav-center" aria-label="Primary">
+                <a href="#planos">Plans</a>
+                <a href="#addons">Add-ons</a>
+                <a href="#why-volynx">Why</a>
+                <a href="#contato">Contact</a>
+            </nav>
+
+        </header>
+
+        <main class="main" role="main">
+            <div class="hero-btn">
+                <select class="btn alt currency-select" aria-label="Choose currency">
+                    <option value="gbp">GBP £</option>
+                    <option value="eur" selected>EUR €</option>
+                </select>
+                <a class="btn primary" href="https://calendly.com/volynx-schedule-your-meeting/30min" target="_blank"
+                    rel="noopener noreferrer">Book a Meeting</a>
+            </div>
+            <section class="homepage-section" id="top">
+                <div class="hero-unit">
+                    <div class="hero-grid">
+                        <div class="hero-copy">
+
+
+
+                            <p class="hero-subhead">
+                                Premium websites engineered for conversion, shipped with a guided process that keeps you
+                                moving.
+                                You bring the vision. We operationalize it into a site that sells.
+                            </p>
+
+                            <div class="cta-links">
+                                <a class="btn primary" href="https://calendly.com/volynx-schedule-your-meeting/30min"
+                                    target="_blank" rel="noopener noreferrer">Book a Meeting</a>
+                                <a class="btn whats"
+                                    href="https://wa.me/447438656769?text=I%20want%20a%20premium%20VOLYNX%20website"
+                                    target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                                <a class="btn alt" href="#planos">See plans</a>
+                            </div>
+                        </div>
+
+                        <div class="hero-visual" aria-label="Key metrics">
+                            <div class="chip">Delivery, not delays</div>
+
+                            <div class="kpi-grid">
+                                <div class="kpi">
+                                    <div class="n">Days</div>
+                                    <div class="l">Time to launch</div>
+                                </div>
+                                <div class="kpi">
+                                    <div class="n">A+</div>
+                                    <div class="l">Performance focus</div>
+                                </div>
+                                <div class="kpi">
+                                    <div class="n">Guided</div>
+                                    <div class="l">Copy & structure</div>
+                                </div>
+                                <div class="kpi">
+                                    <div class="n">Clean</div>
+                                    <div class="l">Premium UI</div>
+                                </div>
+                            </div>
+
+                            <p class="muted" style="margin:12px 0 0; font-size:12px;">
+                                The point is simple: less “website project”, more “revenue engine”.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="homepage-section collection-module" id="planos">
+                <h2 class="sec-title">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#i-spark" />
+                    </svg>
+                    Plans (choose your mission profile)
+                </h2>
+
+                <div class="plan-grid">
+                    <!-- START -->
+                    <article class="plan-tile card" data-plan="landing">
+                        <div class="plan-media">
+                            <a href="./assets-mockups/mockup-start.webp" target="_blank" rel="noopener"
+                                aria-label="Open Landing Express mockup">
+                                <img src="./assets-mockups/mockup-start.webp" alt="Landing Express mockup"
+                                    loading="lazy" />
+                            </a>
+                        </div>
+
+                        <div class="plan-content">
+                            <span class="chip">Start</span>
+                            <h3 class="headline">Landing Express</h3>
+                            <p class="muted">One high-converting page: clear story, one CTA, and a layout engineered to
+                                close.</p>
+
+                            <div class="price-row">
+                                <div class="price-label">from <span class="currency">€</span></div>
+                                <p class="price">394,90</p>
+                            </div>
+
+                            <ul class="plan-bullets">
+                                <li><span class="ok">✔</span> Launch-ready in days</li>
+                                <li><span class="ok">✔</span> Copy + structure guided</li>
+                                <li><span class="warn">•</span> 1 revision round</li>
+                            </ul>
+
+                            <div class="cta-links">
+                                <a class="btn primary"
+                                    href="https://wa.me/447438656769?text=I%20want%20Landing%20Express" target="_blank"
+                                    rel="noopener noreferrer">Buy now</a>
+                                <a class="btn alt"
+                                    href="https://wa.me/447438656769?text=Questions%20about%20Landing%20Express"
+                                    target="_blank" rel="noopener noreferrer">Questions</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PRO -->
+                    <article class="plan-tile card" data-plan="portfolio">
+                        <div class="plan-media">
+                            <a href="./assets-mockups/mockup-pro.webp" target="_blank" rel="noopener"
+                                aria-label="Open Portfolio + Identity mockup">
+                                <img src="./assets-mockups/mockup-pro.webp" alt="Portfolio + Identity mockup"
+                                    loading="lazy" />
+                            </a>
+                        </div>
+
+                        <div class="plan-content">
+                            <span class="chip">Pro</span>
+                            <h3 class="headline">Portfolio + Identity</h3>
+                            <p class="muted">Multi-section portfolio with positioning, projects, and a cohesive premium
+                                identity
+                                layer.</p>
+
+                            <div class="price-row">
+                                <div class="price-label">from <span class="currency">€</span></div>
+                                <p class="price">829,90</p>
+                            </div>
+
+                            <ul class="plan-bullets">
+                                <li><span class="ok">✔</span> Premium UI + performance focus</li>
+                                <li><span class="ok">✔</span> SEO basics + analytics</li>
+                                <li><span class="warn">•</span> 2 revision rounds</li>
+                            </ul>
+
+                            <div class="cta-links">
+                                <a class="btn primary"
+                                    href="https://wa.me/447438656769?text=I%20want%20the%20Pro%20Plan" target="_blank"
+                                    rel="noopener noreferrer">Buy now</a>
+                                <a class="btn alt"
+                                    href="https://wa.me/447438656769?text=Questions%20about%20the%20Pro%20Plan"
+                                    target="_blank" rel="noopener noreferrer">Questions</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ELITE -->
+                    <article class="plan-tile card" data-plan="elite">
+                        <div class="plan-media">
+                            <a href="./assets-mockups/mockup-elite.webp" target="_blank" rel="noopener"
+                                aria-label="Open Full Site +  mockup">
+                                <img src="./assets-mockups/mockup-elite.webp" alt="Full Site + Brand mockup"
+                                    loading="lazy" />
+                            </a>
+                        </div>
+
+                        <div class="plan-content">
+                            <span class="chip">Elite</span>
+                            <h3 class="headline">Full Site + Brand</h3>
+                            <p class="muted">Full website with strategy, services, authority sections and a launch-ready
+                                brand system.
+                            </p>
+
+                            <div class="price-row">
+                                <div class="price-label">from <span class="currency">€</span></div>
+                                <p class="price">1.394,90</p>
+                            </div>
+
+                            <ul class="plan-bullets">
+                                <li><span class="ok">✔</span> Up to 6 strategic sections</li>
+                                <li><span class="ok">✔</span> Brand kit + launch structure</li>
+                                <li><span class="warn">•</span> 3 revision rounds</li>
+                            </ul>
+
+                            <div class="cta-links">
+                                <a class="btn primary"
+                                    href="https://wa.me/447438656769?text=I%20want%20the%20Elite%20Plan" target="_blank"
+                                    rel="noopener noreferrer">Buy now</a>
+                                <a class="btn alt"
+                                    href="https://wa.me/447438656769?text=Questions%20about%20the%20Elite%20Plan"
+                                    target="_blank" rel="noopener noreferrer">Questions</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="plans-note">
+                    Don’t see your exact scenario? Good — that means you’re building something real. Ping us and we’ll
+                    scope a
+                    custom stack.
+                </div>
+            </section>
+
+            <section class="homepage-section" id="addons">
+                <h2 class="sec-title">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#i-cpu" />
+                    </svg>
+                    Add-ons (because edge cases pay the bills)
+                </h2>
+
+                <div class="promo-grid">
+                    <div class="promo-tile">
+                        <div>
+                            <span class="chip">Acceleration</span>
+                            <h3>Copy Sprint</h3>
+                            <p>We turn your messy notes into a tight offer narrative: headline, sections, CTA
+                                sequencing, microcopy.
+                            </p>
+                        </div>
+                        <a class="btn alt"
+                            href="https://wa.me/447438656769?text=I%20want%20Copy%20Sprint%20as%20an%20add-on"
+                            target="_blank" rel="noopener noreferrer">Add to my plan</a>
+                    </div>
+
+                    <div class="promo-tile">
+                        <div>
+                            <span class="chip">Signal</span>
+                            <h3>SEO Booster</h3>
+                            <p>Technical SEO hygiene + on-page structure that makes Google understand you (and users
+                                trust you).</p>
+                        </div>
+                        <a class="btn alt"
+                            href="https://wa.me/447438656769?text=I%20want%20SEO%20Booster%20as%20an%20add-on"
+                            target="_blank" rel="noopener noreferrer">Add to my plan</a>
+                    </div>
+
+                    <div class="promo-tile">
+                        <div>
+                            <span class="chip">Operations</span>
+                            <h3>Maintenance & Analytics</h3>
+                            <p>Monthly updates, performance monitoring, and conversion insights — the “keep it winning”
+                                package.</p>
+                        </div>
+                        <a class="btn alt"
+                            href="https://wa.me/447438656769?text=I%20want%20Maintenance%20%26%20Analytics%20as%20an%20add-on"
+                            target="_blank" rel="noopener noreferrer">Add to my plan</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="why-volynx" class="section">
+                <h2 class="sec-title">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#i-bolt" />
+                    </svg>
+                    Why VOLYNX
+                </h2>
+
+                <div class="grid cols-2">
+                    <div class="card">
+                        <span class="chip">You need clients, not “just a website”</span>
+                        <h3>Built for people who don’t have time to become web experts</h3>
+                        <p class="muted">
+                            VOLYNX is for entrepreneurs, creators and professionals who need a premium &amp;
+                            conversion-focused site live in days. You bring the vision; we translate it into
+                            clear positioning, structure and design that'll make your products / services be desired!
+                        </p>
+
+                        <ul class="why-features">
+                            <li>
+                                <svg class="icon" aria-hidden="true">
+                                    <use href="#i-spark" />
+                                </svg>
+                                <span><strong>Guided process.</strong> Short, focused calls and prompts so you don’t get
+                                    stuck writing
+                                    copy or deciding layouts.</span>
+                            </li>
+                            <li>
+                                <svg class="icon" aria-hidden="true">
+                                    <use href="#i-cpu" />
+                                </svg>
+                                <span><strong>Strategy + design + tech in one place.</strong> We align your offer,
+                                    narrative, visual
+                                    identity and setup (domain, email, analytics, SEO basics).</span>
+                            </li>
+                            <li>
+                                <svg class="icon" aria-hidden="true">
+                                    <use href="#i-shield" />
+                                </svg>
+                                <span><strong>Zero DIY platforms.</strong> No generic templates or bloated builders:
+                                    lean, performant
+                                    code prepared to scale.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <span class="chip">Designed to unlock revenue fast</span>
+                        <h3>Launch quickly, then improve with real data</h3>
+                        <p class="muted">
+                            Instead of endless “coming soon”, you get a clear launch-ready version that already
+                            sells your value and can be refined as clients and feedback start coming in.
+                        </p>
+
+                        <div class="why-metrics">
+                            <div class="metric">
+                                <div class="metric-number">48–72h</div>
+                                <div class="metric-label">delivery window (Start)</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">A grade</div>
+                                <div class="metric-label">performance target</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">1 focus</div>
+                                <div class="metric-label">clear main CTA</div>
+                            </div>
+                        </div>
+
+                        <p class="why-tagline">
+                            The goal: get you online with a serious, trustworthy presence that can generate
+                            opportunities while you sort the rest of your life and business.
+                        </p>
+                        <p class="why-note">
+                            *Delivery time and performance depend on scope, assets and infrastructure, but the whole
+                            process is
+                            optimized for speed and clarity.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="contato">
+                <h2 class="sec-title">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#i-spark" />
+                    </svg>
+                    Quick contact
+                </h2>
+
+                <div class="grid cols-2">
+                    <form action="mailto:hello@volynx.world?subject=New%20Project%20from%20volynx.world" method="post"
+                        enctype="text/plain">
+                        <input name="nome" placeholder="Your name" required />
+                        <input name="email" type="email" placeholder="Your email" required />
+                        <textarea name="mensagem" rows="4" placeholder="Tell us about your project" required></textarea>
+
+                        <div class="row" style="justify-content: space-between; align-items: center">
+                            <div class="row" style="gap: 8px">
+                                <input type="file" name="attachment"
+                                    style="font-size: 13px; max-width: 220px; padding: 8px 10px; border-radius: 12px;" />
+                                <span class="muted" style="font-size: 11px">Optional: attach a file</span>
+                            </div>
+                            <button class="btn primary" type="submit">Send by email</button>
+                        </div>
+                    </form>
+
+                    <div class="card">
+                        <h3>Prefer WhatsApp?</h3>
+                        <p class="muted">Monday to Thursday, 11am–5pm and Friday, 11am–3pm (UK time).</p>
+                        <div class="row" style="margin-top: 10px">
+                            <a class="btn whats"
+                                href="https://wa.me/447438656769?text=Hi%2C%20I%20have%20a%20project%20for%20VOLYNX"
+                                target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                            <a class="btn" href="https://calendly.com/volynx-schedule-your-meeting/30min"
+                                target="_blank" rel="noopener noreferrer">Book a call</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer-dir">
+                <div class="cols">
+                    <div>
+                        <h4>Services</h4>
+                        <a href="#planos">Web Design</a>
+                        <a href="#addons">Add-ons</a>
+                        <a href="#contato">Project intake</a>
+                    </div>
+                    <div>
+                        <h4>Plans</h4>
+                        <a href="#planos">Landing Express</a>
+                        <a href="#planos">Portfolio + Identity</a>
+                        <a href="#planos">Full Site + Brand</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="#why-volynx">Why VOLYNX</a>
+                        <a href="https://volynx.world" target="_blank" rel="noopener noreferrer">Main site</a>
+                        <a href="mailto:hello@volynx.world">Email</a>
+                    </div>
+                    <div>
+                        <h4>Support</h4>
+                        <a href="https://wa.me/447438656769?text=I%20need%20support%20with%20my%20VOLYNX%20project"
+                            target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                        <a href="#contato">Contact form</a>
+                        <a href="#top">Back to top</a>
+                    </div>
+                </div>
+
+                <div class="footer-legal">
+                    <div>© <span id="y"></span> VOLYNX. All rights reserved.</div>
+                    <div class="links">
+                        <a href="#" onclick="return false;">Privacy</a>
+                        <a href="#" onclick="return false;">Terms</a>
+                        <a href="#" onclick="return false;">Legal</a>
+                    </div>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+    <svg width="0" height="0" style="position:absolute; visibility:hidden" aria-hidden="true">
+        <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 11 14 9 22 21 10 13 10 13 2"></polygon>
+        </symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </symbol>
+        <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <rect x="9" y="9" width="6" height="6"></rect>
+            <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"></path>
+        </symbol>
+        <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.8 2.8M16.2 16.2L19 19M5 19l2.8-2.8M16.2 7.8L19 5"></path>
+        </symbol>
+    </svg>
+
+    <script>
+        (function () {
+            var y = document.getElementById('y');
+            if (y) y.textContent = String(new Date().getFullYear());
+        })();
+    </script>
+</body>
+
+</html>

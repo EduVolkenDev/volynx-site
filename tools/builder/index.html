@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VOLYNX Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070A12;
+      --fg: #E7EEF7;
+      --mut: rgba(231, 238, 247, .7);
+      --line: rgba(231, 238, 247, .12);
+      --p: #7DD3FC;
+      --r: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui;
+      color: var(--fg);
+      background: black;
+      z-index: -5;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("assets/lucid3.jpg") center / cover no-repeat;
+      filter: blur(1px) saturate(.9);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(125, 211, 252, .20), transparent 60%), radial-gradient(900px 500px at 80% 10%, rgba(99, 102, 241, .16), #0000 60%), rgba(7, 10, 18, 0.56);
+      z-index: -1;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: -30px 0px 0px 380px;
+      padding: 20px 0px;
+    }
+
+    .bar {
+      display: grid;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+    }
+
+    .mut {
+      color: var(--mut);
+      font-size: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media(max-width:900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 16px;
+      background: rgba(231, 238, 247, .04);
+    }
+
+    input,
+    textarea,
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid #8d8c8c61;
+      background: rgba(7, 10, 18, .65);
+      color: var(--fg);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 280px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px
+    }
+
+    @media(max-width:520px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn {
+      cursor: pointer;
+      font-weight: 700;
+      border: 2px outset #9ae2e996;
+    }
+
+    .btn:hover {
+      background: #bdff9f40;
+      border: 3px inset #b2f7c3;
+      transition: cubic-bezier ease 0.4s;
+    }
+
+    #save:hover {
+      background: #8a2be280;
+    }
+
+    #copy:hover {
+      background: #d6af1494;
+    }
+
+    .btnP {
+      background: linear-gradient(135deg, rgba(125, 211, 252, .30), rgba(99, 102, 241, .20));
+      border-color: rgba(125, 211, 252, .28);
+    }
+
+    .btnP:hover {
+      background: #6db9d670;
+      border: 3px inset white;
+      transition: cubic-bezier ease 0.4s;
+    }
+
+    .btnP:active {
+      background: #137074;
+      border: 3px inset aqua;
+      transform: scaleY(0.9);
+    }
+
+    .tool-logo {
+      display: flex;
+      background-image: url("assets/new-wordmark.webp");
+      width: 100%;
+      height: 11vh;
+      background-size: 200px;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    h1 {
+      display: flow-root list-item;
+      left: 220px;
+      position: relative;
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 3px inset var(--line);
+      background: rgba(231, 238, 247, .03);
+      max-width: 100%;
+      width: fit-content;
+      height: auto;
+      justify-self: end;
+      margin-top: -25px;
+      margin-bottom: 5px;
+    }
+
+    .miniBtn {
+      margin-left: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(7, 10, 18, .55);
+      color: var(--fg);
+      cursor: pointer;
+      font-weight: 700;
+      width: auto;
+    }
+
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--p);
+      box-shadow: 0 0 0 6px rgba(125, 211, 252, .10)
+    }
+
+    .list button {
+      margin-top: 8px;
+      text-align: left
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace
+    }
+
+    a {
+      color: inherit
+    }
+
+    .btn[disabled] {
+      opacity: .65;
+      cursor: not-allowed;
+    }
+
+    .btn.is-loading {
+      position: relative;
+      pointer-events: none;
+    }
+
+    .btn.is-loading::after {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(231, 238, 247, .45);
+      border-top-color: rgba(231, 238, 247, 1);
+      border-radius: 999px;
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: -2px;
+      animation: spin .7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+   MOBILE RESPONSIVE PATCH
+   Cole no FINAL do <style>
+   ========================= */
+
+    /* evita “scroll lateral fantasma” */
+    html,
+    body {
+      width: 100%;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    /* melhora toque/legibilidade no mobile */
+    input,
+    textarea,
+    button {
+      font-size: 16px;
+      /* iOS: evita zoom ao focar */
+      line-height: 1.2;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* tablet e abaixo */
+    @media (max-width: 980px) {
+      .wrap {
+        padding: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* mobile */
+    @media (max-width: 680px) {
+      .wrap {
+        padding: 14px;
+      }
+
+      /* topo */
+      .bar {
+        flex-wrap: wrap;
+        gap: 10px;
+        border-radius: 18px;
+        padding: 12px 12px;
+      }
+
+      .bar>div:first-child {
+        min-width: 0;
+      }
+
+      .pill {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      /* cards */
+      .card {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+
+      .mut {
+        font-size: 12px;
+      }
+
+      /* inputs em coluna */
+      .row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      /* textarea mais “app-like” */
+      textarea {
+        min-height: 220px;
+        max-height: 45vh;
+        resize: vertical;
+      }
+
+      /* botões empilhados e grandes */
+      .row button,
+      button.btn {
+        padding: 14px;
+        border-radius: 14px;
+      }
+
+      /* lista de projetos clicável */
+      .list button {
+        padding: 14px;
+        border-radius: 14px;
+      }
+    }
+
+    /* mobile pequeno */
+    @media (max-width: 420px) {
+      .wrap {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 12px;
+      }
+
+      textarea {
+        min-height: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="bar">
+      <div class="top">
+        <div class="tool-logo">
+          <h1>Builder</h1>
+        </div>
+      </div>
+      <div class="pill">
+        <span class="dot"></span>
+        <span class="mut" id="who">offline</span>
+        <button id="logout" class="miniBtn" hidden>Sair</button>
+      </div>
+      <div class="grid">
+        <div class="card" id="loginCard">
+          <h3 style="margin:0 0 10px">Login</h3>
+          <input id="email" placeholder="Seu email" />
+          <button class="btn btnP" id="sendLink" style="margin-top:10px">Receba o link</button>
+          <p class="mut" id="authMsg" style="margin:10px 0 0"></p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px">Criar projeto</h3>
+          <div class="row">
+            <input id="pname" placeholder="Nome (ex: Studio Aurora)" />
+            <input id="pslug" placeholder="Slug (ex: studio-aurora)" />
+          </div>
+          <div class="row" style="margin-top:10px">
+            <input id="ctaText" placeholder="CTA (ex: Agendar)" />
+            <input id="ctaHref" placeholder="Link CTA (ex: https://wa.me/...)" />
+          </div>
+          <button class="btn" id="create" style="margin-top:10px">Criar</button>
+          <p class="mut" style="margin:10px 0 0">Publicação futura: <code>https://slug.volynx.world</code></p>
+        </div>
+
+        <div class="card list">
+          <h3 style="margin:0 0 10px">Meus projetos</h3>
+          <div id="projects" class="mut">Faça login para listar.</div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px">Editor JSON</h3>
+          <p class="mut" style="margin-top:0">Edite e clique em <b>Salvar</b>.</p>
+          <textarea id="json"></textarea>
+          <div class="row" style="margin-top:10px">
+            <button class="btn btnP" id="publish" style="margin-top:10px">Publicar</button>
+            <button class="btn" id="save">Salvar</button>
+            <button class="btn" id="copy">Copiar</button>
+          </div>
+          <p class="mut" id="status" style="margin:10px 0 0"></p>
+          <p class="mut" id="link" style="margin:8px 0 0"></p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+      // Supabase (Project Settings -> API)
+      const SUPABASE_URL = "https://yrqaonqflpspjszjkbbs.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlycWFvbnFmbHBzcGpzemprYmJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk0Njk3NzAsImV4cCI6MjA4NTA0NTc3MH0.88ksLpLxDj9bVZrGpNn3O-bSl-1A0VZk3PJRJjGP8fE";
+
+      const supa = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true,
+        },
+      });
+
+      const $ = (id) => document.getElementById(id);
+
+      // Magic link SEMPRE volta pro domínio fixo
+      const REDIRECT_TO = "https://volynx-builder.pages.dev/";
+
+      // OTP cooldown (evita rate limit)
+      const OTP_COOLDOWN_MS = 60_000; // 60s
+      const OTP_LAST_KEY = "volynx_last_otp_sent_at";
+
+      let currentProject = null;
+
+      const setStatus = (t) => {
+        const el = $("status");
+        if (el) el.textContent = t || "";
+      };
+
+      const slugify = (s) =>
+        (s || "")
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "");
+
+      const rand4 = () => Math.random().toString(16).slice(2, 6);
+
+      const defaultJSON = (name, slug, ctaText, ctaHref) => ({
+        brand: { name, primary: "#7DD3FC", bg: "#070A12", fg: "#E7EEF7" },
+        content: {
+          headline: `${name} — clean tech minimal`,
+          sub: "Estrutura premium, rápida e pronta para converter.",
+          ctaText: ctaText || "Falar agora",
+          ctaHref: ctaHref || "#contato",
+          features: [
+            "Layout minimal e elegante",
+            "Performance e SEO-friendly",
+            "Publicação em 1 clique",
+          ],
+          faq: [{ q: "Como funciona?", a: "Você edita, publica e pronto." }],
+        },
+      });
+
+      // ---------- UI helpers ----------
+      function setAuthedUI(user) {
+        const isAuthed = !!user;
+
+        const loginCard = $("loginCard");
+        if (loginCard) loginCard.style.display = isAuthed ? "none" : "";
+
+        const logout = $("logout");
+        if (logout) logout.hidden = !isAuthed;
+      }
+
+      function setSendLoading(on, msg) {
+        const btn = $("sendLink");
+        if (btn) {
+          btn.disabled = !!on;
+          btn.classList.toggle("is-loading", !!on);
+          btn.textContent = on ? "Enviando..." : "Enviar link";
+        }
+        const m = $("authMsg");
+        if (m) m.textContent = msg || "";
+      }
+
+      function startCooldown(seconds = 15) {
+        const btn = $("sendLink");
+        if (!btn) return;
+
+        let left = seconds;
+        btn.disabled = true;
+        btn.classList.remove("is-loading");
+
+        const t = setInterval(() => {
+          btn.textContent = `Reenviar em ${left}s`;
+          left--;
+          if (left < 0) {
+            clearInterval(t);
+            btn.disabled = false;
+            btn.textContent = "Enviar link";
+          }
+        }, 1000);
+      }
+
+      // ---------- Auth ----------
+      async function refreshUser() {
+        const { data } = await supa.auth.getSession();
+        const user = data?.session?.user || null;
+
+        const who = $("who");
+        if (who) who.textContent = user?.email || "offline";
+
+        setAuthedUI(user);
+        return user;
+      }
+
+      // ---------- Projects ----------
+      async function listProjects(user) {
+        if (!user) return;
+
+        const { data, error } = await supa
+          .from("projects")
+          .select("id,name,slug,site_json,created_at")
+          .order("created_at", { ascending: false });
+
+        if (error) return setStatus(error.message);
+
+        const box = $("projects");
+        if (!box) return;
+
+        box.innerHTML =
+          (data || [])
+            .map(
+              (p) => `
+                  <button data-id="${p.id}">
+                    <b>${p.name}</b> <span class="mut">(${p.slug})</span><br>
+                    <span class="mut">draft</span>
+                  </button>
+                `
+            )
+            .join("") || `<span class="mut">Nenhum projeto ainda.</span>`;
+
+        box.querySelectorAll("button").forEach((btn) => {
+          btn.onclick = () =>
+            openProject((data || []).find((x) => x.id === btn.dataset.id));
+        });
+      }
+
+      function openProject(p) {
+        currentProject = p;
+        const json = $("json");
+        if (json) json.value = JSON.stringify(p.site_json || {}, null, 2);
+
+        const link = $("link");
+        if (link) link.innerHTML = `Slug: <code>${p.slug}</code>`;
+
+        setStatus("Projeto carregado.");
+      }
+
+      async function saveCurrent() {
+        if (!currentProject) return false;
+
+        let parsed;
+        try {
+          parsed = JSON.parse($("json")?.value || "{}");
+        } catch {
+          setStatus("JSON inválido.");
+          return false;
+        }
+
+        const { error } = await supa
+          .from("projects")
+          .update({ site_json: parsed })
+          .eq("id", currentProject.id);
+
+        if (error) {
+          setStatus(error.message);
+          return false;
+        }
+        return true;
+      }
+
+      // ---------- Handlers ----------
+      const logoutBtn = $("logout");
+      if (logoutBtn) {
+        logoutBtn.onclick = async () => {
+          await supa.auth.signOut();
+          if ($("projects")) $("projects").textContent = "Faça login para listar.";
+          if ($("json")) $("json").value = "";
+          if ($("link")) $("link").textContent = "";
+          setStatus("");
+          await refreshUser();
+        };
+      }
+
+      const sendBtn = $("sendLink");
+      if (sendBtn) {
+        sendBtn.onclick = async () => {
+          const email = ($("email")?.value || "").trim();
+          if (!email) return;
+
+          // bloqueia spam antes de chamar Supabase
+          const last = Number(localStorage.getItem(OTP_LAST_KEY) || 0);
+          const now = Date.now();
+          const left = OTP_COOLDOWN_MS - (now - last);
+          if (left > 0) {
+            setSendLoading(false, `Aguarde ${Math.ceil(left / 1000)}s para reenviar.`);
+            return;
+          }
+
+          setSendLoading(true, "Enviando magic link...");
+
+          try {
+            const { error } = await supa.auth.signInWithOtp({
+              email,
+              options: { emailRedirectTo: REDIRECT_TO },
+            });
+
+            if (error) {
+              const msg = String(error.message || "");
+              if (msg.toLowerCase().includes("rate limit")) {
+                localStorage.setItem(OTP_LAST_KEY, String(Date.now()));
+                setSendLoading(false, "Muitos pedidos. Aguarde 60s e tente de novo.");
+                startCooldown(60);
+                return;
+              }
+              setSendLoading(false, msg);
+              return;
+            }
+
+            localStorage.setItem(OTP_LAST_KEY, String(Date.now()));
+            setSendLoading(false, "Link enviado ✅ Verifique Caixa de Entrada e Spam.");
+            startCooldown(15);
+          } catch {
+            setSendLoading(false, "Falha ao enviar. Tente novamente.");
+          }
+        };
+      }
+
+      const createBtn = $("create");
+      if (createBtn) {
+        createBtn.onclick = async () => {
+          const user = await refreshUser();
+          if (!user) return setStatus("Faça login primeiro.");
+
+          const name = ($("pname")?.value || "").trim() || "Novo Site";
+          const baseSlug = slugify(($("pslug")?.value || "").trim() || name) || "site";
+          const slug = `${baseSlug}-${rand4()}`;
+
+          const ctaText = ($("ctaText")?.value || "").trim();
+          const ctaHref = ($("ctaHref")?.value || "").trim();
+
+          const site_json = defaultJSON(name, slug, ctaText, ctaHref);
+
+          const { data, error } = await supa
+            .from("projects")
+            .insert({ user_id: user.id, name, slug, site_json, status: "draft" })
+            .select("id,name,slug,site_json,created_at")
+            .single();
+
+          if (error) return setStatus(error.message);
+
+          setStatus("Projeto criado.");
+          await listProjects(user);
+          openProject(data);
+        };
+      }
+
+      const saveBtn = $("save");
+      if (saveBtn) {
+        saveBtn.onclick = async () => {
+          if (!currentProject) return setStatus("Selecione um projeto.");
+          const ok = await saveCurrent();
+          if (!ok) return;
+          setStatus("Salvo.");
+          const user = await refreshUser();
+          await listProjects(user);
+        };
+      }
+
+      const copyBtn = $("copy");
+      if (copyBtn) {
+        copyBtn.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText($("json")?.value || "");
+            setStatus("Copiado.");
+          } catch {
+            setStatus("Não consegui copiar (permissão do navegador).");
+          }
+        };
+      }
+
+      const publishBtn = $("publish");
+      if (publishBtn) {
+        publishBtn.onclick = async () => {
+          if (!currentProject) return setStatus("Selecione um projeto.");
+
+          setStatus("Salvando...");
+          const ok = await saveCurrent();
+          if (!ok) return;
+
+          const { data } = await supa.auth.getSession();
+          const token = data?.session?.access_token;
+          if (!token) return setStatus("Faça login.");
+
+          setStatus("Publicando...");
+          const r = await fetch("https://api.volynx.world/publish", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ projectId: currentProject.id }),
+          });
+
+          const j = await r.json().catch(() => ({}));
+          if (!r.ok) return setStatus(j?.error || "Erro ao publicar.");
+
+          if ($("link"))
+            $("link").innerHTML = `Publicado: <a href="${j.url}" target="_blank" rel="noreferrer">${j.url}</a>`;
+
+          setStatus("Publicado.");
+          const user = await refreshUser();
+          await listProjects(user);
+        };
+      }
+
+      // Atualiza UI quando auth muda
+      supa.auth.onAuthStateChange(async (event) => {
+        if (event === "SIGNED_IN" || event === "SIGNED_OUT" || event === "TOKEN_REFRESHED") {
+          const user = await refreshUser();
+          await listProjects(user);
+        }
+      });
+
+      // Boot: resolve o “precisa dar refresh 2x” no magic link
+      async function boot() {
+        let { data: s1 } = await supa.auth.getSession();
+
+        if (!s1?.session && window.location.hash.includes("access_token")) {
+          await new Promise((r) => setTimeout(r, 300));
+          ({ data: s1 } = await supa.auth.getSession());
+          if (!s1?.session) {
+            await new Promise((r) => setTimeout(r, 800));
+            ({ data: s1 } = await supa.auth.getSession());
+          }
+        }
+
+        const user = await refreshUser();
+        await listProjects(user);
+
+        if (window.location.hash.includes("access_token")) {
+          history.replaceState(null, "", window.location.pathname);
+        }
+      }
+
+      await boot();
+    </script>

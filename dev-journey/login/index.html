@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dev Journey — Login</title>
+
+    <style>
+        @font-face {
+            font-family: "Sora";
+            src: url("../assets-fonts/Sora-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("../assets-fonts/Sora-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("../assets-fonts/Sora-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("../assets-fonts/Sora-ExtraBold.ttf") format("truetype");
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("../assets-fonts/Manrope-ExtraBold.ttf") format("truetype");
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("../assets-fonts/Manrope-Medium.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("../assets-fonts/Manrope-Light.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("../assets-fonts/Manrope-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg0: #050610;
+            --bg1: #070a18;
+            --ink: #eaf2ff;
+            --muted: rgba(234, 242, 255, .72);
+            --line: rgba(255, 255, 255, .12);
+            --glass: rgba(255, 255, 255, .06);
+            --shadow: 0 24px 80px rgba(0, 0, 0, .55);
+            --tiffany: #2fe6c9;
+            --tiffany2: #19cbb2;
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: -170px -45px 51px 10px;
+            color: var(--ink);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+            background: url("../assets/lucid-realism5.jpg") left;
+            overflow-x: hidden;
+            position: fixed;
+            left: 129px;
+            text-align: center;
+        }
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, .55), transparent 60%),
+                radial-gradient(1px 1px at 30% 70%, rgba(255, 255, 255, .35), transparent 60%),
+                radial-gradient(1px 1px at 65% 35%, rgba(255, 255, 255, .45), transparent 60%),
+                radial-gradient(1px 1px at 90% 60%, rgba(255, 255, 255, .35), transparent 60%);
+            opacity: .55;
+            filter: blur(.2px);
+        }
+
+        .wrap {
+            display: inline-grid;
+            place-items: end;
+            padding: 260px 120px 70px 170px;
+        }
+
+        .shell {
+            width: 120%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            position: relative;
+            gap: 40px;
+            justify-self: end;
+            padding: 0px 150px 10px 5px;
+            margin-top: 160px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 980px) {
+            .shell {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .04));
+            border-radius: 25px;
+            box-shadow: -7px 0 5px inset white, 0 7px 7px inset white;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            padding: 10px 24px 23px;
+        }
+
+        .panel::before {
+            content: "";
+            position: absolute;
+            inset: -1272px;
+            background: radial-gradient(700px 600px at 200% 80%, rgba(188, 28, 246, 0.83), transparent 1000%), radial-gradient(700px 330px at 62% 24%, rgba(255, 255, 255, 0.94), transparent 25%);
+            opacity: .9;
+            pointer-events: none;
+        }
+
+        .panel>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            hero {
+                padding: 13px 23px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 18px;
+            }
+        }
+
+        .badge {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            padding: 20px 35px 25px 40px;
+            border-radius: 999px;
+            border: 3px inset rgb(255, 255, 255);
+            background: linear-gradient(10deg, rgba(69, 16, 255, 0.85), transparent 32%, rgba(0, 195, 255, 0.48), transparent 72%, #6700ffa8, transparent 107%);
+            width: fit-content;
+            color: rgb(255, 255, 255);
+            font-weight: 750;
+            font-size: 36px;
+            margin: 32px 7px 5px 5px;
+            text-shadow: 3px 4px 2px black, 4px 4px 5px white;
+            letter-spacing: 4px;
+            font-family: "Sora", sans-serif;
+        }
+
+        .heroTitle {
+            display: inline-block;
+            -webkit-background-clip: text;
+            color: #0000;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(gray 1px 1px 1px);
+        }
+
+        .heroTitle .w {
+            display: inline-block;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Troque as cores aqui */
+        .heroTitle .w1 {
+            background-image: linear-gradient(110deg, #fefffe, #959191, #555);
+        }
+
+        .heroTitle .w2 {
+            background-image: linear-gradient(150deg, #8a8888, #000);
+        }
+
+        .heroTitle .w3 {
+            background-image: linear-gradient(85deg, #1c1c1c, #353535, #eae8e8);
+            ;
+        }
+
+        .sub {
+            display: ruby-base;
+            font-size: 58px;
+            text-shadow: 4px 4px 7px #9b0fe9, 4px 4px 7px #009ffe, 3px 3px 4px #e034dd;
+            margin-bottom: -720px;
+            flex-direction: column;
+            width: 31%;
+            overflow: visible;
+            position: fixed;
+            line-break: auto;
+            font-family: "Sora";
+            left: 44px;
+            top: 175px;
+            font-weight: 580;
+            line-height: 1.3;
+        }
+
+        .kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: -4px 10px 0px 10px;
+            padding: 15px 5px 0px;
+        }
+
+        @media (max-width: 420px) {
+            .kpis {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .kpi {
+            background: rgba(86, 23, 129, 0.22);
+            border-radius: 16px;
+            padding: 15px 0px 8px 2px;
+            box-shadow: 0 0 30px inset #ffffffd4, 0 5px 10px inset #ffffffd9;
+            text-align: center;
+            border: 4px inset #d0fff6;
+        }
+
+        .kpi strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .kpi span {
+            display: block;
+            color: var(--muted);
+            font-size: 12.5px;
+            margin-top: 3px;
+        }
+
+        .form {
+            padding: 40px 23px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .form h2 {
+            font-size: 25px;
+            letter-spacing: 3px;
+            margin-bottom: -10px;
+            margin-top: -14px;
+            filter: drop-shadow(#fefefe 1px 1px 1px);
+            text-shadow: 2px 1px 2px #483838, -1px -1px 2px #1b1919;
+            color: #b9b7b7;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        label {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.78);
+            font-weight: 660;
+            text-shadow: 0 0 5px gray;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 20px;
+            border-radius: 15px;
+            border: 3px inset rgba(143, 227, 247, 0.95);
+            background: rgba(255, 255, 255, 0.19);
+            color: #000;
+            outline: none;
+            box-shadow: 0 0 25px inset white, 0 5px 10px inset white;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        input:focus {
+            border-color: rgba(47, 230, 201, .35);
+            box-shadow: 0 0 0 6px rgba(47, 230, 201, .10);
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .16);
+            text-decoration: none;
+            font-weight: 700;
+            color: var(--ink);
+            background: rgba(255, 255, 255, .06);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            border: 3px inset #3be121;
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(180deg, rgba(47, 230, 201, .20), rgba(47, 230, 201, .08));
+            border: 3px outset #a6a6a6;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(180deg, rgba(47, 230, 201, .20), rgba(47, 230, 201, .08));
+            border: 3px inset #17d5bc;
+        }
+
+        .mini {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.3;
+            margin: 15px 0px 10px 0px;
+            text-align: center;
+            font-weight: 630;
+        }
+
+        .mini p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 22px;
+            line-height: 1.1;
+            margin: 15px 0px 0px 0px;
+            text-align: center;
+            font-weight: 1000;
+            filter: drop-shadow(white 1px 1px 1px);
+            text-shadow: 1px 1px 2px black, -3px -3px 2px black;
+        }
+
+        .toast {
+            display: none;
+            margin-top: 8px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(0, 0, 0, .35);
+            color: rgba(234, 242, 255, .9);
+            font-size: 13px;
+        }
+
+        .toast.ok {
+            border-color: rgba(47, 230, 201, .35);
+        }
+
+        .toast.bad {
+            border-color: rgba(255, 120, 120, .35);
+        }
+
+        :root {
+            /* Ajuste fino aqui */
+            --eyeW: clamp(34px, 9vw, 72px);
+            --logoW: clamp(140px, 38vw, 260px);
+            --gap: clamp(8px, 2vw, 14px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--gap);
+            min-width: 0;
+            left: auto;
+            margin-left: 0;
+            padding: 34px 0px;
+            scale: 1.6;
+            position: relative;
+            bottom: 4px;
+        }
+
+        .brandEyeWrap,
+        .brandLogoWrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 0;
+            /* evita “altura fantasma” */
+        }
+
+        .brandEye {
+            width: 90px;
+            height: auto;
+            display: flex;
+            filter: drop-shadow(0 0 12px rgba(0, 122, 255, .10)) brightness(1.8);
+            position: initial;
+            margin: 200px;
+            margin-top: 200px;
+            margin-bottom: 200px;
+            padding-top: 30px;
+            margin-bottom: -20px;
+            margin-top: 22px;
+        }
+
+        .brandLogo {
+            width: 350px;
+            height: auto;
+            display: flex;
+            filter: drop-shadow(0 0 5px rgba(82, 197, 224, 0.75));
+            position: absolute;
+            right: 80px;
+            margin: 5px 5px 45px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="sub">
+        Estudar fica chato quando você não enxerga progresso. Aqui você vê: checklist, entregas e a
+        trilha andando.
+    </p>
+    <div class="wrap">
+        <div class="shell">
+            <section class="panel hero">
+                <div>
+                    <div class="badge"> Você chegou ao DEV JOURNEY</div>
+                    <div class="slogan">
+                        <h1 class="heroTitle">
+                            <span class="w w1">Entre.</span>
+                            <span class="w w2">Foque.</span>
+                            <span class="w w3">Entregue.</span>
+                        </h1>
+                    </div>
+
+                    <div class="kpis">
+                        <div class="kpi">
+                            <strong>PROGRESSO CLARO</strong>
+                            <span>Você sabe o próximo passo.</span>
+                        </div>
+                        <div class="kpi">
+                            <strong>SEM CAOS</strong>
+                            <span>Checklists por bloco.</span>
+                        </div>
+                        <div class="kpi">
+                            <strong>ENTREGA REAL</strong>
+                            <span>Validar certificado no final.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand">
+                    <span class="brandEyeWrap">
+                        <img src="../assets/oficial-volynx-eye.png" alt="" class="brandEye" />
+                    </span>
+
+                    <span class="brandLogoWrap">
+                        <img src="../assets/oficial-volynx-logo.png" alt="VOLYNX Lab" class="brandLogo" />
+                    </span>
+                </div>
+
+            </section>
+
+            <section class="panel form" aria-label="Login">
+                <h2>Hora da < D I V> ersão!</h2>
+                <span class="mini">
+                    A VOLYNX.LAB Education tem o prazer de te ter na nossa turma de futuros gênios! Sucesso
+                    na sua Jornada! <p>Comece efetuando o Login abaixo:</p> </span>
+
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="seuemail@exemplo.com" autocomplete="email" />
+                </div>
+
+                <div class="field">
+                    <label for="pass">Senha</label>
+                    <input id="pass" type="password" placeholder="••••••••" autocomplete="current-password" />
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-primary" id="btnLogin" type="button">Entrar</button>
+                    <button class="btn" id="btnDemo" type="button">Voltar pra Home</button>
+                </div>
+
+                <div class="toast" id="toast"></div>
+
+                <p class="mini">
+                    Não tem conta? (por enquanto) use “demo”. Quando você integrar Hotmart, o acesso vira automático.
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const $ = (s) => document.querySelector(s);
+
+        function toast(msg, kind) {
+            const el = $("#toast");
+            el.className = "toast " + (kind || "");
+            el.textContent = msg;
+            el.style.display = "block";
+            clearTimeout(window.__t);
+            window.__t = setTimeout(() => el.style.display = "none", 3200);
+        }
+
+        function saveSession(user) {
+            localStorage.setItem("dj_session", JSON.stringify({
+                user,
+                ts: Date.now()
+            }));
+        }
+
+        $("#btnLogin").addEventListener("click", () => {
+            const email = $("#email").value.trim();
+            const pass = $("#pass").value.trim();
+
+            if (!email || !pass) {
+                toast("Preencha email e senha.", "bad");
+                return;
+            }
+
+            // MVP: aceita qualquer senha >= 4 (pra você conseguir publicar hoje)
+            if (pass.length < 4) {
+                toast("Senha muito curta. Use 4+ caracteres.", "bad");
+                return;
+            }
+
+            saveSession({ email, plan: "social" });
+            toast("Login ok. Indo para seus checklists…", "ok");
+            setTimeout(() => window.location.href = "checklists.html", 650);
+        });
+
+        $("#btnDemo").addEventListener("click", () => {
+            saveSession({ email: "demo@devjourney", plan: "social" });
+            toast("Demo ativado. Indo para seus checklists…", "ok");
+            setTimeout(() => window.location.href = "checklists.html", 650);
+        });
+    </script>
+</body>
+
+</html>
