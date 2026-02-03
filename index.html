@@ -23,83 +23,17 @@
            INTRO ANIMATIONS & EFFECTS
         ======================================== */
 
-        /* Estado inicial (antes de carregar) */
+        /* Estado inicial (antes de carregar) - apenas fade simples */
         html.js:not(.is-ready) body {
             opacity: 0;
         }
 
-        html:not(.is-ready) .topbar {
-            opacity: 0;
-            transform: translateY(-8px);
-        }
-
-        html:not(.is-ready) .brand {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
-        html:not(.is-ready) .eye-container,
-        html:not(.is-ready) .brand-logo,
-        html:not(.is-ready) .slogan {
-            opacity: 0;
-        }
-
-        html:not(.is-ready) .top-nav,
-        html:not(.is-ready) .cta-section,
-        html:not(.is-ready) .volynx-principles,
-        html:not(.is-ready) .future-products {
-            opacity: 0;
-            transform: translateY(14px);
-        }
-
-        /* Quando o JS aplica .is-ready */
+        /* Quando o JS aplica .is-ready - apenas fade in suave */
         html.is-ready body {
             animation: bodyFadeIn 800ms ease-out both;
         }
 
-        html.is-ready .topbar {
-            animation: topbarIn 520ms ease-out 80ms both;
-        }
-
-        html.is-ready .brand {
-            animation: brandIn 650ms ease-out 120ms both;
-        }
-
-        html.is-ready .eye-container {
-            animation: eyeTriumph 1400ms cubic-bezier(.16, 1, .3, 1) 200ms both;
-        }
-
-        html.is-ready .brand-logo {
-            animation: logoReveal 1200ms cubic-bezier(.16, 1, .3, 1) 400ms both;
-        }
-
-        html.is-ready .slogan {
-            animation: textReveal 900ms ease-out 900ms both;
-        }
-
-        html.is-ready .top-nav {
-            animation: contentIn 900ms ease-out 1000ms both;
-        }
-
-        html.is-ready .cta-section {
-            animation: sectionIn 700ms ease-out 1150ms both;
-        }
-
-        html.is-ready .volynx-principles {
-            animation: sectionIn 700ms ease-out 1240ms both;
-        }
-
-        html.is-ready .future-products {
-            animation: sectionIn 700ms ease-out 1330ms both;
-        }
-
-        /* Performance - otimização para animações suaves */
-        .eye-container,
-        .brand-logo {
-            will-change: transform, opacity, filter;
-        }
-
-        /* Keyframes */
+        /* Keyframes - apenas fade in do body */
         @keyframes bodyFadeIn {
             from {
                 opacity: 0;
@@ -110,123 +44,13 @@
             }
         }
 
-        @keyframes topbarIn {
-            from {
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes brandIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes eyeTriumph {
-            0% {
-                opacity: 0;
-                transform: translateY(12px);
-                filter: blur(4px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-                filter: blur(0);
-            }
-        }
-
-        @keyframes logoReveal {
-            0% {
-                opacity: 0;
-                transform: translateY(12px);
-                filter: blur(4px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-                filter: blur(0);
-            }
-        }
-
-        @keyframes textReveal {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-                filter: blur(4px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-                filter: blur(0);
-            }
-        }
-
-        @keyframes contentIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes sectionIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Acessibilidade */
         @media (prefers-reduced-motion: reduce) {
-
-            html:not(.is-ready) body,
-            html:not(.is-ready) .topbar,
-            html:not(.is-ready) .brand,
-            html:not(.is-ready) .eye-container,
-            html:not(.is-ready) .brand-logo,
-            html:not(.is-ready) .slogan,
-            html:not(.is-ready) .top-nav,
-            html:not(.is-ready) .cta-section,
-            html:not(.is-ready) .volynx-principles,
-            html:not(.is-ready) .future-products {
+            html:not(.is-ready) body {
                 opacity: 1 !important;
-                transform: none !important;
             }
 
-            body,
-            .topbar,
-            .brand,
-            .eye-container,
-            .brand-logo,
-            .slogan,
-            .top-nav,
-            .cta-section,
-            .volynx-principles,
-            .future-products {
+            body {
                 animation: none !important;
             }
         }
