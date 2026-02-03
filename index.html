@@ -16,7 +16,326 @@
     <link rel="preload" as="image" href="/assets/volynx-icon.webp">
     <meta name="apple-mobile-web-app-title" content="Volynx" />
 
+    <script>document.documentElement.classList.add('js');</script>
+
     <style>
+        /* ========================================
+           INTRO ANIMATIONS & EFFECTS
+        ======================================== */
+
+        /* Estado inicial (antes de carregar) */
+        html.js:not(.is-ready) body {
+            opacity: 0;
+        }
+
+        html:not(.is-ready) .topbar {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+
+        html:not(.is-ready) .brand {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        html:not(.is-ready) .eye-container,
+        html:not(.is-ready) .brand-logo,
+        html:not(.is-ready) .slogan {
+            opacity: 0;
+        }
+
+        html:not(.is-ready) .top-nav,
+        html:not(.is-ready) .cta-section,
+        html:not(.is-ready) .volynx-principles,
+        html:not(.is-ready) .future-products {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+
+        /* Quando o JS aplica .is-ready */
+        html.is-ready body {
+            animation: bodyFadeIn 800ms ease-out both;
+        }
+
+        html.is-ready .topbar {
+            animation: topbarIn 520ms ease-out 80ms both;
+        }
+
+        html.is-ready .brand {
+            animation: brandIn 650ms ease-out 120ms both;
+        }
+
+        html.is-ready .eye-container {
+            animation: eyeTriumph 1400ms cubic-bezier(.16, 1, .3, 1) 200ms both;
+        }
+
+        html.is-ready .brand-logo {
+            animation: logoReveal 1200ms cubic-bezier(.16, 1, .3, 1) 400ms both;
+        }
+
+        html.is-ready .slogan {
+            animation: textReveal 900ms ease-out 900ms both;
+        }
+
+        html.is-ready .top-nav {
+            animation: contentIn 900ms ease-out 1000ms both;
+        }
+
+        html.is-ready .cta-section {
+            animation: sectionIn 700ms ease-out 1150ms both;
+        }
+
+        html.is-ready .volynx-principles {
+            animation: sectionIn 700ms ease-out 1240ms both;
+        }
+
+        html.is-ready .future-products {
+            animation: sectionIn 700ms ease-out 1330ms both;
+        }
+
+        /* Efeitos de bloom e sweep na brand */
+        .brand {
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Bloom (halo de luz atrás) */
+        .brand::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(.92);
+            filter: blur(30px);
+            mix-blend-mode: screen;
+            background:
+                radial-gradient(closest-side at 50% 44%, rgba(180, 120, 255, .55), rgba(180, 120, 255, 0) 60%),
+                radial-gradient(closest-side at 50% 44%, rgba(120, 220, 255, .35), rgba(120, 220, 255, 0) 62%),
+                radial-gradient(closest-side at 50% 44%, rgba(255, 255, 255, .20), rgba(255, 255, 255, 0) 68%);
+            z-index: -1;
+        }
+
+        html.is-ready .brand::before {
+            animation: bloom 1600ms cubic-bezier(.16, 1, .3, 1) 300ms both;
+        }
+
+        /* Sweep (faixa de luz passando) */
+        .brand::after {
+            content: "";
+            position: absolute;
+            top: -25%;
+            left: -60%;
+            width: 55%;
+            height: 130%;
+            pointer-events: none;
+            opacity: 0;
+            transform: skewX(-18deg) translateX(-120%);
+            mix-blend-mode: screen;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, .18) 45%,
+                    rgba(180, 120, 255, .22) 55%,
+                    rgba(255, 255, 255, 0) 100%);
+            z-index: 10;
+        }
+
+        html.is-ready .brand::after {
+            animation: sweep 1200ms cubic-bezier(.10, 1, .53, 1) 500ms both;
+        }
+
+        /* Performance */
+        .eye-container,
+        .brand-logo,
+        .brand::before,
+        .brand::after {
+            will-change: transform, opacity, filter;
+        }
+
+        /* Keyframes */
+        @keyframes bodyFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes topbarIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes brandIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes eyeTriumph {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 18px, 0) scale(.92);
+                filter: blur(8px) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+            }
+
+            55% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) scale(1.02);
+                filter: blur(0px) drop-shadow(0 0 40px rgba(180, 120, 255, .40));
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) scale(1);
+                filter: blur(0px) drop-shadow(0px 0px 5px rgb(187, 0, 255)) drop-shadow(0px 0px 10px rgb(0, 163, 200));
+            }
+        }
+
+        @keyframes logoReveal {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 18px, 0) scale(.92);
+                filter: blur(8px) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+            }
+
+            55% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) scale(1.02);
+                filter: blur(0px) drop-shadow(0 0 40px rgba(180, 120, 255, .40));
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) scale(1);
+                filter: blur(0px) drop-shadow(0 0 2px rgba(109, 25, 222, 0.81)) drop-shadow(0 0 5px #34e4e4ab);
+            }
+        }
+
+        @keyframes bloom {
+            0% {
+                opacity: 0;
+                transform: scale(.92);
+            }
+
+            60% {
+                opacity: .95;
+                transform: scale(1.02);
+            }
+
+            100% {
+                opacity: .45;
+                transform: scale(1.00);
+            }
+        }
+
+        @keyframes sweep {
+            0% {
+                opacity: 0;
+                transform: skewX(-18deg) translateX(-120%);
+            }
+
+            25% {
+                opacity: .9;
+            }
+
+            100% {
+                opacity: 0;
+                transform: skewX(-18deg) translateX(240%);
+            }
+        }
+
+        @keyframes textReveal {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+                filter: blur(4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes contentIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes sectionIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Acessibilidade */
+        @media (prefers-reduced-motion: reduce) {
+
+            html:not(.is-ready) body,
+            html:not(.is-ready) .topbar,
+            html:not(.is-ready) .brand,
+            html:not(.is-ready) .eye-container,
+            html:not(.is-ready) .brand-logo,
+            html:not(.is-ready) .slogan,
+            html:not(.is-ready) .top-nav,
+            html:not(.is-ready) .cta-section,
+            html:not(.is-ready) .volynx-principles,
+            html:not(.is-ready) .future-products {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            body,
+            .topbar,
+            .brand,
+            .eye-container,
+            .brand-logo,
+            .slogan,
+            .top-nav,
+            .cta-section,
+            .volynx-principles,
+            .future-products,
+            .brand::before,
+            .brand::after {
+                animation: none !important;
+            }
+
+            .brand::before,
+            .brand::after {
+                display: none !important;
+            }
+        }
+
         /* ========================================
            FONT FACES
         ======================================== */
@@ -1286,6 +1605,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Intro: dispara quando tudo carregou (evita "flash" feio)
+        (() => {
+            const root = document.documentElement;
+            const fire = () => requestAnimationFrame(() => root.classList.add("is-ready"));
+
+            if (document.readyState === "complete") fire();
+            else window.addEventListener("load", fire, { once: true });
+        })();
+    </script>
 </body>
 
 </html>
