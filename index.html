@@ -1,59 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VOLYNX — Premium Web Design</title>
-    <meta name="description"
-        content="VOLYNX crafts premium, conversion-focused websites and brand identities with fast delivery and intelligent design." />
-    <link rel="icon" href="/favicon.ico">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+    <title>VOLYNX — Building a Smarter Future</title>
+    <link rel="preload" as="image" href="./assets/lucid5.webp" />
+    <link rel="preload" as="image" href="./assets/wordmark.webp">
+    <link rel="icon" type="image/png" href="./assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="shortcut icon" href="./assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+    <link rel="preload" as="image" href="./assets/volynx-icon.webp">
+    <meta name="apple-mobile-web-app-title" content="Volynx" />
+    <link rel="manifest" href="./assets/site.webmanifest" />
 
     <style>
-        /* =========================================================
-   VOLYNX — Responsive Clean CSS (FULL)
-   Target: your current HTML (no markup changes)
-   ========================================================= */
-
-        /* =========================================================
-   FONTS (self-hosted)
-   Put font files in ./assets-fonts/
-   ========================================================= */
-        @font-face {
-            font-family: "Manrope";
-            src: url("./assets-fonts/Manrope-Light.ttf") format("truetype");
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: "Manrope";
-            src: url("./assets-fonts/Manrope-Medium.ttf") format("truetype");
-            font-weight: 500;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: "Manrope";
-            src: url("./assets-fonts/Manrope-Bold.ttf") format("truetype");
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: "Manrope";
-            src: url("./assets-fonts/Manrope-ExtraBold.ttf") format("truetype");
-            font-weight: 800;
-            font-style: normal;
-            font-display: swap;
-        }
-
+        /* ========================================
+           FONT FACES
+        ======================================== */
         @font-face {
             font-family: "Sora";
-            src: url("./assets-fonts/Sora-Regular.ttf") format("truetype");
+            src: url("assets-fonts/Sora-Regular.ttf") format("truetype");
             font-weight: 400;
             font-style: normal;
             font-display: swap;
@@ -61,7 +30,7 @@
 
         @font-face {
             font-family: "Sora";
-            src: url("./assets-fonts/Sora-Medium.ttf") format("truetype");
+            src: url("assets-fonts/Sora-Medium.ttf") format("truetype");
             font-weight: 500;
             font-style: normal;
             font-display: swap;
@@ -69,7 +38,7 @@
 
         @font-face {
             font-family: "Sora";
-            src: url("./assets-fonts/Sora-Bold.ttf") format("truetype");
+            src: url("assets-fonts/Sora-Bold.ttf") format("truetype");
             font-weight: 700;
             font-style: normal;
             font-display: swap;
@@ -77,48 +46,371 @@
 
         @font-face {
             font-family: "Sora";
-            src: url("./assets-fonts/Sora-ExtraBold.ttf") format("truetype");
+            src: url("assets-fonts/Sora-ExtraBold.ttf") format("truetype");
             font-weight: 800;
             font-style: normal;
             font-display: swap;
         }
 
-        /* =========================================================
-   TOKENS
-   ========================================================= */
-        :root {
-            --enter-dur: 1.15s;
-
-            --bg0: #080610;
-            --card: rgba(18, 24, 39, 0.56);
-            --stroke: rgba(255, 255, 255, 0.12);
-            --muted: rgba(230, 232, 255, 0.78);
-            --text: #dde3ec;
-
-            --brand: #a78bfa;
-            --brand2: #a06efd;
-            --ok: #34d399;
-            --warn: #f59e0b;
-
-            --radius-xl: 26px;
-            --radius-lg: 22px;
-            --radius-md: 18px;
-
-            --wrap-max: 1200px;
+        @font-face {
+            font-family: "Manrope";
+            src: url("assets-fonts/Manrope-Light.ttf") format("truetype");
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
         }
 
-        /* =========================================================
-   RESET / BASE
-   ========================================================= */
+        @font-face {
+            font-family: "Manrope";
+            src: url("assets-fonts/Manrope-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("assets-fonts/Manrope-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("assets-fonts/Manrope-ExtraBold.ttf") format("truetype");
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ========================================
+           CSS VARIABLES (MOBILE-FIRST)
+        ======================================== */
+        :root {
+            /* Fonts */
+            --sans: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            --display: 'Sora', var(--sans);
+            --nav-font: "Sora", "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+
+            /* Colors */
+            --text-color: #c7c3ff;
+            --glow-logo: #5d32df;
+            --glow-ui: #ae93ff;
+            --divider-color: rgba(177, 177, 177, 0.75);
+
+            /* Menu */
+            --menu-bg: rgba(3, 5, 11, 0.68);
+            --menu-hover-bg: rgb(33, 1, 59);
+            --menu-radius: clamp(20px, 5vw, 25px);
+            --nav-mobile-btn-bg: rgba(10, 8, 24, 0.82);
+            --nav-mobile-btn-border: rgba(255, 255, 255, 0.18);
+            --nav-mobile-btn-glow: rgba(167, 139, 250, 0.28);
+
+            /* Layout (responsive) */
+            --shell-max: 960px;
+            --pad-x: clamp(14px, 4vw, 24px);
+            --pad-y: clamp(46px, 8vw, 72px);
+            --gap: clamp(10px, 3vw, 18px);
+
+            /* Hero adjustments */
+            --hero-wordmark-shift: clamp(18px, 8vw, 150px);
+            --hero-slogan-shift: clamp(12px, 5vw, 115px);
+            --slogan-nudge: clamp(0px, 23vw, 275px);
+        }
+
+        /* ========================================
+           RESET & BASE (MOBILE-FIRST)
+        ======================================== */
         * {
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Fade-in suave na entrada */
-        @keyframes pageFadeIn {
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            font-family: var(--sans);
+            user-select: none;
+            color: var(--text-color);
+            padding: var(--pad-y) var(--pad-x) clamp(34px, 6vw, 48px);
+            background: radial-gradient(circle at 50% 18%, #060a18 0%, #02040d 42%, #000000 100%);
+            opacity: 0;
+            animation: fadeInBody 1.2s ease forwards;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-y: none;
+        }
+
+        @keyframes fadeInBody {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a:focus-visible {
+            outline: 2px solid rgba(0, 190, 196, 0.55);
+            outline-offset: 3px;
+        }
+
+        /* ========================================
+           UNIVERSE BACKGROUND
+        ======================================== */
+        .universe-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            width: 100%;
+            height: 100svh;
+        }
+
+        .universe-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(7, 8, 20, 0.1), rgba(7, 8, 20, 0)), url("./assets/lucid5.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: .90;
+        }
+
+        .universe-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image:
+                radial-gradient(3px 3px at 5% 10%, rgba(255, 255, 255, 0.747), transparent 180%),
+                radial-gradient(3px 3px at 95% 15%, rgba(255, 255, 255, 0.95), transparent 160%),
+                radial-gradient(3px 3px at 8% 85%, rgba(255, 255, 255, 0.95), transparent 60%),
+                radial-gradient(3px 3px at 92% 80%, rgba(255, 255, 255, 0.95), transparent 60%),
+                radial-gradient(3px 3px at 20% 30%, rgba(255, 255, 255, 0.9), transparent 30%),
+                radial-gradient(3px 3px at 80% 35%, rgba(255, 255, 255, 0.9), transparent 40%),
+                radial-gradient(3px 3px at 25% 75%, rgba(255, 255, 255, 0.9), transparent 60%),
+                radial-gradient(3px 3px at 75% 72%, rgba(255, 255, 255, 0.9), transparent 60%),
+                radial-gradient(2px 2px at 15% 20%, rgba(255, 255, 255, 0.85), transparent 60%),
+                radial-gradient(2px 2px at 32% 18%, rgb(255, 255, 255), transparent 92%),
+                radial-gradient(5px 5px at 48% 22%, rgba(255, 255, 255, 0.7), transparent 30%),
+                radial-gradient(2px 2px at 68% 18%, rgba(255, 255, 255, 0.8), transparent 60%),
+                radial-gradient(6px 6px at 78% 22%, rgba(255, 255, 255, 0.8), transparent 60%),
+                radial-gradient(1px 1px at 10% 12%, rgba(255, 255, 255, 0.5), transparent 55%),
+                radial-gradient(1px 1px at 26% 14%, rgba(255, 255, 255, 0.45), transparent 55%),
+                radial-gradient(1px 1px at 50% 10%, rgba(255, 255, 255, 0.4), transparent 55%),
+                radial-gradient(1px 1px at 74% 14%, rgba(255, 255, 255, 0.45), transparent 55%),
+                radial-gradient(1px 1px at 8% 40%, rgba(255, 255, 255, 0.4), transparent 55%);
+            background-repeat: no-repeat;
+            opacity: .78;
+        }
+
+        /* ========================================
+           MAIN SHELL
+        ======================================== */
+        .shell {
+            position: relative;
+            z-index: 2;
+            max-width: var(--shell-max);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--gap);
+        }
+
+        /* ========================================
+           TOPBAR & HERO (MOBILE-FIRST)
+        ======================================== */
+        .topbar {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(10px, 3vw, 18px);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(10px, 2.5vw, 18px);
+            width: 100%;
+            padding-bottom: calc(var(--hero-wordmark-shift) + var(--hero-slogan-shift) + clamp(18px, 4vw, 24px));
+            perspective: 900px;
+            transform-style: preserve-3d;
+        }
+
+        /* Eye Container */
+        .eye-container {
+            width: clamp(175px, 40vw, 220px);
+            height: clamp(175px, 40vw, 220px);
+            margin: clamp(8px, 2vw, 8px) auto clamp(8px, 2vw, 12px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            position: relative;
+            overflow: visible;
+            animation: fadeInSoftEye 2.1s ease forwards, eyeFloat 4.6s ease-in-out 2s infinite;
+        }
+
+        .volynx-eye-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: auto;
+            filter: drop-shadow(0px 0px 5px rgb(187, 0, 255)) drop-shadow(0px 0px 10px rgb(0, 163, 200)) brightness(1.4);
+            transition: transform 1.2s ease, filter 1.2s ease;
+            position: relative;
+            z-index: 2;
+            margin-top: clamp(-6px, -2vw, 22px);
+            scale: clamp(0.6, 1.5vw, 1.3);
+        }
+
+        .eye-sheen {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            width: 20%;
+            height: 25%;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 1;
+            filter: blur(.4px) brightness(120%);
+            z-index: 3;
+            transform: translate3d(-29%, -5%, 0) rotate(30deg);
+            background: linear-gradient(61deg, #ffffff12 30%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.22) 20%, rgba(255, 255, 255, 0) 60%, #f5f2f20a -35%);
+            clip-path: ellipse(32% 85% at 30% 30%);
+            animation: eyeSheen 4s ease-in-out infinite;
+        }
+
+        @keyframes fadeInSoftEye {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes eyeFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(15px);
+            }
+        }
+
+        @keyframes eyeSheen {
+
+            0%,
+            65% {
+                opacity: 0;
+                transform: translate3d(-56%, -56%, 0) rotate(30deg);
+            }
+
+            78% {
+                opacity: .9;
+                transform: translate3d(-50%, -50%, 0) rotate(30deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate3d(-44%, -44%, 0) rotate(30deg);
+            }
+        }
+
+        /* Brand Logo */
+        .brand-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(14px, 3vw, 18px);
+            opacity: 0;
+            animation: fadeIn 1.8s ease forwards;
+            animation-delay: 1.1s;
+        }
+
+        .brand-logo-img {
+            width: min(clamp(450px, 85vw, 900px), 92vw);
+            max-width: 92vw;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 2px rgba(109, 25, 222, 0.81)) drop-shadow(0 0 5px #34e4e4ab) brightness(1.3);
+            transition: transform 3.5s ease, filter 3.5s ease;
+            transform: translateY(calc(-1 * var(--hero-wordmark-shift)));
+            transform-origin: center;
+            will-change: transform;
+            backface-visibility: hidden;
+            position: relative;
+            z-index: 5;
+        }
+
+        .brand-logo-img:hover {
+            transform: translateY(calc(-1 * var(--hero-wordmark-shift))) translateZ(42px) scale(1.04) rotateX(2deg);
+        }
+
+        /* Slogan */
+        .slogan {
+            width: 100%;
+            text-align: center;
+            line-height: 1.15;
+            font-size: clamp(16px, 4vw, 36px);
+            letter-spacing: clamp(1px, .55vw, 7px);
+            margin-top: calc(-1 * var(--slogan-nudge));
+            padding: 0 clamp(12px, 3vw, 12px);
+            font-weight: 600;
+            font-family: var(--display);
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 0 10px rgba(143, 172, 190, .65);
+            z-index: 350;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
             }
 
             to {
@@ -127,1347 +419,873 @@
             }
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            animation: pageFadeIn 900ms ease-out both;
-        }
-
-
-        @media (prefers-reduced-motion: reduce) {
-            body {
-                animation: none !important;
-            }
-        }
-
-
-        html,
-        body {
+        /* ========================================
+           NAVIGATION (MOBILE-FIRST)
+        ======================================== */
+        .top-nav {
+            position: relative;
             width: 100%;
-            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(12px, 3vw, 14px);
+            max-width: min(720px, 94vw);
+            margin: 0 auto;
         }
 
-        body {
-            margin: 0;
-            color: var(--text);
-            font-family: Manrope, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: var(--bg0);
-            overflow-x: clip;
+        /* Nav Panel (unified styles) */
+        .nav-panel,
+        .nav-panel2 {
+            width: 100%;
+            max-width: min(720px, 94vw);
+            background: var(--menu-bg);
+            backdrop-filter: blur(4px) saturate(175%);
+            -webkit-backdrop-filter: blur(4px) saturate(175%);
+            border: 2px outset rgba(24, 15, 33, 0.82);
+            display: flex;
+            flex-direction: column;
+            border-radius: var(--menu-radius);
+            box-shadow: 0 0 55px 0px rgba(255, 255, 255, 0.36) inset,
+                0 0px 5px 3px rgba(0, 0, 0, 0.85),
+                0 0 30px 20px rgba(4, 229, 255, 0.28),
+                0 0 24px 10px rgba(120, 68, 155, 0.38);
+            transition: box-shadow .35s cubic-bezier(.2, .8, .2, 1);
+            overflow: visible;
+            isolation: isolate;
+            position: relative;
+        }
 
+        .nav-panel:hover,
+        .nav-panel2:hover {
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                0 14px 44px rgba(0, 0, 0, 0.58),
+                0 0 22px rgba(0, 190, 196, 0.48),
+                0 0 62px rgba(154, 9, 217, 0.52);
+        }
+
+        .nav-panel::before,
+        .nav-panel2::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .10), transparent 55%);
+            opacity: .6;
+            border-radius: inherit;
+            z-index: 0;
+        }
+
+        /* Menu Sheen Effect */
+        .menu-sheen,
+        .menu-sheen2 {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .menu-sheen::before {
+            content: "";
+            position: absolute;
+            inset: -40% -60%;
+            background: linear-gradient(115deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.00) 40%,
+                    rgba(255, 255, 255, 0.55) 50%,
+                    rgba(255, 255, 255, 0.00) 60%,
+                    transparent 100%);
             opacity: 0;
-            transform: translateY(14px);
-            animation: pageIn var(--enter-dur) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            mix-blend-mode: screen;
+            filter: blur(0.6px) brightness(135%);
+            transform: translateX(-130%);
+            animation: menuSheenSweep 4s linear infinite;
+            animation-delay: -1.1s;
         }
 
-        img,
-        svg {
-            display: block;
-            max-width: 100%;
-            height: auto;
+        .menu-sheen2::before {
+            content: "";
+            position: absolute;
+            inset: -40% -60%;
+            background: linear-gradient(115deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.00) 40%,
+                    rgba(255, 255, 255, 0.55) 50%,
+                    rgba(255, 255, 255, 0.00) 60%,
+                    transparent 100%);
+            opacity: 0;
+            mix-blend-mode: screen;
+            filter: blur(0.6px) brightness(135%);
+            transform: translateX(-130%);
+            animation: menuSheenSweep 4s linear infinite;
+            animation-delay: -1.7s;
         }
 
-        a {
-            color: inherit;
-        }
-
-        @keyframes pageIn {
+        @keyframes menuSheenSweep {
             0% {
                 opacity: 0;
-                transform: translateY(14px);
+                transform: translateX(-130%);
             }
 
-            70% {
-                opacity: 1;
-                transform: translateY(2px);
+            8% {
+                opacity: .95;
+            }
+
+            22% {
+                opacity: .95;
+                transform: translateX(130%);
+            }
+
+            30% {
+                opacity: 0;
+                transform: translateX(130%);
             }
 
             100% {
-                opacity: 1;
-                transform: translateY(0);
+                opacity: 0;
+                transform: translateX(130%);
             }
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
+        /* Nav Links (unified) */
+        .nav-links,
+        .nav-links2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(10px, 2.5vw, 12px);
+            padding: clamp(12px, 3vw, 14px);
+            text-align: center;
+            color: rgba(232, 236, 241, .88);
+            font-weight: 800;
+            letter-spacing: 0.09em;
+            font-size: clamp(13px, 3.5vw, 16px);
+            line-height: 1.15;
+            font-family: var(--nav-font);
+            background: #71707000;
+            border: 1px inset #ffffff0a;
+            width: 100%;
+        }
+
+        .nav-links a,
+        .nav-links2 a {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: clamp(64px, 15vw, 74px);
+            padding: clamp(12px, 3vw, 14px) clamp(10px, 2.5vw, 12px);
+            text-align: center;
+            color: rgba(232, 236, 241, .88);
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            font-size: clamp(13px, 3.5vw, 14px);
+            line-height: 1.15;
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+            position: relative;
+            transform-origin: center;
+            will-change: transform, filter;
+            transition: transform .34s cubic-bezier(.22, .51, .46, 1), color .15s ease, filter .15s ease, box-shadow .2s ease;
+            border-radius: clamp(14px, 4vw, 16px);
+            font-family: var(--nav-font);
+            background: rgba(51, 31, 86, 0.38);
+            border: 2px inset rgba(255, 255, 255, 0.34);
+        }
+
+        .nav-links a:hover,
+        .nav-links2 a:hover {
+            transform: translateY(-1px) scale(1.02);
+            filter: brightness(1.08);
+            box-shadow:
+                0 12px 24px rgba(0, 0, 0, 0.6),
+                0 0 22px rgba(167, 139, 250, 0.36);
+            color: #fff;
+        }
+
+        .nav-links a:focus-visible,
+        .nav-links2 a:focus-visible {
+            outline: none;
+            color: #fff;
+            filter: brightness(1.10);
+            box-shadow:
+                0 0 0 3px rgba(222, 225, 122, 0.75) inset,
+                0 0 0 2px rgba(0, 190, 196, 0.55),
+                0 0 22px rgba(167, 139, 250, 0.35);
+        }
+
+        .nav-chev,
+        .nav-chev2 {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(20px, 5vw, 22px);
+            line-height: 1;
+            opacity: .9;
+            transform: translateY(-1px);
+            text-shadow: 0 0 10px rgba(167, 139, 250, .25);
+        }
+
+        .nav-top,
+        .nav-top2 {
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-sub,
+        .nav-sub2 {
+            font-weight: 900;
+            font-size: clamp(11px, 4vw, 15px);
+            letter-spacing: 0.06em;
+            opacity: 1;
+        }
+
+        /* ========================================
+           CTA SECTION (MOBILE-FIRST)
+        ======================================== */
+        .cta-section {
+            text-align: center;
+            margin: clamp(10px, 3vw, 25px) 0;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 0.7s;
+            width: 100%;
+            margin-top: 50px;
+        }
+
+        .cta-title {
+            font-weight: 600;
+            font-size: clamp(18px, 5vw, 30px);
+            letter-spacing: clamp(.12em, .5vw, .30em);
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 clamp(16px, 4vw, 30px);
+            text-shadow: 0px 0px 5px rgb(217, 157, 250);
+            font-family: var(--display);
+        }
+
+        .cta-subtitle {
+            font-weight: 300;
+            font-size: clamp(16px, 4vw, 20px);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 62ch;
+            margin: 0 auto clamp(22px, 5vw, 50px);
+            padding: 0 clamp(10px, 3vw, 60px);
+            text-shadow: 0px 0px 1px rgb(255, 255, 255), 0px 3px 1px rgb(0, 0, 0);
+            font-family: var(--display);
+            text-align: center;
+            letter-spacing: clamp(1px, 0.3vw, 2px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(12px, 3vw, 14px);
+            width: 100%;
+        }
+
+        .cta-button {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: clamp(14px, 3.5vw, 16px);
+            padding: clamp(12px, 3vw, 13px) clamp(22px, 5vw, 30px);
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            min-width: clamp(100%, 50vw, 210px);
+            min-height: 44px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.20em;
+            color: #e9ddff;
+            border: 2px outset rgba(255, 255, 255, 0.83);
+            background: radial-gradient(140% 220% at 50% 0%, rgba(255, 255, 255, 0.16), transparent 60%), rgba(10, 8, 24, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 18px 38px rgba(0, 0, 0, 0.9), 0 0 16px rgba(48, 32, 120, 0.85);
+            overflow: hidden;
+            transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.28s ease, border-color 0.28s ease, background 0.35s ease, color 0.35s ease;
+        }
+
+        .cta-button span {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            inset: -20%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.55) 45%, transparent 80%);
+            opacity: 0;
+            transform: translateX(-120%);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+            pointer-events: none;
+        }
+
+        .cta-button.primary {
+            background: radial-gradient(9% 100% at 50% 50%, rgba(245, 231, 145, 0.6) 20%, rgba(210, 202, 54, 0.5) 120%, rgba(223, 221, 121, 0.9) 250%, rgba(201, 196, 111, 0.69) 392%);
+            color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95), 0 0 30px rgba(167, 139, 250, 0.85);
+            border: 3px outset rgb(220, 218, 218);
+        }
+
+        .cta-button.secondary {
+            background: radial-gradient(9% 100% at 50% 50%, rgba(205, 205, 205, 0.6) 20%, rgba(164, 164, 164, 0.5) 120%, rgba(208, 208, 201, 0.9) 250%, rgba(152, 152, 150, 0.69) 392%);
+            border: 3px outset rgb(220, 218, 218);
+            color: #ffffff;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 22px 46px rgba(0, 0, 0, 0.95), 0 0 34px rgba(167, 139, 250, 0.95);
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
+            transform: translateX(120%);
+        }
+
+        .cta-button:focus-visible {
+            outline: none;
+            box-shadow:
+                0 0 0 3px rgba(222, 225, 122, 0.55) inset,
+                0 0 0 2px rgba(0, 190, 196, 0.45),
+                0 18px 38px rgba(0, 0, 0, 0.85),
+                0 0 20px rgba(48, 32, 120, 0.75);
+        }
+
+        /* ========================================
+           PRODUCTS & PRINCIPLES (MOBILE-FIRST)
+        ======================================== */
+        .future-products,
+        .volynx-principles {
+            text-align: center;
+            margin-top: clamp(55px, 10vw, 70px);
+            padding-top: clamp(20px, 4vw, 20px);
+            border-top: 2px inset rgba(140, 201, 255, 0.5);
+            width: 100%;
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            color: rgba(199, 195, 255, 0.85);
+        }
+
+        .future-products {
+            animation-delay: 2.3s;
+        }
+
+        .volynx-principles {
+            animation-delay: 2.15s;
+            border-top-color: rgba(140, 201, 255, 0.35);
+            color: rgba(199, 195, 255, 0.90);
+        }
+
+        .future-products h2,
+        .volynx-principles h2 {
+            font-size: clamp(24px, 5vw, 34px);
+            margin: 0 0 clamp(10px, 2.5vw, 10px);
+            color: #36d1d9;
+            text-shadow: 1px 1px 1px white, 0px 5px 5px black;
+            letter-spacing: clamp(1px, 0.4vw, 2px);
+            font-family: var(--display);
+            font-weight: 200;
+        }
+
+        .future-products p,
+        .volynx-principles p {
+            font-size: clamp(16px, 4vw, 20px);
+            margin: 0 auto clamp(18px, 4vw, 22px);
+            color: rgba(223, 219, 255, 0.9);
+            font-family: var(--sans);
+            max-width: 68ch;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(16px, 4vw, 18px);
+            max-width: 100%;
+            margin: 0 auto;
+            margin-bottom: 30px;
+        }
+
+        .product-card {
+            display: block;
+            background: radial-gradient(160% 220% at 50% 0%, rgba(66, 75, 95, 0.69), rgba(56, 52, 80, 0.41));
+            border: 3px outset rgb(112, 120, 248);
+            padding: clamp(16px, 4vw, 16px) clamp(16px, 4vw, 16px) clamp(18px, 4.5vw, 18px);
+            border-radius: clamp(14px, 4vw, 16px);
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            text-shadow: 0 0 4px #d238fd, 0 0 4px #000;
+            box-shadow: 0 0 20px inset #b761e7bf;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.8), 0 0 16px rgba(167, 139, 250, 0.75);
+            border-color: rgba(214, 204, 255, 0.9);
+        }
+
+        .product-card h3 {
+            font-size: clamp(17px, 4.5vw, 19px);
+            margin: 0px 0px 6px;
+            color: #eec8ff;
+            font-family: var(--display);
+            letter-spacing: 0.5px;
+        }
+
+        .product-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 13px 3px 15px;
+            border-radius: 999px;
+            font-size: clamp(13px, 3.5vw, 15px);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: rgba(10, 109, 140, 0.34);
+            color: #cda2ff;
+            border: 2px inset rgb(174, 80, 228);
+            margin-bottom: 8px;
+            font-family: var(--display);
+            text-shadow: 0 0 1px white, 0 0 3px white;
+        }
+
+        .product-card p {
+            font-size: clamp(16px, 4vw, 19px);
+            color: #08b0e3;
+            margin: 0px;
+            font-weight: 500;
+        }
+
+        /* Principles Grid */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(18px, 4vw, 35px);
+            justify-items: center;
+            margin: clamp(25px, 6vw, 45px) 0 clamp(5px, 2vw, 5px);
+            padding: clamp(15px, 4vw, 25px) 0 clamp(5px, 2vw, 5px);
+        }
+
+        .principle-card {
+            width: 100%;
+            max-width: 520px;
+            background: linear-gradient(130deg, rgba(255, 255, 255, 0.26), rgba(246, 247, 247, 0.05));
+            backdrop-filter: blur(20px);
+            padding: clamp(18px, 4.5vw, 20px);
+            border-radius: clamp(15px, 4vw, 17px);
+            border: 3px double;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            box-shadow: 0 0 20px 0px inset #8a21e1a8;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.8), 0 0 16px rgba(167, 139, 250, 0.75);
+            border-color: rgba(214, 204, 255, 0.9);
+        }
+
+        .principle-card h3 {
+            font-size: clamp(16px, 4vw, 18px);
+            margin: 0 0 6px;
+            color: #fcfdfd;
+            font-family: var(--display);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-shadow: 0 0 4px #d238fd, 0 0 4px #000;
+        }
+
+        .principle-card p {
+            font-size: clamp(15px, 3.7vw, 16px);
+            color: #08b0e3;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* ========================================
+           TABLET BREAKPOINT (768px+)
+        ======================================== */
+        @media (min-width: 768px) {
+            :root {
+                --slogan-nudge: clamp(0px, 22vw, 275px);
+            }
+
+            .nav-links,
+            .nav-links2 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .nav-links a,
+            .nav-links2 a {
+                min-height: 74px;
+            }
+
+            .cta-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .cta-button {
+                width: auto;
+                min-width: 46%;
+                flex: 1;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .product-card {
+                max-width: none;
+            }
+
+            .principles-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .principle-card {
+                max-width: none;
+            }
+        }
+
+        /* ========================================
+           DESKTOP BREAKPOINT (1024px+)
+        ======================================== */
+        @media (min-width: 1024px) {
+            .volynx-eye-img {
+                scale: 1.15;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .principles-grid {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+
+            .principle-card {
+                grid-column: span 2;
+            }
+
+            .principle-card:nth-child(4) {
+                grid-column: 2 / span 2;
+            }
+
+            .principle-card:nth-child(5) {
+                grid-column: 4 / span 2;
+            }
+        }
+
+        /* ========================================
+           LARGE DESKTOP (1280px+)
+        ======================================== */
+        @media (min-width: 1280px) {
+            :root {
+                --hero-wordmark-shift: 150px;
+                --hero-slogan-shift: 115px;
             }
 
             body {
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-        /* =========================================================
-   BACKGROUND (fixed)
-   ========================================================= */
-        html {
-            position: relative;
-            isolation: isolate;
-        }
-
-        html::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            pointer-events: none;
-            background: url("./assets/nebula-abstract.webp") center/cover no-repeat;
-            opacity: 0.92;
-        }
-
-        html::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            background:
-                radial-gradient(1100px 820px at 14% 10%, rgba(0, 122, 255, .10), transparent 60%),
-                radial-gradient(980px 720px at 86% 18%, rgba(255, 184, 107, .08), transparent 64%),
-                linear-gradient(180deg, rgba(8, 6, 16, .18) 0%, rgba(10, 7, 24, .22) 45%, rgba(13, 8, 37, .28) 100%);
-        }
-
-        /* =========================================================
-   LAYOUT SHELL
-   ========================================================= */
-        .wrap {
-            max-width: var(--wrap-max);
-            margin: 0 auto;
-            padding: clamp(16px, 2.6vw, 24px) clamp(14px, 2.2vw, 20px) clamp(22px, 2.8vw, 34px);
-            position: relative;
-            z-index: 1;
-            overflow-x: clip;
-        }
-
-        .main {
-            position: relative;
-            z-index: 1;
-        }
-
-        .homepage-section {
-            padding: 28px 0;
-        }
-
-        .section {
-            margin: 60px 0;
-        }
-
-        /* =========================================================
-   BUTTONS
-   ========================================================= */
-        .btn {
-            padding: 12px 20px;
-            border-radius: 999px;
-            font-weight: 800;
-            font-size: 12px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #e8ecf1;
-            text-decoration: none;
-
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            cursor: pointer;
-            white-space: nowrap;
-
-            border: 2px solid transparent;
-            background:
-                linear-gradient(135deg, #070b11, #101624) padding-box,
-                linear-gradient(135deg, #f5f7ff, #c2ccdd, #7f8fb3, #2f5fd1) border-box;
-
-            box-shadow: 0 10px 24px inset rgba(175, 249, 246, 0.40);
-            transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-1px);
-            filter: brightness(1.08);
-            box-shadow: 0 18px 38px rgba(0, 0, 0, .45);
-        }
-
-        .btn:active {
-            transform: translateY(0px);
-        }
-
-        .btn.primary {
-            background:
-                linear-gradient(150deg, #6b1dad, #7c3aed, #a855f7) padding-box,
-                linear-gradient(150deg, #1a1414, #f1f0f5, #4c415d) border-box;
-        }
-
-        .btn.alt {
-            opacity: 0.92;
-            background:
-                linear-gradient(150deg, #8000ff, #2b8dc8, #50a) padding-box,
-                linear-gradient(150deg, #3cedff, #39c23b, #fe47ea) border-box;
-        }
-
-        .btn.whats {
-            opacity: 0.92;
-            color: #fff;
-            text-shadow: 0 0 1px rgba(255, 255, 255, .75);
-            background:
-                linear-gradient(150deg, #b1e89d, #0d7504, #6fd161) padding-box,
-                linear-gradient(150deg, #fbfbfb, #f1f0f5, #020301) border-box;
-        }
-
-        /* Top Whats button (not using .btn in HTML) */
-        .top-whats {
-            opacity: 0.92;
-            color: #fff;
-            text-shadow: 0 0 1px rgba(255, 255, 255, .75);
-
-            background:
-                linear-gradient(150deg, #b1e89d, #0d7504, #6fd161) padding-box,
-                linear-gradient(150deg, #fbfbfb, #f1f0f5, #020301) border-box;
-
-            padding: 12px 20px;
-            border-radius: 999px;
-            font-weight: 800;
-            font-size: 12px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            text-decoration: none;
-
-            display: none;
-            /* shown via breakpoint */
-            align-items: center;
-            justify-content: center;
-
-            border: 2px solid transparent;
-            box-shadow: 0 10px 24px inset rgba(175, 249, 246, 0.40);
-        }
-
-        /* SELECT: center text properly + same padding both sides */
-        select.btn,
-        select.currency-select {
-            -webkit-appearance: none;
-            appearance: none;
-
-            padding: 12px 44px;
-            text-align: center;
-            text-align-last: center;
-
-            background-image:
-                linear-gradient(135deg, transparent 50%, rgba(226, 232, 240, .95) 50%),
-                linear-gradient(225deg, transparent 50%, rgba(226, 232, 240, .95) 50%);
-            background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
-            background-size: 6px 6px, 6px 6px;
-            background-repeat: no-repeat;
-        }
-
-        /* =========================================================
-   GLOBAL NAV
-   ========================================================= */
-        header.globalnav {
-            position: relative;
-            z-index: 50;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-
-            padding: 16px 16px;
-            border-radius: 16px;
-            border: 2px outset rgba(93, 96, 96, 0.9);
-            background: rgba(0, 0, 0, .18);
-
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-
-            margin: 5px 0 12px;
-        }
-
-        .globalnav-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 0 0 auto;
-        }
-
-        .globalnav-brand {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        /* predictable size for the eye (no negative margins) */
-        .globalnav-brand .brand-eye {
-            width: clamp(72px, 8vw, 110px);
-            height: auto;
-            filter: drop-shadow(0 10px 25px rgba(160, 110, 253, .22)) brightness(1.15);
-        }
-
-        .globalnav-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            flex: 1 1 auto;
-        }
-
-        .globalnav-center a {
-            font-size: 14px;
-            letter-spacing: 0.20em;
-            text-transform: uppercase;
-            color: rgba(230, 232, 255, 0.88);
-            text-decoration: none;
-            opacity: 0.92;
-            padding: 10px 14px;
-            border-radius: 12px;
-            transition: opacity .25s ease, background .25s ease;
-            box-shadow: 0 0 10px inset rgba(0, 0, 0, 0.86), 0 0 25px inset rgba(255, 255, 255, 0.22);
-            font-weight: 700;
-        }
-
-        .globalnav-center a:hover {
-            opacity: 1;
-            background: rgba(255, 255, 255, .06);
-            filter: brightness(2.5);
-        }
-
-        .globalnav-right {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 10px;
-            flex: 0 0 auto;
-        }
-
-        .nav-toggle,
-        .mobile-drawer {
-            display: none !important;
-        }
-
-        /* =========================================================
-   HERO
-   ========================================================= */
-        .hero-unit {
-            border-radius: var(--radius-xl);
-            border: 2px outset rgb(19, 3, 3);
-            background:
-                radial-gradient(1200px 700px at 30% 25%, rgba(255, 124, 92, 0.18), transparent 60%),
-                radial-gradient(900px 600px at 85% 10%, rgba(56, 189, 248, 0.14), transparent 55%),
-                rgba(12, 16, 26, 0.62);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: clamp(18px, 3vw, 36px);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .hero-grid {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: clamp(12px, 2vw, 18px);
-            align-items: center;
-        }
-
-        .hero-copy {
-            min-width: 0;
-        }
-
-        .hero-eyebrow {
-            font-size: 15px;
-            letter-spacing: 0.30em;
-            text-transform: uppercase;
-            opacity: 0.75;
-            font-weight: 900;
-            margin: 0 0 12px;
-            text-align: center;
-        }
-
-        .hero-logo {
-            width: min(560px, 100%);
-            margin: 0 auto 8px;
-            padding: 6px;
-        }
-
-        .hero-logo img {
-            width: 100%;
-            height: auto;
-            filter:
-                drop-shadow(0 0 6px rgba(192, 151, 250, 0.75)) drop-shadow(0 0 8px rgba(6, 176, 242, 0.40));
-        }
-
-        .hero-subhead {
-            margin: 0 auto;
-            max-width: 58ch;
-            font-size: 16px;
-            line-height: 1.6;
-            color: rgba(230, 232, 255, 0.84);
-            text-align: center;
-        }
-
-        .cta-links {
-            margin-top: 16px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .hero-visual {
-            border-radius: var(--radius-lg);
-            border: 2px solid rgba(255, 255, 255, 0.08);
-            background: rgba(8, 10, 16, 0.18);
-            box-shadow: 0 0 9px 2px inset rgba(0, 0, 0, 0.90);
-            padding: clamp(18px, 3vw, 52px);
-            min-width: 0;
-        }
-
-        .chip {
-            width: 100%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 15px;
-            letter-spacing: 0.30em;
-            text-transform: uppercase;
-
-            padding: 14px 16px;
-            border-radius: 999px;
-
-            background:
-                radial-gradient(circle at 10px 20px, rgba(248, 250, 252, 0.20), transparent 45%),
-                radial-gradient(circle at 100% 30px, rgba(192, 132, 252, 0.40), transparent 70%),
-                #2b2d36;
-
-            margin: 0 0 16px;
-
-            font-weight: 900;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.45), 0 0 3px #00c3ff;
-            border: 2px inset rgba(164, 128, 185, 0.95);
-        }
-
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .kpi {
-            border-radius: 16px;
-            border: 2px outset rgba(255, 255, 255, 0.24);
-            padding: 14px;
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .kpi .n {
-            font-weight: 900;
-            font-size: 16px;
-        }
-
-        .kpi .l {
-            font-size: 11px;
-            opacity: 0.78;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-top: 4px;
-        }
-
-        /* =========================================================
-   SECTION TITLES / ICONS
-   ========================================================= */
-        .sec-title {
-            font-size: 22px;
-            margin: 0 0 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #fbfbfb;
-        }
-
-        .sec-title::after {
-            content: "";
-            flex: 1;
-            height: 6px;
-            background: linear-gradient(90deg, rgb(112, 58, 166), rgba(0, 0, 0, 0) 97%);
-            filter: drop-shadow(-7px 0px 10px rgba(209, 213, 219, .25));
-            border-radius: 999px;
-        }
-
-        .icon {
-            width: 50px;
-            height: 40px;
-            color: #0effa5;
-        }
-
-        .muted {
-            color: rgba(230, 232, 255, 0.81);
-        }
-
-        /* =========================================================
-   CARDS / GRIDS
-   ========================================================= */
-        .grid {
-            display: grid;
-            gap: 18px;
-            align-items: stretch;
-        }
-
-        .grid.cols-2 {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .grid.cols-3 {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .card {
-            border: 3px outset rgba(156, 156, 156, 0.88);
-            border-radius: 20px;
-            padding: clamp(18px, 2.8vw, 30px) clamp(16px, 3vw, 35px);
-            background: rgba(52, 51, 51, 0.60);
-            box-shadow: 0 16px 40px rgba(225, 222, 227, 0.12);
-            backdrop-filter: blur(3px);
-        }
-
-        .card h3 {
-            margin: 10px 0 10px;
-            color: #f3f4f6;
-        }
-
-        /* =========================================================
-   PLANS
-   ========================================================= */
-        .plan-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-            width: 100%;
-            padding: 20px 0;
-        }
-
-        .plan-tile {
-            border-radius: var(--radius-xl);
-            border: 2px outset rgba(12, 10, 10, 0.93);
-            background: rgba(18, 24, 39, 0.54);
-            overflow: hidden;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 16px 40px rgba(208, 202, 202, 0.25);
-        }
-
-        .plan-media {
-            padding: 14px;
-            background:
-                radial-gradient(900px 280px at 30% 0%, rgba(255, 124, 92, 0.14), transparent 60%),
-                rgba(0, 0, 0, 0.22);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .plan-media a {
-            display: block;
-            border-radius: 26px;
-            overflow: hidden;
-            border: 1px outset rgba(255, 254, 254, 0.50);
-        }
-
-        .plan-media img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        .plan-content {
-            padding: 18px 18px;
-            display: grid;
-            gap: 10px;
-            flex: 1;
-            backdrop-filter: blur(12px);
-            background: rgba(255, 255, 255, 0.10);
-        }
-
-        .plan-content .chip {
-            margin: 0;
-        }
-
-        .plan-content .headline {
-            font-size: 24px;
-            margin: 0;
-            font-weight: 800;
-            letter-spacing: 1.2px;
-        }
-
-        .plan-content .muted {
-            font-size: 14px;
-            line-height: 1.55;
-            font-weight: 650;
-            margin: 0;
-        }
-
-        .price-row {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            margin-top: 2px;
-        }
-
-        .price-label {
-            font-size: 13px;
-            opacity: 0.95;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: #ae5eff;
-            text-shadow: 0 0 3px #ae5eff, 0 0 1px rgba(255, 255, 255, 0.70);
-        }
-
-        .price-label .currency {
-            color: #e5e7eb;
-        }
-
-        .price {
-            font-size: 28px;
-            font-weight: 900;
-            margin: 0;
-            color: #f9fafb;
-        }
-
-        .plan-bullets {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            gap: 10px;
-            font-size: 13px;
-        }
-
-        .plan-bullets li {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            color: rgba(230, 232, 255, .86);
-        }
-
-        .ok {
-            color: var(--ok);
-        }
-
-        .warn {
-            color: var(--warn);
-        }
-
-        /* Plan CTA row (scoped) */
-        .plan-content .cta-links {
-            margin-top: 6px;
-            justify-content: stretch;
-            width: 100%;
-        }
-
-        .plan-content .cta-links .btn {
-            flex: 1 1 0;
-        }
-
-        /* Plans note */
-        .plans-note {
-            margin-top: 14px;
-            font-size: 12px;
-            color: rgba(230, 232, 255, 0.70);
-            border: 1px dashed rgba(255, 255, 255, 0.18);
-            border-radius: 18px;
-            padding: 12px 14px;
-            background: rgba(0, 0, 0, 0.39);
-            backdrop-filter: blur(8px);
-            text-align: center;
-        }
-
-        /* =========================================================
-   ADD-ONS
-   ========================================================= */
-        .promo-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .promo-tile {
-            border-radius: 24px;
-            border: 2px outset rgba(15, 13, 13, 0.92);
-            background: rgba(18, 24, 39, 0.46);
-            padding: 18px;
-            min-height: 220px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 14px;
-
-            backdrop-filter: blur(10px);
-        }
-
-        .promo-tile h3 {
-            margin: 0;
-            font-size: 20px;
-        }
-
-        .promo-tile p {
-            margin: 6px 0 0;
-            color: rgba(230, 232, 255, 0.82);
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        /* =========================================================
-   WHY VOLYNX
-   ========================================================= */
-        #why-volynx .card {
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        #why-volynx .card::before {
-            content: "";
-            position: absolute;
-            inset: -40%;
-            background:
-                radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.25), transparent 55%),
-                radial-gradient(circle at 100% 100%, rgba(45, 212, 191, 0.18), transparent 55%);
-            opacity: .16;
-            pointer-events: none;
-        }
-
-        #why-volynx .card>* {
-            position: relative;
-            z-index: 1;
-        }
-
-        #why-volynx .why-features {
-            margin: 18px 0 0;
-            padding: 0;
-            list-style: none;
-            display: grid;
-            gap: 14px;
-        }
-
-        #why-volynx .why-features li {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            font-size: 14px;
-            line-height: 1.55;
-            color: rgba(230, 232, 255, .86);
-        }
-
-        #why-volynx .why-metrics {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
-            margin: 18px 0 14px;
-        }
-
-        #why-volynx .metric {
-            padding: 18px 16px;
-            border-radius: 14px;
-            border: 3px outset rgba(255, 255, 255, 0.38);
-            background:
-                radial-gradient(circle at 30% 80%, rgba(16, 171, 255, 0.34), rgba(146, 1, 233, 0.38) 72%, transparent 96%),
-                rgba(28, 22, 49, 0.82);
-            text-align: center;
-            font-weight: 950;
-        }
-
-        #why-volynx .metric-number {
-            font-size: 20px;
-            font-weight: 800;
-            color: #13f617f2;
-        }
-
-        #why-volynx .metric-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            color: #9ba3b4;
-            margin-top: 4px;
-        }
-
-        #why-volynx .why-note {
-            font-size: 11px;
-            color: rgba(230, 232, 255, .70);
-            margin: 16px 0 0;
-        }
-
-        #why-volynx .why-tagline {
-            font-size: 13px;
-            color: #cbd5f5;
-            margin: 12px 0 0;
-        }
-
-        /* =========================================================
-   FORMS / ROW
-   ========================================================= */
-        .row {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
-            max-width: 100%;
-        }
-
-        form {
-            display: grid;
-            gap: 14px;
-        }
-
-        input,
-        textarea {
-            background: rgba(2, 6, 23, 0.57);
-            border-radius: 16px;
-            border: 2px inset rgba(255, 255, 255, .60);
-            padding: 12px;
-            font: inherit;
-            color: #e5e7eb;
-            box-shadow: 0 14px 30px rgba(0, 0, 0, .25);
-            backdrop-filter: blur(10px);
-        }
-
-        /* =========================================================
-   FOOTER DIRECTORY (fixed: real grid + container)
-   ========================================================= */
-        .footer-dir {
-            margin-top: 26px;
-            padding: 22px 18px;
-            border: 1px solid rgba(255, 255, 255, 0.10);
-            border-radius: 22px;
-            background: rgba(12, 16, 26, 0.56);
-            backdrop-filter: blur(10px);
-        }
-
-        .footer-dir .cols {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 18px;
-            align-items: start;
-        }
-
-        .footer-dir h4 {
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.55);
-            margin: 0 0 12px;
-        }
-
-        .footer-dir a {
-            display: block;
-            text-decoration: none;
-            color: rgba(230, 232, 255, 0.82);
-            font-size: 13px;
-            padding: 6px 0;
-            opacity: .95;
-        }
-
-        .footer-dir a:hover {
-            color: rgba(255, 255, 255, .98);
-        }
-
-        .footer-legal {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px 16px;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 18px;
-            color: rgba(230, 232, 255, 0.70);
-            font-size: 12px;
-        }
-
-        .footer-legal .links {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .footer-legal .links a {
-            color: rgba(230, 232, 255, 0.70);
-            text-decoration: none;
-        }
-
-        .footer-legal .links a:hover {
-            color: rgba(255, 255, 255, .95);
-        }
-
-        /* =========================================================
-   RESPONSIVE BREAKPOINTS (clean + predictable)
-   ========================================================= */
-
-        /* <= 1190px: hide center nav, show top Whats */
-        @media (max-width: 1190px) {
-            .globalnav-center {
-                display: none;
+                padding-left: calc(240px + 18px + 24px);
+                padding-right: calc(240px + 18px + 24px);
             }
 
-            .top-whats {
-                display: inline-flex;
-            }
-        }
-
-        /* <= 1100px: grids go 3 -> 2 */
-        @media (max-width: 1100px) {
-            .plan-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .top-nav {
+                display: block;
+                max-width: none;
             }
 
-            .promo-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        /* <= 1024px: hero becomes 1 column (fixes 910px cut) */
-        @media (max-width: 1024px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-visual {
-                padding: 18px;
-            }
-        }
-
-        /* <= 900px: why section becomes 1 column */
-        @media (max-width: 900px) {
-            .grid.cols-2 {
-                grid-template-columns: 1fr;
-            }
-
-            #why-volynx .why-metrics {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* <= 720px: header STACKS (this is the “568px” fix) */
-        @media (max-width: 720px) {
-            header.globalnav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 12px;
-            }
-
-            .globalnav-left {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .globalnav-right {
-                width: 100%;
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 10px;
-                justify-items: stretch;
-            }
-
-            .top-whats,
-            select.currency-select,
-            .globalnav-right .btn {
-                width: 100%;
-            }
-
-            /* buttons consistent padding on narrow */
-            .btn {
-                padding: 14px 16px;
-                white-space: normal;
-            }
-        }
-
-        /* <= 740px: plans go 2 -> 1 */
-        @media (max-width: 740px) {
-            .plan-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .promo-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .plan-media img {
+            .nav-panel,
+            .nav-panel2 {
+                width: 240px;
+                max-width: 240px;
+                position: fixed;
+                top: 50%;
+                transform: translateY(-50%);
                 height: auto;
+                max-height: calc(100svh - 140px);
+                z-index: 60;
             }
 
-            .plan-content .cta-links {
-                flex-direction: column;
+            .nav-panel {
+                left: max(18px, env(safe-area-inset-left));
             }
 
-            .plan-content .cta-links .btn {
-                width: 100%;
-            }
-        }
-
-        /* <= 560px: reduce wrap padding + optionally hide the eye */
-        @media (max-width: 560px) {
-            .wrap {
-                padding: 16px 14px 26px;
+            .nav-panel2 {
+                right: max(18px, env(safe-area-inset-right));
             }
 
-            /* if you want the eye hidden on very small screens */
-            .globalnav-brand {
+            .nav-links,
+            .nav-links2 {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .nav-links a,
+            .nav-links2 a {
+                min-height: 120px;
+                padding: 18px 12px;
+                font-size: 15px;
+                border-radius: 20px;
+                border-top: 5px double #219595;
+                background: transparent;
+                border-left: none;
+                border-right: none;
+                border-bottom: none;
+            }
+
+            .nav-links a::before,
+            .nav-links2 a::before {
+                content: "";
+                position: absolute;
+                top: -10px;
+                bottom: -10px;
+                left: -22%;
+                right: -22%;
+                border-radius: 16px;
+                background: var(--menu-hover-bg);
+                box-shadow:
+                    0 12px 26px rgba(0, 0, 0, 0.68),
+                    0 0 18px rgba(167, 139, 250, 0.30);
+                opacity: 0;
+                transform: scale(0.975);
+                transition: opacity .18s ease, transform .18s ease;
+                z-index: -1;
+                pointer-events: none;
+            }
+
+            .nav-links a:hover,
+            .nav-links2 a:hover {
+                color: #fff;
+                transform: translateY(-1px) scale(1.02);
+                filter: brightness(1.50);
+                z-index: 10;
+                box-shadow: 0 0 10px 1px rgba(32, 209, 217, 0.68) inset, 0 0 66px inset rgba(128, 43, 214, 0.89);
+            }
+
+            .nav-links a:hover::before,
+            .nav-links2 a:hover::before {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .nav-chev,
+            .nav-chev2 {
                 display: none;
             }
 
-            .hero-subhead {
-                font-size: 15px;
+            .volynx-eye-img {
+                margin-top: -77px;
+                scale: 1.3;
             }
 
-            .chip {
-                font-size: 13px;
-                letter-spacing: .22em;
-            }
-
-            .footer-dir .cols {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .cta-button {
+                min-width: 210px;
             }
         }
 
-        /* <= 420px: footer 1 column */
-        @media (max-width: 420px) {
-            .footer-dir .cols {
-                grid-template-columns: 2fr 2fr;
+        /* ========================================
+           EXTRA LARGE DESKTOP (1440px+)
+        ======================================== */
+        @media (min-width: 1440px) {
+            :root {
+                --pad-x: 40px;
+                --gap: 24px;
+            }
+        }
+
+        /* ========================================
+           ACCESSIBILITY
+        ======================================== */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* ========================================
+           PERFORMANCE OPTIMIZATIONS (MOBILE)
+        ======================================== */
+        @media (max-width: 768px),
+        (hover: none) and (pointer: coarse) {
+            .universe-bg::after {
+                filter: none;
+            }
+
+            .nav-panel,
+            .nav-panel2 {
+                backdrop-filter: blur(2px) saturate(150%);
+                -webkit-backdrop-filter: blur(2px) saturate(150%);
+            }
+
+            .brand-logo-img:hover {
+                transform: translateY(calc(-1 * var(--hero-wordmark-shift)));
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="wrap">
-        <header class="globalnav" role="navigation" aria-label="VOLYNX global navigation">
-            <div class="globalnav-left"><a class="globalnav-brand" href="#top" aria-label="Go to top"><img
-                        class="brand-eye" src="./assets/oficial-volynx-eye.png" alt="VOLYNX Eye" decoding="async"
-                        loading="eager" /></a></div>
-            <nav class="globalnav-center" aria-label="Primary"><a href="#planos">Plans</a><a
-                    href="#addons">Add-ons</a><a href="#why-volynx">Why</a><a href="#contato">Contact</a></nav>
-            <div class="globalnav-right"><a class="top-whats"
-                    href="https://wa.me/447438656769?text=I%20want%20a%20premium%20VOLYNX%20website" target="_blank"
-                    rel="noopener noreferrer">WhatsApp</a><select class="btn alt currency-select"
-                    aria-label="Choose currency">
-                    <option value="gbp">GBP £</option>
-                    <option value="eur" selected>EUR €</option>
-                </select><a class="btn primary" href="https://calendly.com/volynx-schedule-your-meeting/30min"
-                    target="_blank" rel="noopener noreferrer">Book a Meeting</a></div>
-        </header>
-        <main class="main" role="main">
-            <section class="homepage-section" id="top">
-                <div class="hero-unit">
-                    <div class="hero-grid">
-                        <div class="hero-copy">
-                            <div class="hero-eyebrow">INTELLIGENCE DESIGN CONVERSION </div>
-                            <div class="hero-logo" aria-label="VOLYNX"><img src="./assets/new-wordmark.webp"
-                                    onerror="this.onerror=null;this.src='./assets/oficial-volynx-logo.svg';"
-                                    alt="VOLYNX" decoding="async" loading="eager" /></div>
-                            <p class="hero-subhead">Premium websites engineered for conversion,
-                                shipped with a guided process that keeps you moving. You bring the vision. We
-                                operationalize it into a site that sells. </p>
-                            <div class="cta-links"><a class="btn primary"
-                                    href="https://calendly.com/volynx-schedule-your-meeting/30min" target="_blank"
-                                    rel="noopener noreferrer">Book a Meeting</a><a class="btn whats"
-                                    href="https://wa.me/447438656769?text=I%20want%20a%20premium%20VOLYNX%20website"
-                                    target="_blank" rel="noopener noreferrer">WhatsApp</a><a class="btn alt"
-                                    href="#planos">See plans</a></div>
-                        </div>
-                        <div class="hero-visual" aria-label="Key metrics">
-                            <div class="chip">Delivery,
-                                not delays</div>
-                            <div class="kpi-grid">
-                                <div class="kpi">
-                                    <div class="n">Days</div>
-                                    <div class="l">Time to launch</div>
-                                </div>
-                                <div class="kpi">
-                                    <div class="n">A+</div>
-                                    <div class="l">Performance focus</div>
-                                </div>
-                                <div class="kpi">
-                                    <div class="n">Guided</div>
-                                    <div class="l">Copy & structure</div>
-                                </div>
-                                <div class="kpi">
-                                    <div class="n">Clean</div>
-                                    <div class="l">Premium UI</div>
-                                </div>
-                            </div>
-                            <p class="muted" style="margin: 12px 0 0; font-size: 15px;">The point is simple: less
-                                “website project”,
-                                more “revenue engine”. </p>
-                        </div>
+    <div class="universe-bg" aria-hidden="true"></div>
+    <div class="shell">
+        <div class="topbar">
+            <div class="brand">
+                <div class="eye-container">
+                    <img src="./assets/volynx-icon.webp" alt="VOLYNX eye" class="volynx-eye-img" />
+                    <span class="eye-sheen"></span>
+                </div>
+
+                <div class="brand-logo">
+                    <img src="./assets/wordmark.webp" alt="VOLYNX Lab logo" class="brand-logo-img" />
+                    <div class="slogan">Building a Smarter Future.</div>
+                </div>
+            </div>
+
+            <header class="top-nav" aria-label="VOLYNX menu">
+                <div class="nav-panel">
+                    <span class="menu-sheen"></span>
+                    <nav class="nav-links" aria-label="Navegação principal">
+                        <a href="/dev-journey/">
+                            <span class="nav-sub">Portfolio</span>
+                            <span class="nav-chev" aria-hidden="true">›</span>
+                        </a>
+                        <a href=""><span>Volynx.Lab</span><span class="nav-chev" aria-hidden="true">›</span></a>
+                        <a href="/dev-journey/"><span>Courses and Programs</span><span class="nav-chev"
+                                aria-hidden="true">›</span></a>
+                    </nav>
+                </div>
+                <div class="nav-panel2">
+                    <span class="menu-sheen2"></span>
+                    <nav class="nav-links2" aria-label="Navegação principal">
+                        <a href="/free-tools/"><span>Use it, it's FREE!</span><span class="nav-chev"
+                                aria-hidden="true">›</span></a>
+                        <a href="/products/"><span>Web & Design</span><span class="nav-chev"
+                                aria-hidden="true">›</span></a>
+                        <a href="/devs-hub/"><span>For Devs, By Devs</span><span class="nav-chev"
+                                aria-hidden="true">›</span></a>
+                    </nav>
+                </div>
+            </header>
+
+            <div class="cta-section">
+                <div class="cta-title">ACCESS THE VOLYNX LAB</div>
+                <div class="cta-subtitle">
+                    Explore technology, social impact, and many possible futures in a unique environment.
+                </div>
+                <div class="cta-buttons">
+                    <a href="/products/" class="cta-button primary"><span>Explore the kits</span></a>
+                    <a href="/volynx/" class="cta-button secondary"><span>Read the manifesto</span></a>
+                </div>
+            </div>
+
+            <section class="volynx-principles" id="volynx">
+                <h2>VOLYNX Principles</h2>
+                <p>Human touch, zero exposing: clear values, impecable execution.</p>
+
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <h3>Clarity over noise</h3>
+                        <p>If not quickly understandable, not to sell!</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>Systems beat one-offs</h3>
+                        <p>Design + code as system. Consistency = speed.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>Shipping is a feature</h3>
+                        <p>Real Delivery. No eternal "almost ready".</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>Performance is trust</h3>
+                        <p>A fast website looks expensive. Slow website feels amateur.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>Docs reduce chaos</h3>
+                        <p>Documentation decreases support and increases scale.</p>
                     </div>
                 </div>
             </section>
-            <section class="homepage-section collection-module" id="planos">
-                <h2 class="sec-title"><svg class="icon" aria-hidden="true">
-                        <use href="#i-spark" />
-                    </svg>Plans (choose your mission profile) </h2>
-                <div class="plan-grid">
-                    <article class="plan-tile card" data-plan="landing">
-                        <div class="plan-media"><a href="./assets/starter-mock.png" target="_blank" rel="noopener"
-                                aria-label="Open Landing Express mockup"><img src="./assets/starter-mock.png"
-                                    alt="Landing Express mockup" loading="lazy" /></a></div>
-                        <div class="plan-content"><span class="chip">Start</span>
-                            <h3 class="headline">Landing Express</h3>
-                            <p class="muted">One high-converting page: clear story,
-                                one CTA,
-                                and a layout engineered to close.</p>
-                            <div class="price-row">
-                                <div class="price-label">from <span class="currency">€</span></div>
-                                <p class="price">394,
-                                    90</p>
-                            </div>
-                            <ul class="plan-bullets">
-                                <li><span class="ok">✔</span>Launch-ready in days</li>
-                                <li><span class="ok">✔</span>Copy+structure guided</li>
-                                <li><span class="warn">•</span>1 revision round</li>
-                            </ul>
-                            <div class="cta-links"><a class="btn primary"
-                                    href="https://wa.me/447438656769?text=I%20want%20Landing%20Express" target="_blank"
-                                    rel="noopener noreferrer">Buy now</a><a class="btn alt"
-                                    href="https://wa.me/447438656769?text=Questions%20about%20Landing%20Express"
-                                    target="_blank" rel="noopener noreferrer">Questions</a></div>
-                        </div>
-                    </article>
-                    <article class="plan-tile card" data-plan="portfolio">
-                        <div class="plan-media"><a href="./assets/pro-mock.png" target="_blank" rel="noopener"
-                                aria-label="Open Portfolio + Identity mockup"><img src="./assets/pro-mock.png"
-                                    alt="Portfolio + Identity mockup" loading="lazy" /></a></div>
-                        <div class="plan-content"><span class="chip">Pro</span>
-                            <h3 class="headline">Portfolio+Identity</h3>
-                            <p class="muted">Multi-section portfolio with positioning,
-                                projects,
-                                and a cohesive premium identity layer.</p>
-                            <div class="price-row">
-                                <div class="price-label">from <span class="currency">€</span></div>
-                                <p class="price">829,
-                                    90</p>
-                            </div>
-                            <ul class="plan-bullets">
-                                <li><span class="ok">✔</span>Premium UI+performance focus</li>
-                                <li><span class="ok">✔</span>SEO basics+analytics</li>
-                                <li><span class="warn">•</span>2 revision rounds</li>
-                            </ul>
-                            <div class="cta-links"><a class="btn primary"
-                                    href="https://wa.me/447438656769?text=I%20want%20the%20Pro%20Plan" target="_blank"
-                                    rel="noopener noreferrer">Buy now</a><a class="btn alt"
-                                    href="https://wa.me/447438656769?text=Questions%20about%20the%20Pro%20Plan"
-                                    target="_blank" rel="noopener noreferrer">Questions</a></div>
-                        </div>
-                    </article>
-                    <article class="plan-tile card" data-plan="elite">
-                        <div class="plan-media"><a href="./assets/elite-mock.png" target="_blank" rel="noopener"
-                                aria-label="Open Full Site + Brand mockup"><img src="./assets/elite-mock.png"
-                                    alt="Full Site + Brand mockup" loading="lazy" /></a></div>
-                        <div class="plan-content"><span class="chip">Elite</span>
-                            <h3 class="headline">Full Site+Brand</h3>
-                            <p class="muted">Full website with strategy,
-                                services,
-                                authority sections and a launch-ready brand system. </p>
-                            <div class="price-row">
-                                <div class="price-label">from <span class="currency">€</span></div>
-                                <p class="price">1.394,
-                                    90</p>
-                            </div>
-                            <ul class="plan-bullets">
-                                <li><span class="ok">✔</span>Up to 6 strategic sections</li>
-                                <li><span class="ok">✔</span>Brand kit+launch structure</li>
-                                <li><span class="warn">•</span>3 revision rounds</li>
-                            </ul>
-                            <div class="cta-links"><a class="btn primary"
-                                    href="https://wa.me/447438656769?text=I%20want%20the%20Elite%20Plan" target="_blank"
-                                    rel="noopener noreferrer">Buy now</a><a class="btn alt"
-                                    href="https://wa.me/447438656769?text=Questions%20about%20the%20Elite%20Plan"
-                                    target="_blank" rel="noopener noreferrer">Questions</a></div>
-                        </div>
-                    </article>
-                </div>
-                <div class="plans-note">Don’t see your exact scenario? Good — that means you’re building something real.
-                    Ping us and we’ll scope a custom stack. </div>
-            </section>
-            <section class="homepage-section" id="addons">
-                <h2 class="sec-title"><svg class="icon" aria-hidden="true">
-                        <use href="#i-cpu" />
-                    </svg>Add-ons (because edge cases pay the bills) </h2>
-                <div class="promo-grid">
-                    <div class="promo-tile">
-                        <div><span class="chip">Acceleration</span>
-                            <h3>Copy Sprint</h3>
-                            <p>We turn your messy notes into a tight offer narrative: headline,
-                                sections,
-                                CTA sequencing,
-                                microcopy. </p>
-                        </div><a class="btn alt"
-                            href="https://wa.me/447438656769?text=I%20want%20Copy%20Sprint%20as%20an%20add-on"
-                            target="_blank" rel="noopener noreferrer">Add to my plan</a>
+
+            <div class="future-products" id="products">
+                <h2>Innovative Products in Development</h2>
+                <p>Contribute to the future of sustainability and health with AI.</p>
+
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-chip">IMPACT</div>
+                        <h3>Carbon Tracker</h3>
+                        <p>Real-time tracking of personal and business carbon impact.</p>
                     </div>
-                    <div class="promo-tile">
-                        <div><span class="chip">Signal</span>
-                            <h3>SEO Booster</h3>
-                            <p>Technical SEO hygiene+on-page structure that makes Google understand you (and users trust
-                                you).</p>
-                        </div><a class="btn alt"
-                            href="https://wa.me/447438656769?text=I%20want%20SEO%20Booster%20as%20an%20add-on"
-                            target="_blank" rel="noopener noreferrer">Add to my plan</a>
+
+                    <div class="product-card">
+                        <div class="product-chip">SAFETY</div>
+                        <h3>Safety Guardian</h3>
+                        <p>Smart tools to analyse, route and respond to critical abuse reports.</p>
                     </div>
-                    <div class="promo-tile">
-                        <div><span class="chip">Operations</span>
-                            <h3>Maintenance & Analytics</h3>
-                            <p>Monthly updates,
-                                performance monitoring,
-                                and conversion insights — the “keep it winning” package.</p>
-                        </div><a class="btn alt"
-                            href="https://wa.me/447438656769?text=I%20want%20Maintenance%20%26%20Analytics%20as%20an%20add-on"
-                            target="_blank" rel="noopener noreferrer">Add to my plan</a>
+
+                    <div class="product-card">
+                        <div class="product-chip">HEALTH</div>
+                        <h3>🧬 Precision Health</h3>
+                        <p>AI tools for disease prevention and research, including HIV/AIDS and Cancer.</p>
                     </div>
                 </div>
-            </section>
-            <section id="why-volynx" class="section">
-                <h2 class="sec-title"><svg class="icon" aria-hidden="true">
-                        <use href="#i-bolt" />
-                    </svg>Why VOLYNX </h2>
-                <div class="grid cols-2">
-                    <div class="card"><span class="chip">You need clients,
-                            not “just a website”</span>
-                        <h3>Built with intelligence to save your time <strong>(and money)</strong>. </h3>
-                        <p class="muted">VOLYNX is for entrepreneurs,
-                            creators and professionals who need a premium &amp;
-                            conversion-focused site live in days. You bring the vision;
-                            we translate it into clear positioning,
-                            structure and design that'll make your products / services be desired!
-                        </p>
-                        <ul class="why-features">
-                            <li><svg class="icon" aria-hidden="true">
-                                    <use href="#i-spark" />
-                                </svg><span><strong>Guided process.</strong>Short,
-                                    focused calls and prompts so you don’t get stuck writing copy or deciding
-                                    layouts.</span></li>
-                            <li><svg class="icon" aria-hidden="true">
-                                    <use href="#i-cpu" />
-                                </svg><span><strong>Strategy+design+tech in one place.</strong>We align your offer,
-                                    narrative,
-                                    visual identity and setup (domain, email, analytics, SEO basics).</span></li>
-                            <li><svg class="icon" aria-hidden="true">
-                                    <use href="#i-shield" />
-                                </svg><span><strong>Zero DIY platforms.</strong>No generic templates or bloated
-                                    builders: lean,
-                                    performant code prepared to scale.</span></li>
-                        </ul>
-                    </div>
-                    <div class="card"><span class="chip">Designed to unlock revenue fast</span>
-                        <h3>Launch quickly,
-                            then improve with real data</h3>
-                        <p class="muted">Instead of endless “coming soon”,
-                            you get a clear launch-ready version that already sells your value and can be refined as
-                            clients and feedback start coming in. </p>
-                        <div class="why-metrics">
-                            <div class="metric">
-                                <div class="metric-number">48–72h</div>
-                                <div class="metric-label">delivery window (Start)</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-number">A grade</div>
-                                <div class="metric-label">performance target</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-number">1 focus</div>
-                                <div class="metric-label">clear main CTA</div>
-                            </div>
-                        </div>
-                        <p class="why-tagline">The goal: get you online with a serious,
-                            trustworthy presence that can generate opportunities while you sort the rest of your life
-                            and business. </p>
-                        <p class="why-note">*Delivery time and performance depend on scope,
-                            assets and infrastructure,
-                            but the whole process is optimized for speed and clarity. </p>
-                    </div>
+
+                <h2>VOLYNX Kits</h2>
+                <p>Portfolios and premium kits for devs/designers — ready to sell and scale.</p>
+
+                <div class="products-grid">
+                    <a class="product-card" href="/products/portfolio-pro-kit/">
+                        <div class="product-chip">PORTFOLIO</div>
+                        <h3>Portfolio Pro-Kit</h3>
+                        <p>Premium structure (Figma + Code) to launch fast and look expensive.</p>
+                    </a>
+
+                    <a class="product-card" href="/products/agency-launch-kit/">
+                        <div class="product-chip">AGENCY</div>
+                        <h3>Agency Launch Kit</h3>
+                        <p>Website + proposal/SOW/onboarding to close more deals and stress less.</p>
+                    </a>
+
+                    <a class="product-card" href="/products/saas-landing-system/">
+                        <div class="product-chip">LANDING</div>
+                        <h3>SaaS Landing System</h3>
+                        <p>Landing "section-first" with base copy/SEO and fast interaction.</p>
+                    </a>
                 </div>
-            </section>
-            <section class="section" id="contato">
-                <h2 class="sec-title"><svg class="icon" aria-hidden="true">
-                        <use href="#i-spark" />
-                    </svg>Quick contact </h2>
-                <div class="grid cols-2">
-                    <form action="mailto:hello@volynx.world?subject=New%20Project%20from%20volynx.world" method="post"
-                        enctype="text/plain"><input name="nome" placeholder="Your name" required /><input name="email"
-                            type="email" placeholder="Your email" required /><textarea name="mensagem" rows="4"
-                            placeholder="Tell us about your project" required></textarea>
-                        <div class="row" style="justify-content: space-between; align-items: center">
-                            <div class="row" style="gap: 8px"><input type="file" name="attachment"
-                                    style="font-size: 13px; max-width: 220px; padding: 8px 10px; border-radius: 12px;" /><span
-                                    class="muted" style="font-size: 11px">Optional: attach a file</span></div><button
-                                class="btn primary" type="submit">Send by email</button>
-                        </div>
-                    </form>
-                    <div class="card">
-                        <h3>Prefer WhatsApp?</h3>
-                        <p class="muted">Monday to Thursday,
-                            11am–5pm and Friday,
-                            11am–3pm (UK time).</p>
-                        <div class="row" style="margin-top: 10px"><a class="btn whats"
-                                href="https://wa.me/447438656769?text=Hi%2C%20I%20have%20a%20project%20for%20VOLYNX"
-                                target="_blank" rel="noopener noreferrer">WhatsApp</a><a class="btn"
-                                href="https://calendly.com/volynx-schedule-your-meeting/30min" target="_blank"
-                                rel="noopener noreferrer">Book a call</a></div>
-                    </div>
-                </div>
-            </section>
-            <footer class="footer-dir">
-                <div class="cols">
-                    <div>
-                        <h4>Services</h4><a href="#planos">Web Design</a><a href="#addons">Add-ons</a><a
-                            href="#contato">Project intake</a>
-                    </div>
-                    <div>
-                        <h4>Plans</h4><a href="#planos">Landing Express</a><a href="#planos">Portfolio+Identity</a><a
-                            href="#planos">Full Site+Brand</a>
-                    </div>
-                    <div>
-                        <h4>Company</h4><a href="#why-volynx">Why VOLYNX</a><a href="https://volynx.world"
-                            target="_blank" rel="noopener noreferrer">Main site</a><a
-                            href="mailto:hello@volynx.world">Email</a>
-                    </div>
-                    <div>
-                        <h4>Support</h4><a
-                            href="https://wa.me/447438656769?text=I%20need%20support%20with%20my%20VOLYNX%20project"
-                            target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="#contato">Contact form</a><a
-                            href="#top">Back to top</a>
-                    </div>
-                </div>
-                <div class="footer-legal">
-                    <div>© <span id="y"></span>VOLYNX. All rights reserved.</div>
-                    <div class="links"><a href="#" onclick="return false;">Privacy</a><a href="#"
-                            onclick="return false;">Terms</a><a href="#" onclick="return false;">Legal</a></div>
-                </div>
-            </footer>
-        </main>
-    </div><svg width="0" height="0" style="position:absolute; visibility:hidden" aria-hidden="true">
-        <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 11 14 9 22 21 10 13 10 13 2"></polygon>
-        </symbol>
-        <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-        </symbol>
-        <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-            <rect x="9" y="9" width="6" height="6"></rect>
-            <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"></path>
-        </symbol>
-        <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.8 2.8M16.2 16.2L19 19M5 19l2.8-2.8M16.2 7.8L19 5"></path>
-        </symbol>
-    </svg>
-    <script>(function () {
-            var y = document.getElementById('y');
-            if (y) y.textContent = String(new Date().getFullYear());
-        })();
-    </script>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
