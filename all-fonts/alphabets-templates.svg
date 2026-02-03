@@ -1,0 +1,250 @@
+<!-- 20 Templates de Alfabeto para Vetorização das Fontes
+Cada template abaixo segue o mesmo formato:
+1. Abra o arquivo
+2. Selecione todo o texto
+3. Troque a fonte para a correspondente
+4. Converta para curvas (Figma: Ctrl/Cmd + Shift + O)
+5. Salve como alfabeto-[nome].svg
+-->
+
+<!-- ================= TEMPLATE BASE ================= -->
+<!-- Utilize este modelo para cada fonte -->
+<!-- Basta trocar o nome na etiqueta e salvar separado -->
+
+<!-- Abaixo começam os 20 templates -->
+
+<!-- 1. Loniki -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Loniki — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 2. Dosis -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Dosis — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 3. Questrial -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Questrial — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 4. Cinzel -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Cinzel — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 5. Exo -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Exo — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 6. Orbitron -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Orbitron — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 7. Unbounded -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Unbounded — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 8. Rubik Wet Paint -->
+
+<!-- 9. Gruppo -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+<text x="50" y="70" fill="#888">Template: Gruppo — Troque a fonte e faça Outline</text>
+<g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+<text x="50" y="200">A B C D E F G H I J K L M</text>
+<text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+<text x="50" y="500">a b c d e f g h i j k l m</text>
+<text x="50" y="640">n o p q r s t u v w x y z</text>
+<text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+<text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+</g>
+</svg>
+
+<!-- 10. Philosopher -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+<text x="50" y="70" fill="#888">Template: Philosopher — Troque a fonte e faça Outline</text>
+<g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+<text x="50" y="200">A B C D E F G H I J K L M</text>
+<text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+<text x="50" y="500">a b c d e f g h i j k l m</text>
+<text x="50" y="640">n o p q r s t u v w x y z</text>
+<text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+<text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+</g>
+</svg>
+
+<!-- 11. Monoton -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+<text x="50" y="70" fill="#888">Template: Monoton — Troque a fonte e faça Outline</text>
+<g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+<text x="50" y="200">A B C D E F G H I J K L M</text>
+<text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+<text x="50" y="500">a b c d e f g h i j k l m</text>
+<text x="50" y="640">n o p q r s t u v w x y z</text>
+<text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+<text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+</g>
+</svg>
+
+<!-- 12. Rock Salt -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+<text x="50" y="70" fill="#888">Template: Rock Salt — Troque a fonte e faça Outline</text>
+<g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+<text x="50" y="200">A B C D E F G H I J K L M</text>
+<text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+<text x="50" y="500">a b c d e f g h i j k l m</text>
+<text x="50" y="640">n o p q r s t u v w x y z</text>
+<text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+<text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+</g>
+</svg>
+
+<!-- 13. Audiowide -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Audiowide — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 14. Asimovian -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Asimovian — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 15. Goldman -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Goldman — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 16. Allerta Stencil -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Allerta Stencil — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ? ; : “ ” ' \"</text>
+  </g>
+</svg>
+
+<!-- 17. Style Script -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Style Script — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 18. Megrim -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Megrim — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>
+
+<!-- 19. Notable -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Notable — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>

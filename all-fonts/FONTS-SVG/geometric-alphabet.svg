@@ -1,0 +1,30 @@
+<!-- 
+Instruções de uso:
+
+1. Salve como alfabeto-geometrico.svg
+2. Abra no Figma / Illustrator / Boxy SVG
+3. Troque a fonte para Futura, Avenir, Gotham ou Montserrat (estilo geométrico/moderno)
+4. Converta para vetor:
+   - Figma: Ctrl/Cmd + Shift + O (Create Outlines)
+   - Illustrator: Type > Create Outlines
+5. Finalizado: alfabeto geométrico em vetor.
+-->
+
+<svg width="1600" height="900" xmlns="http://www.w3.org/2000/svg" style="background:#f7f7f7;">
+  <defs>
+    <style type="text/css"><![CDATA[
+      .alphabet {
+        fill: #111111;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 80px;
+        letter-spacing: 16px;
+        font-weight: 600;
+      }
+    ]]></style>
+  </defs>
+
+  <text x="50" y="180" class="alphabet">A B C D E F G H I J K L M</text>
+  <text x="50" y="360" class="alphabet">N O P Q R S T U V W X Y Z</text>
+  <text x="50" y="580" class="alphabet">0 1 2 3 4 5 6 7 8 9</text>
+  <text x="50" y="800" class="alphabet">! @ # $ % &amp; * ( ) - + = / ?</text>
+</svg>

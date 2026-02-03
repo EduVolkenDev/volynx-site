@@ -1,0 +1,75 @@
+<!-- 
+Alfabeto Cursivo REAL (com paths, não depende de fonte do sistema)
+
+1. Salve como alfabeto-cursivo-real.svg
+2. Pode abrir direto no Figma / Illustrator / Boxy SVG
+3. Já está em vetor DE VERDADE — cada letra é um path independente.
+4. Pode editar nós, espessura, curvas, tudo.
+5. Não precisa trocar fonte — não é texto, é desenho.
+-->
+
+<svg width="2000" height="1800" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff;">
+
+<!-- Estilo de traço cursivo -->
+<style><![CDATA[
+  .letter {
+    fill: none;
+    stroke: #000;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+]]></style>
+
+<!-- A-M -->
+<g transform="translate(80,150) scale(1.2)">
+  <path class="letter" d="M10 40 Q30 0 60 40 T110 40" /> <!-- A cursivo -->
+  <path class="letter" d="M140 10 Q160 40 140 70 T140 130" /> <!-- B -->
+  <path class="letter" d="M200 40 Q170 10 200 -10 T250 40" /> <!-- C -->
+  <path class="letter" d="M290 10 Q300 40 280 70 T280 130" /> <!-- D -->
+  <path class="letter" d="M330 40 Q360 0 390 40 T430 40" /> <!-- E -->
+  <path class="letter" d="M470 40 Q500 0 530 40 T530 80" /> <!-- F -->
+  <path class="letter" d="M570 10 Q600 40 570 70 T600 110" /> <!-- G -->
+  <path class="letter" d="M640 0 V80 Q640 120 680 120" /> <!-- H -->
+  <path class="letter" d="M720 40 Q740 0 760 40 T800 40" /> <!-- I -->
+  <path class="letter" d="M830 40 Q850 0 880 40 T880 100" /> <!-- J -->
+  <path class="letter" d="M930 0 Q950 40 930 80 T930 140" /> <!-- K -->
+  <path class="letter" d="M980 0 V120 Q1000 160 1040 160" /> <!-- L -->
+  <path class="letter" d="M1080 40 Q1120 -10 1160 40 T1220 40" /> <!-- M -->
+</g>
+
+<!-- N-Z -->
+<g transform="translate(80,450) scale(1.2)">
+  <path class="letter" d="M10 40 Q40 0 70 40 T120 40" /> <!-- N -->
+  <path class="letter" d="M160 40 Q190 0 220 40 T260 40" /> <!-- O -->
+  <path class="letter" d="M300 40 Q330 0 360 40 T330 80" /> <!-- P -->
+  <path class="letter" d="M400 40 Q430 0 460 40 T460 100" /> <!-- Q -->
+  <path class="letter" d="M500 40 Q520 0 550 40 T580 10" /> <!-- R -->
+  <path class="letter" d="M620 40 Q590 10 620 -10 T660 40" /> <!-- S -->
+  <path class="letter" d="M700 0 V80 Q700 120 740 120" /> <!-- T -->
+  <path class="letter" d="M780 40 Q810 0 840 40 T880 40" /> <!-- U -->
+  <path class="letter" d="M920 40 Q950 0 980 40 T1020 40" /> <!-- V -->
+  <path class="letter" d="M1060 40 Q1100 -10 1140 40 T1200 40" /> <!-- W -->
+  <path class="letter" d="M1240 0 Q1260 40 1240 80 T1240 140" /> <!-- X -->
+  <path class="letter" d="M1300 10 Q1330 40 1300 70 T1330 110" /> <!-- Y -->
+  <path class="letter" d="M1380 40 Q1410 0 1440 40 T1380 80" /> <!-- Z -->
+</g>
+
+<!-- Minúsculas (a-z) -->
+<g transform="translate(80,900) scale(1.1)">
+  <path class="letter" d="M10 40 Q40 0 70 40 T70 80" /> <!-- a -->
+  <path class="letter" d="M100 0 V80 Q120 120 160 120" /> <!-- b -->
+  <path class="letter" d="M200 40 Q170 10 200 -10 T240 40" /> <!-- c -->
+  <path class="letter" d="M270 10 Q290 40 270 70 T300 110" /> <!-- d -->
+  <path class="letter" d="M330 40 Q360 0 390 40 T390 60" /> <!-- e -->
+  <path class="letter" d="M430 0 Q450 40 430 80 T430 140" /> <!-- f -->
+  <path class="letter" d="M470 10 Q500 40 470 70 T500 110" /> <!-- g -->
+  <path class="letter" d="M540 0 V80 Q560 120 600 120" /> <!-- h -->
+  <path class="letter" d="M630 40 Q650 0 670 40 T670 60" /> <!-- i -->
+  <path class="letter" d="M700 40 Q720 0 750 40 T750 90" /> <!-- j -->
+  <path class="letter" d="M780 0 Q800 40 780 80 T780 140" /> <!-- k -->
+  <path class="letter" d="M820 0 V120 Q840 160 880 160" /> <!-- l -->
+  <path class="letter" d="M920 40 Q960 -10 1000 40 T1060 40" /> <!-- m -->
+</g>
+
+</svg>

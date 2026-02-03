@@ -1,0 +1,12 @@
+<!-- 14. Asimovian -->
+<svg width="2000" height="1200" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; margin-bottom:60px;">
+  <text x="50" y="70" fill="#888">Template: Asimovian — Troque a fonte e faça Outline</text>
+  <g style="font-size:80px; fill:#000; font-family: system-ui; letter-spacing:18px;">
+    <text x="50" y="200">A B C D E F G H I J K L M</text>
+    <text x="50" y="340">N O P Q R S T U V W X Y Z</text>
+    <text x="50" y="500">a b c d e f g h i j k l m</text>
+    <text x="50" y="640">n o p q r s t u v w x y z</text>
+    <text x="50" y="800">0 1 2 3 4 5 6 7 8 9</text>
+    <text x="50" y="950">! @ # $ % &amp; * ( ) - _ + = / ?</text>
+  </g>
+</svg>

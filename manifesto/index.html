@@ -1,0 +1,1709 @@
+<!-- /manifesto/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+    <title>Why VOLYNX? — Manifesto</title>
+    <meta name="description"
+        content="VOLYNX exists to democratize intelligent technology with premium design and measurable social impact — ethical, accessible, and built to scale good." />
+    <link rel="preload" as="image" href="/assets/lucid-big.webp" />
+    <link rel="preload" as="image" href="/assets/oficial-volynx-eye.png" />
+    <link rel="preload" as="image" href="./assets/new-wordmark.webp">
+    <link rel="icon" type="image/png" href="./assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="shortcut icon" href="./assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Volynx" />
+    <link rel="manifest" href="./assets/site.webmanifest" />
+
+    <style>
+        /* ========== FONTS (self-hosted) ========== */
+        @font-face {
+            font-family: "Sora";
+            src: url("/assets-fonts/Sora-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("/assets-fonts/Sora-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Sora";
+            src: url("/assets-fonts/Sora-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("/assets-fonts/Manrope-Light.ttf") format("truetype");
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("/assets-fonts/Manrope-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Manrope";
+            src: url("/assets-fonts/Manrope-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --sans: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            --display: 'Sora', var(--sans);
+            --text: #c7c3ff;
+
+            --card: rgba(10, 8, 24, 0.62);
+            --border: rgba(255, 255, 255, 0.18);
+            --border2: rgba(160, 252, 252, 0.22);
+            --shadow: 0 18px 38px rgba(0, 0, 0, 0.88);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html,
+        body {
+            width: 100%;
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: var(--sans);
+            color: var(--text);
+            padding: 68px 22px 56px;
+            background: radial-gradient(circle at 50% 18%, #060a18 0%, #02040d 42%, #000000 100%);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid rgba(0, 190, 196, 0.55);
+            outline-offset: 3px;
+        }
+
+        /* ========= FUNDO UNIVERSO ========= */
+        .universe-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            width: 100%;
+            height: 100svh;
+        }
+
+        .universe-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(290deg, rgba(7, 8, 20, .72)),
+                radial-gradient(90px 60px at 10% 20%, rgba(167, 139, 250, .9), transparent 60%),
+                url("/assets/lucid-big.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 1;
+            filter: saturate(1.05) brightness(1.25);
+        }
+
+        .universe-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image:
+                radial-gradient(3px 3px at 5% 10%, rgba(255, 255, 255, 0.72), transparent 180%),
+                radial-gradient(3px 3px at 95% 15%, rgba(255, 255, 255, 0.9), transparent 160%),
+                radial-gradient(3px 3px at 8% 85%, rgba(255, 255, 255, 0.9), transparent 60%),
+                radial-gradient(2px 2px at 70% 18%, rgba(255, 255, 255, 0.65), transparent 60%),
+                radial-gradient(1px 1px at 26% 14%, rgba(255, 255, 255, 0.35), transparent 55%);
+            background-repeat: no-repeat;
+            opacity: .9;
+        }
+
+        .shell {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 980px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* ========= TOP ========= */
+        .top {
+            margin-bottom: -5vh;
+        }
+
+        .eye {
+            width: 132px;
+            height: 132px;
+            display: grid;
+            place-items: center;
+            filter: drop-shadow(0px 0px 10px rgba(187, 0, 255, .35)) drop-shadow(0px 0px 10px rgba(0, 163, 200, .35));
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+        .eye img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: flex;
+            position: relative;
+            right: 27vw;
+            scale: 1.4;
+            top: 2%;
+        }
+
+        .logo-container {
+            max-width: 700px;
+        }
+
+        .wordmark {
+            width: min(780px, 92vw);
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards;
+            animation-delay: .15s;
+            filter: drop-shadow(0 0 2px rgba(59, 22, 109, 0.62)) drop-shadow(0 0 10px rgba(167, 139, 250, 0.35));
+        }
+
+        .crumbs a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 14px;
+            border-radius: var(--vx-radius-pill);
+            border: 3px outset rgba(26, 174, 160, 0.99);
+            background: rgba(10, 8, 24, .42);
+            font-family: var(--vx-display);
+            font-weight: 700;
+            letter-spacing: .08em;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: rgba(231, 233, 255, .92);
+            transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+        }
+
+        /* Language switch */
+        .lang {
+            display: inline-flex;
+            gap: 8px;
+            padding: 6px;
+            border-radius: 999px;
+            border: 1px solid rgba(160, 252, 252, 0.22);
+            background: rgba(4, 6, 13, 0.45);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset, 0 0 28px rgba(4, 229, 255, 0.12);
+        }
+
+        .lang button {
+            font-family: var(--display);
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            font-size: 11px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(10, 8, 24, 0.55);
+            color: rgba(230, 232, 255, 0.9);
+            cursor: pointer;
+        }
+
+        .lang button.is-on {
+            background: radial-gradient(9% 100% at 50% 50%, rgba(245, 231, 145, 0.55) 20%, rgba(210, 202, 54, 0.35) 120%, rgba(223, 221, 121, 0.65) 250%, rgba(201, 196, 111, 0.40) 392%);
+            border-color: rgba(255, 255, 255, 0.34);
+            color: #fff;
+        }
+
+        /* ========= MANIFESTO CARD ========= */
+        .card {
+            width: 100%;
+            border-radius: 22px;
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03));
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: -30%;
+            background: radial-gradient(circle at 30% 10%, rgba(4, 229, 255, 0.18), transparent 45%),
+                radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.18), transparent 45%);
+            filter: blur(8px);
+            pointer-events: none;
+        }
+
+        .card__inner {
+            position: relative;
+            padding: 28px 24px;
+            background: rgba(10, 8, 24, 0.50);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .heroTitle {
+            font-family: var(--display);
+            margin: 0 0 8px;
+            font-size: clamp(28px, 4vw, 44px);
+            letter-spacing: .04em;
+            color: #fff;
+            text-shadow: 0 0 18px rgba(167, 139, 250, 0.22);
+        }
+
+        .heroLead {
+            margin: 0;
+            max-width: 72ch;
+            font-size: clamp(16px, 1.8vw, 19px);
+            line-height: 1.55;
+            color: rgba(235, 236, 255, 0.88);
+        }
+
+        .pillRow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border2);
+            background: rgba(4, 6, 13, 0.55);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset, 0 0 28px rgba(4, 229, 255, 0.12);
+            font-family: var(--display);
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: rgba(200, 245, 255, 0.92);
+            white-space: nowrap;
+        }
+
+        /* ========= SECTIONS ========= */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .box {
+            grid-column: span 6;
+            padding: 18px 18px;
+            border-radius: 18px;
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+
+        .box h3 {
+            margin: 0 0 8px;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: .10em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.96);
+        }
+
+        .box p {
+            margin: 0;
+            color: rgba(228, 229, 255, 0.86);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .list {
+            margin: 10px 0 0;
+            padding: 0 0 0 18px;
+            color: rgba(228, 229, 255, 0.86);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .ctaRow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+            align-items: center;
+        }
+
+        .btn {
+            font-family: var(--display);
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            font-size: 12px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 2px outset rgba(255, 255, 255, 0.75);
+            color: #fff;
+            background: radial-gradient(140% 220% at 50% 0%, rgba(255, 255, 255, 0.14), transparent 60%), rgba(10, 8, 24, 0.92);
+            box-shadow: 0 18px 38px rgba(0, 0, 0, 0.9), 0 0 18px rgba(48, 32, 120, 0.55);
+            transition: transform .22s ease, filter .22s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            filter: brightness(1.10);
+        }
+
+        .btn.primary {
+            background: radial-gradient(9% 100% at 50% 50%, rgba(245, 231, 145, 0.55) 20%, rgba(210, 202, 54, 0.35) 120%, rgba(223, 221, 121, 0.65) 250%, rgba(201, 196, 111, 0.40) 392%);
+            border: 3px outset rgba(255, 255, 255, 0.85);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95), 0 0 30px rgba(167, 139, 250, 0.55);
+        }
+
+        .footerLine {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+            color: rgba(230, 232, 255, 0.84);
+            line-height: 1.7;
+            font-size: 15px;
+            max-width: 78ch;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 900px) {
+            body {
+                padding: 56px 16px 44px;
+            }
+
+            .box {
+                grid-column: span 12;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card__inner {
+                padding: 22px 16px;
+            }
+        }
+
+        /* ========= Cookie banner ========= */
+        .vx-cookie {
+            position: fixed;
+            inset: auto 18px 18px 18px;
+            z-index: 999;
+            display: grid;
+            place-items: end center;
+        }
+
+        .vx-cookie__card {
+            width: min(560px, 100%);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(10, 8, 24, 0.72);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 22px 46px rgba(0, 0, 0, 0.85), 0 0 26px rgba(167, 139, 250, 0.18);
+            overflow: hidden;
+            position: relative;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform .16s ease, opacity .16s ease;
+        }
+
+        .vx-cookie.is-on .vx-cookie__card {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .vx-cookie__glow {
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(4, 229, 255, 0.18), transparent 45%),
+                radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.18), transparent 45%);
+            filter: blur(10px);
+            pointer-events: none;
+        }
+
+        .vx-cookie__head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 14px 0;
+            position: relative;
+        }
+
+        .vx-cookie__badge {
+            font-family: var(--display);
+            font-weight: 800;
+            letter-spacing: .16em;
+            font-size: 11px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(160, 252, 252, 0.22);
+            background: rgba(4, 6, 13, 0.45);
+            color: rgba(200, 245, 255, 0.92);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .vx-cookie__title {
+            font-family: var(--display);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: .08em;
+        }
+
+        .vx-cookie__text {
+            padding: 10px 14px 0;
+            margin: 0;
+            color: rgba(230, 232, 255, 0.86);
+            line-height: 1.5;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .vx-cookie__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 12px 14px 14px;
+            position: relative;
+        }
+
+        .vx-btn {
+            font-family: var(--display);
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            font-size: 11px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(10, 8, 24, 0.60);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .vx-btn--primary {
+            background: radial-gradient(9% 100% at 50% 50%, rgba(245, 231, 145, 0.55) 20%, rgba(210, 202, 54, 0.35) 120%, rgba(223, 221, 121, 0.65) 250%, rgba(201, 196, 111, 0.40) 392%);
+            border: 1px solid rgba(255, 255, 255, 0.34);
+        }
+
+        .vx-btn--soft {
+            border: 1px solid rgba(160, 252, 252, 0.22);
+            box-shadow: 0 0 18px rgba(4, 229, 255, 0.12);
+        }
+
+        .vx-btn--ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .vx-cookie__link {
+            display: inline-block;
+            padding: 0 14px 14px;
+            font-size: 12px;
+            color: rgba(200, 245, 255, 0.85);
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .vx-cookie__prefs {
+            padding: 0 14px 14px;
+            position: relative;
+        }
+
+        .vx-cookie__prefsTitle {
+            font-family: var(--display);
+            font-weight: 800;
+            letter-spacing: .10em;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.92);
+            margin: 8px 0 8px;
+        }
+
+        .vx-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            user-select: none;
+            color: rgba(230, 232, 255, 0.88);
+            font-size: 13px;
+        }
+
+        .vx-toggle input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .vx-toggle__ui {
+            width: 44px;
+            height: 26px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            flex: 0 0 auto;
+        }
+
+        .vx-toggle__ui::after {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            top: 50%;
+            left: 4px;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+            transition: left .16s ease, background .16s ease;
+        }
+
+        .vx-toggle input:checked+.vx-toggle__ui {
+            background: rgba(4, 229, 255, 0.16);
+            border-color: rgba(160, 252, 252, 0.26);
+        }
+
+        .vx-toggle input:checked+.vx-toggle__ui::after {
+            left: 22px;
+            background: rgba(245, 231, 145, 0.85);
+        }
+
+        .vx-toggle__label small {
+            opacity: .78;
+            font-weight: 500;
+            margin-left: 6px;
+        }
+
+        .vx-cookie__prefsActions {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 6px;
+        }
+
+        @media (max-width: 480px) {
+            .vx-cookie {
+                inset: auto 12px 12px 12px;
+            }
+        }
+
+        /* =========================================================
+   VOLYNX — Manifesto (vx-manifesto) — CSS completo + responsivo
+   Escopo: body.vx-manifesto
+========================================================= */
+
+        :root {
+            --vx-sans: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            --vx-display: "Sora", var(--vx-sans);
+
+            --vx-text: rgba(231, 233, 255, .92);
+            --vx-muted: rgba(199, 195, 255, .78);
+
+            --vx-bg0: #02040d;
+            --vx-bg1: #060a18;
+
+            --vx-glass: rgba(10, 12, 26, .52);
+            --vx-glass2: rgba(255, 255, 255, .06);
+
+            --vx-border: rgba(255, 255, 255, .14);
+            --vx-border2: rgba(167, 139, 250, .22);
+
+            --vx-aqua: rgba(0, 229, 255, .55);
+            --vx-purple: rgba(167, 139, 250, .55);
+
+            --vx-radius-lg: 22px;
+            --vx-radius-md: 16px;
+            --vx-radius-pill: 999px;
+
+            --vx-shadow:
+                0 18px 52px rgba(0, 0, 0, .62),
+                0 0 0 1px rgba(255, 255, 255, .06) inset;
+
+            --vx-shadow-soft:
+                0 14px 36px rgba(0, 0, 0, .55),
+                0 0 0 1px rgba(255, 255, 255, .06) inset;
+
+            --vx-max: 1060px;
+        }
+
+        /* Base */
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.vx-manifesto {
+            min-height: 100svh;
+            overflow-x: hidden;
+            font-family: var(--vx-sans);
+            color: var(--vx-text);
+            background: radial-gradient(circle at 50% 18%, var(--vx-bg1) 0%, var(--vx-bg0) 55%, #000 100%);
+            padding: max(18px, env(safe-area-inset-top)) 18px max(22px, env(safe-area-inset-bottom));
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: geometricPrecision;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: none;
+            box-shadow:
+                0 0 0 3px rgba(222, 225, 122, .65) inset,
+                0 0 0 2px rgba(0, 190, 196, .45),
+                0 0 22px rgba(167, 139, 250, .35);
+            border-radius: 14px;
+        }
+
+        /* Fundo universo (compatível com sua main page) */
+        body.vx-manifesto .universe-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            width: 100%;
+            height: 100svh;
+        }
+
+        body.vx-manifesto .universe-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(290deg, rgba(7, 8, 20, .70), rgba(7, 8, 20, .50)),
+                radial-gradient(90px 60px at 10% 20%, rgba(167, 139, 250, .85), transparent 65%),
+                radial-gradient(90px 50px at 98% 0%, rgba(0, 229, 255, .25), transparent 60%);
+            opacity: 1;
+        }
+
+        body.vx-manifesto .universe-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: .9;
+            background-image:
+                radial-gradient(2px 2px at 5% 10%, rgba(255, 255, 255, .65), transparent 60%),
+                radial-gradient(2px 2px at 95% 15%, rgba(255, 255, 255, .75), transparent 60%),
+                radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, .45), transparent 60%),
+                radial-gradient(2px 2px at 80% 35%, rgba(255, 255, 255, .45), transparent 60%),
+                radial-gradient(1px 1px at 25% 75%, rgba(255, 255, 255, .35), transparent 60%),
+                radial-gradient(1px 1px at 75% 72%, rgba(255, 255, 255, .35), transparent 60%);
+            background-repeat: no-repeat;
+        }
+
+        /* Layout */
+        body.vx-manifesto .shell {
+            position: relative;
+            z-index: 2;
+            width: min(var(--vx-max), 100%);
+            margin: 0 auto;
+        }
+
+        /* Top (olho + wordmark + nav) */
+        body.vx-manifesto .top {
+            display: grid;
+            justify-items: center;
+            gap: 14px;
+            padding: 10px 6px 18px;
+        }
+
+        body.vx-manifesto .eye {
+            width: clamp(70px, 8vw, 104px);
+            height: clamp(70px, 8vw, 104px);
+            display: grid;
+            place-items: center;
+            filter:
+                drop-shadow(0 0 10px rgba(187, 0, 255, .25)) drop-shadow(0 0 16px rgba(0, 163, 200, .20));
+        }
+
+        body.vx-manifesto .eye img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: flex;
+            position: relative;
+            right: -27vw;
+            scale: 2;
+            top: 75%;
+        }
+
+        body.vx-manifesto .logo-container {
+            width: 100%;
+            display: grid;
+            justify-items: center;
+        }
+
+        body.vx-manifesto .wordmark {
+            width: min(420px, 42vw);
+            max-width: 30vw;
+            height: auto;
+            display: flex;
+            filter: drop-shadow(0 0 2px rgba(59, 22, 109, 0.55)) drop-shadow(0 0 10px rgba(52, 228, 228, 0.18)) drop-shadow(0 0 18px rgba(185, 156, 220, 0.22));
+            margin-top: -160px;
+            left: -90%;
+            position: relative;
+            top: 64px;
+        }
+
+
+
+        body.vx-manifesto .crumbs>a {
+            display: grid;
+            padding: 0px 0px 0px 0px;
+            border-radius: 20px;
+            border: 3px outset rgba(26, 174, 160, 0.99);
+            background: rgba(10, 8, 24, .42);
+            font-family: var(--vx-display);
+            font-weight: 700;
+            letter-spacing: .08em;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: rgba(231, 233, 255, .92);
+            transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        body.vx-manifesto .crumbs>a:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.08);
+            box-shadow:
+                0 12px 24px rgba(0, 0, 0, .55),
+                0 0 18px rgba(167, 139, 250, .22);
+        }
+
+        /* Toggle de idioma */
+        body.vx-manifesto .lang {
+            display: inline-flex;
+            gap: 8px;
+            padding-left: 6px;
+            border-left: 1px solid rgba(255, 255, 255, .14);
+            margin-left: 4px;
+        }
+
+        body.vx-manifesto .langBtn {
+            appearance: none;
+            border: 1px solid rgba(255, 255, 255, .18);
+            background: rgba(10, 8, 24, .42);
+            color: rgba(231, 233, 255, .9);
+            font-family: var(--vx-display);
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-size: 11px;
+            padding: 9px 12px;
+            border-radius: var(--vx-radius-pill);
+            cursor: pointer;
+            transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+        }
+
+        body.vx-manifesto .langBtn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.10);
+        }
+
+        body.vx-manifesto .langBtn.is-active,
+        body.vx-manifesto .langBtn[aria-pressed="true"] {
+            border-color: rgba(245, 231, 145, .55);
+            box-shadow:
+                0 0 0 1px rgba(245, 231, 145, .28) inset,
+                0 0 22px rgba(167, 139, 250, .28);
+        }
+
+        /* Card principal */
+        body.vx-manifesto .card {
+            width: 100%;
+            border-radius: var(--vx-radius-lg);
+            background: linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+            border: 1px solid rgba(255, 255, 255, .14);
+            box-shadow: var(--vx-shadow);
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%);
+            overflow: hidden;
+            position: relative;
+            border: 5px inset #eee6f6a8;
+        }
+
+        body.vx-manifesto .card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            pointer-events: none;
+            background: radial-gradient(500px 220px at 25% 0%, rgba(0, 229, 255, .18), transparent 60%), radial-gradient(540px 220px at 75% 0%, rgba(167, 139, 250, .22), transparent 62%), linear-gradient(180deg, rgba(255, 255, 255, .10), transparent 55%);
+            opacity: .9;
+            box-shadow: 0px 15px 30px 10px inset #ededed;
+        }
+
+        body.vx-manifesto .card__inner {
+            position: relative;
+            z-index: 1;
+            padding: 28px 26px 24px;
+        }
+
+        /* Hero text */
+        body.vx-manifesto .heroTitle {
+            font-family: var(--vx-display);
+            font-weight: 800;
+            letter-spacing: .02em;
+            margin: 0 0 20px;
+            font-size: clamp(34px, 4.6vw, 65px);
+            color: rgba(159, 24, 235, 0.96);
+            text-shadow: 0 12px 34px rgba(0, 0, 0, .50);
+        }
+
+        body.vx-manifesto .heroLead {
+            margin: 0 0 18px;
+            max-width: 72ch;
+            color: rgb(4, 201, 247);
+            font-size: clamp(15px, 1.35vw, 20px);
+            line-height: 1.7;
+        }
+
+        /* Pillars */
+        body.vx-manifesto .pillRow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 57px;
+            align-items: center;
+            margin: 10px 0 20px;
+        }
+
+        body.vx-manifesto .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 14px;
+            border-radius: var(--vx-radius-pill);
+            border: 3px inset rgba(42, 112, 223, 0.5);
+            background: radial-gradient(120% 160% at 50% 0%, rgba(255, 255, 255, .12), transparent 55%), rgba(10, 8, 24, .55);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, .05) inset;
+            font-family: var(--vx-display);
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            font-size: 11px;
+            color: rgba(231, 233, 255, .92);
+            text-shadow: 0 0 3px aqua;
+        }
+
+        /* Grid de conteúdo */
+        body.vx-manifesto .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        body.vx-manifesto .box {
+            border-radius: var(--vx-radius-md);
+            padding: 16px 20px 16px;
+            background: rgba(7, 8, 20, .45);
+            border: 3px inset rgba(127, 110, 248, 0.92);
+            box-shadow: 0 0 25px 10px inset #001cff6e, 0 0 10px 1px inset white;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        }
+
+        body.vx-manifesto .box:hover {
+            transform: translateY(-2px);
+            border-color: rgba(167, 139, 250, .25);
+            box-shadow:
+                0 22px 46px rgba(0, 0, 0, .55),
+                0 0 24px rgba(167, 139, 250, .18),
+                0 0 0 1px rgba(255, 255, 255, .06) inset;
+        }
+
+        body.vx-manifesto .box h3 {
+            margin: 0 0 8px;
+            font-family: var(--vx-display);
+            font-weight: 800;
+            letter-spacing: .02em;
+            font-size: 16px;
+            color: rgb(255, 126, 175);
+        }
+
+        body.vx-manifesto .box p {
+            margin: 0;
+            color: rgb(255, 255, 255);
+            line-height: 1.6;
+            font-size: 15px;
+            text-shadow: 0 0 2px white;
+        }
+
+        body.vx-manifesto .list {
+            color: rgb(255, 255, 255);
+            line-height: 1.6;
+            font-size: 14.5px;
+            text-shadow: 0 0 1px white;
+        }
+
+        body.vx-manifesto .list li {
+            margin: 6px 0;
+        }
+
+        /* CTA row */
+        body.vx-manifesto .ctaRow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        body.vx-manifesto .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 16px;
+            border-radius: var(--vx-radius-pill);
+            border: 3px outset rgb(255, 240, 180);
+            border-top-color: rgb(255, 240, 180);
+            border-right-color: rgb(255, 240, 180);
+            border-bottom-color: rgb(255, 240, 180);
+            border-left-color: rgb(255, 240, 180);
+            background: radial-gradient(140% 200% at 50% 0%, rgba(255, 255, 255, .12), transparent 60%), rgba(10, 8, 24, .70);
+            font-family: var(--vx-display);
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: rgba(231, 233, 255, .96);
+            box-shadow: 0 14px 30px rgba(37, 14, 202, 0.49);
+            transition: transform .18s ease, filter .18s ease, box-shadow .18s ease, border-color .18s ease;
+            text-shadow: 0 0 1px white;
+        }
+
+        body.vx-manifesto .btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.08);
+            border-color: rgba(255, 255, 255, .28);
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, .62),
+                0 0 22px rgba(167, 139, 250, .18);
+        }
+
+        body.vx-manifesto .btn.primary {
+            border-color: rgb(255, 243, 173);
+            background: radial-gradient(120% 200% at 50% 0%, rgba(255, 225, 39, 0.79), rgba(167, 139, 250, .18) 55%, rgb(0, 0, 0) 100%);
+        }
+
+        /* Linha final */
+        body.vx-manifesto .footerLine {
+            margin: 18px 0 0;
+            padding-top: 14px;
+            border-top: 5px double rgba(255, 255, 255, 0.31);
+            color: rgb(247, 247, 249);
+            line-height: 1.6;
+            font-size: 15px;
+            max-width: 100ch;
+        }
+
+        /* -------------------------
+   Responsividade
+------------------------- */
+        @media (max-width: 980px) {
+            body.vx-manifesto .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            body.vx-manifesto .card__inner {
+                padding: 24px 20px 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body.vx-manifesto {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            body.vx-manifesto .grid {
+                grid-template-columns: 1fr;
+            }
+
+            body.vx-manifesto .ctaRow .btn {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            body.vx-manifesto .pillRow {
+                justify-content: center;
+            }
+
+            body.vx-manifesto .heroLead {
+                font-size: 15.5px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* =========================================================
+   VOLYNX MANIFESTO — MOBILE HARD RESET (NAV OVAL FIX)
+   Cole NO FINAL do CSS do manifesto (e remova o patch anterior)
+========================================================= */
+
+        @media (max-width: 640px) {
+
+            /* segurança: nada vaza pro lado */
+            html,
+            body {
+                overflow-x: hidden;
+            }
+
+            /* 1) ZERA qualquer posicionamento absoluto/transform no topo */
+            body.vx-manifesto .top,
+            body.vx-manifesto .top * {
+                top: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                inset: auto !important;
+                transform: none !important;
+            }
+
+            /* 2) Topo vira stack simples e previsível */
+            body.vx-manifesto .top {
+                position: relative !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                gap: 12px !important;
+
+                height: auto !important;
+                min-height: 0 !important;
+                padding: 14px 12px !important;
+
+                border-radius: 18px !important;
+                background: rgba(10, 12, 24, 0.35) !important;
+                border: 1px solid rgba(255, 255, 255, 0.12) !important;
+
+                backdrop-filter: blur(10px) saturate(120%);
+                -webkit-backdrop-filter: blur(10px) saturate(120%);
+            }
+
+            body.vx-manifesto .top::before,
+            body.vx-manifesto .top::after {
+                content: none !important;
+            }
+
+            /* 3) Eye/Wordmark (sem “fugir” pra fora da tela) */
+            body.vx-manifesto .eye {
+                order: 1 !important;
+                position: relative !important;
+                width: 92px !important;
+                height: 92px !important;
+                margin: 0 auto !important;
+            }
+
+            body.vx-manifesto .eye img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                display: block !important;
+            }
+
+            body.vx-manifesto .logo-container {
+                order: 2 !important;
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+            }
+
+            body.vx-manifesto .wordmark {
+                width: min(300px, 86vw) !important;
+                max-width: 86vw !important;
+                height: auto !important;
+                display: block !important;
+            }
+
+            /* mata qualquer pseudo que desenhe o “capsule” */
+            body.vx-manifesto .crumbs::before,
+            body.vx-manifesto .crumbs::after {
+                content: none !important;
+            }
+
+            /* Links viram botões full-width (sem container oval) */
+            body.vx-manifesto .crumbs a {
+                width: 100% !important;
+                min-height: 46px !important;
+
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+
+                padding: 12px 12px !important;
+                border-radius: 999px !important;
+
+                font-size: 12px !important;
+                letter-spacing: 0.14em !important;
+                text-transform: uppercase !important;
+                white-space: nowrap !important;
+            }
+
+            /* Idiomas ficam centralizados abaixo */
+            body.vx-manifesto .crumbs .lang {
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                gap: 10px !important;
+                margin-top: 2px !important;
+            }
+
+            body.vx-manifesto .langBtn {
+                min-width: 56px !important;
+                min-height: 44px !important;
+                padding: 10px 12px !important;
+                border-radius: 999px !important;
+            }
+
+            /* 5) Conteúdo abaixo: 1 coluna no mobile */
+            body.vx-manifesto .grid {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+            }
+
+            body.vx-manifesto .ctaRow {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+
+            body.vx-manifesto .btn {
+                width: 100% !important;
+            }
+        }
+
+        /* ultra pequeno: mantém tudo respirando */
+        @media (max-width: 420px) {
+            body.vx-manifesto .top {
+                padding: 12px 10px !important;
+            }
+
+            body.vx-manifesto .wordmark {
+                width: min(276px, 88vw) !important;
+                margin: 0;
+            }
+        }
+
+
+        @media (max-width: 420px) {
+            body.vx-manifesto .crumbs {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="vx-manifesto">
+    <div class="universe-bg" aria-hidden="true"></div>
+
+    <main class="shell">
+        <section class="top" aria-label="VOLYNX Manifesto">
+            <div class="eye" aria-hidden="true">
+                <img src="/assets/oficial-volynx-eye.png" alt="" />
+            </div>
+            <div class="logo-container">
+                <img class="wordmark" src="/assets/new-wordmark.webp" alt="VOLYNX" />
+            </div>
+            <nav class="crumbs" aria-label="Shortcuts">
+                <a href="/" data-i18n="navBack">Back</a>
+                <a href="/free-tools/" data-i18n="navTools">Free tools</a>
+                <a href="/products/" data-i18n="navKits">Kits</a>
+
+                <span class="lang" role="group" aria-label="Language">
+                    <button type="button" class="langBtn" data-lang="en">EN</button>
+                    <button type="button" class="langBtn" data-lang="pt">PT</button>
+                </span>
+            </nav>
+        </section>
+
+        <section class="card" aria-label="Manifesto">
+            <div class="card__inner">
+                <h1 class="heroTitle" data-i18n="title">Why VOLYNX?</h1>
+                <p class="heroLead" data-i18n="lead">
+                    VOLYNX exists to democratize intelligent technology with a premium aesthetic and a real commitment
+                    to social
+                    impact. We build products and experiences that help people and organizations take action — with
+                    clarity, ethics
+                    and scale.
+                </p>
+
+                <div class="pillRow" aria-label="Pillars">
+                    <span class="pill" data-i18n="pillImpact">Real impact</span>
+                    <span class="pill" data-i18n="pillEthics">Ethics & privacy</span>
+                    <span class="pill" data-i18n="pillSust">Sustainability</span>
+                    <span class="pill" data-i18n="pillAccess">Accessible</span>
+                    <span class="pill" data-i18n="pillNetwork">Network effects</span>
+                </div>
+
+                <div class="grid" aria-label="Content">
+                    <article class="box">
+                        <h3 data-i18n="purposeTitle">Purpose</h3>
+                        <p data-i18n="purposeText">
+                            Make advanced technology accessible so more people can create, collaborate and solve real
+                            problems — with a
+                            focus on social causes, support, well-being and sustainability.
+                        </p>
+                    </article>
+
+                    <article class="box">
+                        <h3 data-i18n="whatTitle">What we build</h3>
+                        <p data-i18n="whatText">
+                            Tools, kits and experiences that combine impeccable design and applied intelligence — built
+                            for creators,
+                            devs and organizations that need speed, quality and trust.
+                        </p>
+                    </article>
+
+                    <article class="box">
+                        <h3 data-i18n="forTitle">Who it’s for</h3>
+                        <ul class="list">
+                            <li data-i18n="for1">NGOs and social projects that need clarity and less operational
+                                friction.</li>
+                            <li data-i18n="for2">Creators and professionals building useful things without becoming
+                                hostage to complexity.</li>
+                            <li data-i18n="for3">Teams that value privacy, accessibility and solid engineering.</li>
+                        </ul>
+                    </article>
+
+                    <article class="box">
+                        <h3 data-i18n="impactTitle">How impact happens</h3>
+                        <ul class="list">
+                            <li data-i18n="impact1">Simple tools that reduce repetitive work and free energy for the
+                                mission.</li>
+                            <li data-i18n="impact2">Fast, responsive experiences that reach more people on any device.
+                            </li>
+                            <li data-i18n="impact3">Products that connect people and resources, strengthening
+                                communities and collaboration.</li>
+                        </ul>
+                    </article>
+
+                    <article class="box">
+                        <h3 data-i18n="principlesTitle">Principles</h3>
+                        <ul class="list">
+                            <li data-i18n="p1">Clarity over noise.</li>
+                            <li data-i18n="p2">Consent-first privacy and minimal data by default.</li>
+                            <li data-i18n="p3">Accessibility as a standard, not an extra.</li>
+                            <li data-i18n="p4">Performance and stability: trust is built in milliseconds.</li>
+                            <li data-i18n="p5">Sustainability: efficiency is responsibility.</li>
+                        </ul>
+                    </article>
+
+                    <article class="box">
+                        <h3 data-i18n="transparencyTitle">Transparency</h3>
+                        <p data-i18n="transparencyText">
+                            VOLYNX prioritizes privacy and clear choices. If analytics are used, it will only be with
+                            consent — to
+                            improve the experience and measure impact responsibly.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="ctaRow" aria-label="Next steps">
+                    <a class="btn primary" href="/free-tools/" data-i18n="ctaTools">Explore tools</a>
+                    <a class="btn" href="/services/" data-i18n="ctaServices">Services</a>
+                    <a class="btn" href="/" data-i18n="ctaMain">Back to main</a>
+                </div>
+
+                <p class="footerLine" data-i18n="closing">
+                    We start impeccable and simple. We iterate fast with rigor. We measure impact.
+                    Every pixel, every millisecond and every word carries the VOLYNX standard: useful, beautiful and
+                    inevitable.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- VOLYNX Cookie Banner (mesmo consent key da main) -->
+    <div class="vx-cookie" id="vxCookie" role="dialog" aria-modal="true" aria-label="Cookie preferences" hidden>
+        <div class="vx-cookie__card">
+            <div class="vx-cookie__glow" aria-hidden="true"></div>
+
+            <div class="vx-cookie__head">
+                <div class="vx-cookie__badge" aria-hidden="true">VOLYNX</div>
+                <div class="vx-cookie__title" data-i18n="cookieTitle">Cookies & Privacy</div>
+            </div>
+
+            <p class="vx-cookie__text" data-i18n="cookieText">
+                We use essential cookies for the platform to work. With your permission, we use analytics cookies to
+                improve the
+                experience and track impact responsibly. You are in control.
+            </p>
+
+            <div class="vx-cookie__actions">
+                <button class="vx-btn vx-btn--ghost" id="vxCookiePrefs" type="button"
+                    data-i18n="cookiePrefs">Preferences</button>
+                <button class="vx-btn vx-btn--soft" id="vxCookieReject" type="button"
+                    data-i18n="cookieReject">Reject</button>
+                <button class="vx-btn vx-btn--primary" id="vxCookieAccept" type="button"
+                    data-i18n="cookieAccept">Accept</button>
+            </div>
+
+            <a class="vx-cookie__link" href="/privacy/" rel="noopener" data-i18n="cookieLink">Privacy policy</a>
+
+            <div class="vx-cookie__prefs" id="vxCookiePanel" hidden>
+                <div class="vx-cookie__prefsTitle" data-i18n="cookiePrefsTitle">Preferences</div>
+
+                <label class="vx-toggle">
+                    <input type="checkbox" checked disabled />
+                    <span class="vx-toggle__ui"></span>
+                    <span class="vx-toggle__label">
+                        <span data-i18n="cookieEssential">Essential</span>
+                        <small data-i18n="cookieEssentialSub">Always on</small>
+                    </span>
+                </label>
+
+                <label class="vx-toggle">
+                    <input type="checkbox" id="vxConsentAnalytics" />
+                    <span class="vx-toggle__ui"></span>
+                    <span class="vx-toggle__label">
+                        <span data-i18n="cookieAnalytics">Analytics</span>
+                        <small data-i18n="cookieAnalyticsSub">Helps improve the experience</small>
+                    </span>
+                </label>
+
+                <div class="vx-cookie__prefsActions">
+                    <button class="vx-btn vx-btn--soft" id="vxCookieSave" type="button"
+                        data-i18n="cookieSave">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- i18n (EN/PT) -->
+    <script>
+        (function () {
+            const LANG_KEY = "volynx_lang_v1";
+
+            const dict = {
+                en: {
+                    navBack: "Back",
+                    navTools: "Free tools",
+                    navKits: "Kits",
+
+                    title: "Why VOLYNX?",
+                    lead: "VOLYNX exists to democratize intelligent technology with a premium aesthetic and a real commitment to social impact. We build products and experiences that help people and organizations take action — with clarity, ethics and scale.",
+
+                    pillImpact: "Real impact",
+                    pillEthics: "Ethics & privacy",
+                    pillSust: "Sustainability",
+                    pillAccess: "Accessible",
+                    pillNetwork: "Network effects",
+
+                    purposeTitle: "Purpose",
+                    purposeText: "Make advanced technology accessible so more people can create, collaborate and solve real problems — with a focus on social causes, support, well-being and sustainability.",
+
+                    whatTitle: "What we build",
+                    whatText: "Tools, kits and experiences that combine impeccable design and applied intelligence — built for creators, devs and organizations that need speed, quality and trust.",
+
+                    forTitle: "Who it’s for",
+                    for1: "NGOs and social projects that need clarity and less operational friction.",
+                    for2: "Creators and professionals building useful things without becoming hostage to complexity.",
+                    for3: "Teams that value privacy, accessibility and solid engineering.",
+
+                    impactTitle: "How impact happens",
+                    impact1: "Simple tools that reduce repetitive work and free energy for the mission.",
+                    impact2: "Fast, responsive experiences that reach more people on any device.",
+                    impact3: "Products that connect people and resources, strengthening communities and collaboration.",
+
+                    principlesTitle: "Principles",
+                    p1: "Clarity over noise.",
+                    p2: "Consent-first privacy and minimal data by default.",
+                    p3: "Accessibility as a standard, not an extra.",
+                    p4: "Performance and stability: trust is built in milliseconds.",
+                    p5: "Sustainability: efficiency is responsibility.",
+
+                    transparencyTitle: "Transparency",
+                    transparencyText: "VOLYNX prioritizes privacy and clear choices. If analytics are used, it will only be with consent — to improve the experience and measure impact responsibly.",
+
+                    ctaTools: "Explore tools",
+                    ctaServices: "Services",
+                    ctaMain: "Back to main",
+
+                    closing: "We start impeccable and simple. We iterate fast with rigor. We measure impact. Every pixel, every millisecond and every word carries the VOLYNX standard: useful, beautiful and inevitable.",
+
+                    cookieTitle: "Cookies & Privacy",
+                    cookieText: "We use essential cookies for the platform to work. With your permission, we use analytics cookies to improve the experience and track impact responsibly. You are in control.",
+                    cookiePrefs: "Preferences",
+                    cookieReject: "Reject",
+                    cookieAccept: "Accept",
+                    cookieLink: "Privacy policy",
+                    cookiePrefsTitle: "Preferences",
+                    cookieEssential: "Essential",
+                    cookieEssentialSub: "Always on",
+                    cookieAnalytics: "Analytics",
+                    cookieAnalyticsSub: "Helps improve the experience",
+                    cookieSave: "Save"
+                },
+
+                pt: {
+                    navBack: "Voltar",
+                    navTools: "Ferramentas grátis",
+                    navKits: "Kits",
+
+                    title: "Why VOLYNX?",
+                    lead: "A VOLYNX existe para democratizar tecnologia inteligente com uma estética premium e um compromisso real com impacto social. Criamos produtos e experiências que ajudam pessoas e organizações a agir — com clareza, ética e escala.",
+
+                    pillImpact: "Impacto real",
+                    pillEthics: "Ética & privacidade",
+                    pillSust: "Sustentabilidade",
+                    pillAccess: "Acessível",
+                    pillNetwork: "Efeito de rede",
+
+                    purposeTitle: "Propósito",
+                    purposeText: "Tornar tecnologia avançada acessível para que mais pessoas possam criar, colaborar e resolver problemas reais — com foco em causas sociais, suporte, bem-estar e sustentabilidade.",
+
+                    whatTitle: "O que criamos",
+                    whatText: "Ferramentas, kits e experiências que unem design impecável e inteligência aplicada — pensadas para criadores, devs e organizações que precisam de velocidade, qualidade e confiança.",
+
+                    forTitle: "Para quem é",
+                    for1: "ONGs e projetos sociais que precisam de clareza e menos atrito operacional.",
+                    for2: "Criadores e profissionais construindo coisas úteis, sem virar refém da complexidade.",
+                    for3: "Times que valorizam privacidade, acessibilidade e engenharia sólida.",
+
+                    impactTitle: "Como o impacto acontece",
+                    impact1: "Ferramentas simples que reduzem trabalho repetitivo e liberam energia para a missão.",
+                    impact2: "Experiências rápidas e responsivas para alcançar mais pessoas — em qualquer dispositivo.",
+                    impact3: "Produtos que conectam pessoas e recursos, fortalecendo comunidades e colaboração.",
+
+                    principlesTitle: "Princípios",
+                    p1: "Clareza antes de ruído.",
+                    p2: "Privacidade com consentimento explícito e dados mínimos por padrão.",
+                    p3: "Acessibilidade como padrão, não como “extra”.",
+                    p4: "Performance e estabilidade: confiança é construída em milissegundos.",
+                    p5: "Sustentabilidade: eficiência também é responsabilidade.",
+
+                    transparencyTitle: "Transparência",
+                    transparencyText: "A VOLYNX prioriza privacidade e escolhas claras. Se usarmos analytics, será apenas com consentimento — para melhorar a experiência e medir impacto de forma responsável.",
+
+                    ctaTools: "Explorar ferramentas",
+                    ctaServices: "Serviços",
+                    ctaMain: "Voltar para a main",
+
+                    closing: "Começamos impecáveis e simples. Iteramos rápido com rigor. Medimos impacto. Cada pixel, cada milissegundo e cada palavra carregam o padrão VOLYNX: útil, belo e inevitável.",
+
+                    cookieTitle: "Cookies & Privacidade",
+                    cookieText: "Usamos cookies essenciais para a plataforma funcionar. Com sua permissão, usamos cookies de analytics para melhorar a experiência e acompanhar impacto de forma responsável. Você está no controle.",
+                    cookiePrefs: "Preferências",
+                    cookieReject: "Recusar",
+                    cookieAccept: "Aceitar",
+                    cookieLink: "Política de Privacidade",
+                    cookiePrefsTitle: "Preferências",
+                    cookieEssential: "Essenciais",
+                    cookieEssentialSub: "Sempre ativos",
+                    cookieAnalytics: "Analytics",
+                    cookieAnalyticsSub: "Ajuda a melhorar a experiência",
+                    cookieSave: "Salvar"
+                }
+            };
+
+            function getSavedLang() {
+                const saved = localStorage.getItem(LANG_KEY);
+                if (saved === "en" || saved === "pt") return saved;
+                return "en"; // default EN (como você pediu)
+            }
+
+            function applyLang(lang) {
+                document.documentElement.lang = (lang === "pt") ? "pt-BR" : "en";
+
+                document.querySelectorAll("[data-i18n]").forEach((el) => {
+                    const key = el.getAttribute("data-i18n");
+                    const val = dict[lang] && dict[lang][key];
+                    if (typeof val === "string") el.textContent = val;
+                });
+
+                document.querySelectorAll(".langBtn").forEach((b) => {
+                    b.classList.toggle("is-on", b.getAttribute("data-lang") === lang);
+                });
+            }
+
+            const lang = getSavedLang();
+            applyLang(lang);
+
+            document.querySelectorAll(".langBtn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const next = btn.getAttribute("data-lang");
+                    localStorage.setItem(LANG_KEY, next);
+                    applyLang(next);
+                });
+            });
+        })();
+    </script>
+
+    <!-- GA4: carrega só com consentimento -->
+    <script>
+        (function () {
+            const GA_ID = "G-N820406NJ2";
+
+            function getConsent() {
+                try { return JSON.parse(localStorage.getItem("volynx_consent_v1") || "null"); }
+                catch { return null; }
+            }
+
+            function loadGA4() {
+                if (!GA_ID || GA_ID.includes("XXXX")) return;
+                if (window.__ga4Loaded) return;
+                window.__ga4Loaded = true;
+
+                const s = document.createElement("script");
+                s.async = true;
+                s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+                document.head.appendChild(s);
+
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function () { window.dataLayer.push(arguments); };
+
+                gtag("js", new Date());
+                gtag("config", GA_ID);
+            }
+
+            function onConsent(consent) {
+                if (!consent) return;
+                if (consent.analytics) loadGA4();
+            }
+
+            onConsent(getConsent());
+            window.addEventListener("volynx:consent", function (e) {
+                onConsent(e.detail);
+            });
+        })();
+    </script>
+
+    <!-- Cookie banner logic -->
+    <script>
+        (function () {
+            const KEY = "volynx_consent_v1";
+
+            const el = document.getElementById("vxCookie");
+            const panel = document.getElementById("vxCookiePanel");
+            const btnAccept = document.getElementById("vxCookieAccept");
+            const btnReject = document.getElementById("vxCookieReject");
+            const btnPrefs = document.getElementById("vxCookiePrefs");
+            const btnSave = document.getElementById("vxCookieSave");
+            const chkAnalytics = document.getElementById("vxConsentAnalytics");
+
+            function read() {
+                try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch { return null; }
+            }
+            function write(consent) {
+                localStorage.setItem(KEY, JSON.stringify(consent));
+                window.dispatchEvent(new CustomEvent("volynx:consent", { detail: consent }));
+            }
+            function open() { el.hidden = false; requestAnimationFrame(() => el.classList.add("is-on")); }
+            function close() { el.classList.remove("is-on"); setTimeout(() => (el.hidden = true), 160); }
+
+            const saved = read();
+            if (!saved) open();
+
+            btnAccept.addEventListener("click", () => {
+                write({ essential: true, analytics: true, ts: Date.now() });
+                close();
+            });
+
+            btnReject.addEventListener("click", () => {
+                write({ essential: true, analytics: false, ts: Date.now() });
+                close();
+            });
+
+            btnPrefs.addEventListener("click", () => {
+                panel.hidden = !panel.hidden;
+                if (!panel.hidden) {
+                    const s = read();
+                    chkAnalytics.checked = !!(s && s.analytics);
+                }
+            });
+
+            btnSave.addEventListener("click", () => {
+                write({ essential: true, analytics: chkAnalytics.checked, ts: Date.now() });
+                close();
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

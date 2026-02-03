@@ -1,0 +1,13 @@
+[build]
+  publish = "Deployed"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/verify/*"
+  to = "/verify/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/submit/*"
+  to = "/submit/index.html"
+  status = 200
