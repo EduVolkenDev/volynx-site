@@ -241,10 +241,11 @@
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            background: linear-gradient(180deg, rgba(7, 8, 20, 0.1), rgba(7, 8, 20, 0)), url("./assets/lucid5.webp");
+            background: linear-gradient(180deg, rgba(7, 8, 20, 0.1), rgba(7, 8, 20, 0)), url("./assets/lucid5.jpg");
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-repeat: no-repeat;
+            background-attachment: scroll;
             opacity: .90;
         }
 
@@ -323,7 +324,8 @@
             align-items: center;
             opacity: 0;
             position: relative;
-            overflow: visible;
+            overflow: hidden;
+            border-radius: 50%;
             animation: fadeInSoftEye 2.1s ease forwards, eyeFloat 4.6s ease-in-out 2s infinite;
         }
 
@@ -343,18 +345,18 @@
 
         .eye-sheen {
             position: absolute;
-            top: 32%;
-            left: 50%;
-            width: 50%;
-            height: 50%;
+            top: 8%;
+            left: 8%;
+            width: 45%;
+            height: 45%;
             pointer-events: none;
             mix-blend-mode: screen;
-            opacity: 1;
-            filter: blur(0.9px) brightness(140%);
+            opacity: 0.75;
+            filter: blur(1px) brightness(130%);
             z-index: 3;
-            transform: translate3d(-120%, -175%, 0) rotate(30deg);
-            background: linear-gradient(61deg, #ffffff3d 30%, rgba(255, 255, 255, 0.738) 15%, rgba(255, 255, 255, .31) 20%, rgba(255, 255, 255, .04) 60%, #f5f2f20a -25%);
-            clip-path: ellipse(32% 85% at 40% 20%);
+            transform: translate3d(0, 0, 0) rotate(25deg);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+            clip-path: ellipse(40% 80% at 35% 25%);
             animation: eyeSheen 3.3s ease-in-out infinite;
             animation-delay: 1.2s;
         }
@@ -377,7 +379,7 @@
             }
 
             50% {
-                transform: translateY(18px);
+                transform: translateY(aparece tambem px);
             }
         }
 
