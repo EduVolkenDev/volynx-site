@@ -8,53 +8,15 @@
     <title>VOLYNX — Building a Smarter Future</title>
     <link rel="preload" as="image" href="/assets/lucid5.webp" />
     <link rel="preload" as="image" href="/assets/wordmark.webp">
-    <link rel="icon" type="image/png" href="/assets/favicon-64.png" sizes="64x64" />
-    <link rel="icon" type="image/png" href="/assets/favicon-32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/assets/favicon-16.png" sizes="16x16" />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
     <link rel="preload" as="image" href="/assets/volynx-icon.webp">
     <meta name="apple-mobile-web-app-title" content="Volynx" />
-
-    <script>document.documentElement.classList.add('js');</script>
+    <link rel="manifest" href="/assets/site.webmanifest" />
 
     <style>
-        /* ========================================
-           INTRO ANIMATIONS & EFFECTS
-        ======================================== */
-
-        /* Estado inicial (antes de carregar) - apenas fade simples */
-        html.js:not(.is-ready) body {
-            opacity: 0;
-        }
-
-        /* Quando o JS aplica .is-ready - apenas fade in suave */
-        html.is-ready body {
-            animation: bodyFadeIn 800ms ease-out both;
-        }
-
-        /* Keyframes - apenas fade in do body */
-        @keyframes bodyFadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Acessibilidade */
-        @media (prefers-reduced-motion: reduce) {
-            html:not(.is-ready) body {
-                opacity: 1 !important;
-            }
-
-            body {
-                animation: none !important;
-            }
-        }
-
         /* ========================================
            FONT FACES
         ======================================== */
@@ -343,20 +305,19 @@
 
         .eye-sheen {
             position: absolute;
-            top: 32%;
+            top: 35%;
             left: 50%;
-            width: 50%;
-            height: 50%;
+            width: 20%;
+            height: 25%;
             pointer-events: none;
             mix-blend-mode: screen;
             opacity: 1;
-            filter: blur(0.9px) brightness(140%);
+            filter: blur(.4px) brightness(120%);
             z-index: 3;
-            transform: translate3d(-120%, -175%, 0) rotate(30deg);
-            background: linear-gradient(61deg, #ffffff3d 30%, rgba(255, 255, 255, 0.738) 15%, rgba(255, 255, 255, .31) 20%, rgba(255, 255, 255, .04) 60%, #f5f2f20a -25%);
-            clip-path: ellipse(32% 85% at 40% 20%);
-            animation: eyeSheen 3.3s ease-in-out infinite;
-            animation-delay: 1.2s;
+            transform: translate3d(-29%, -5%, 0) rotate(30deg);
+            background: linear-gradient(61deg, #ffffff12 30%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.22) 20%, rgba(255, 255, 255, 0) 60%, #f5f2f20a -35%);
+            clip-path: ellipse(32% 85% at 30% 30%);
+            animation: eyeSheen 4s ease-in-out infinite;
         }
 
         @keyframes fadeInSoftEye {
@@ -377,7 +338,7 @@
             }
 
             50% {
-                transform: translateY(18px);
+                transform: translateY(15px);
             }
         }
 
@@ -1325,17 +1286,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Intro: dispara quando tudo carregou (evita "flash" feio)
-        (() => {
-            const root = document.documentElement;
-            const fire = () => requestAnimationFrame(() => root.classList.add("is-ready"));
-
-            if (document.readyState === "complete") fire();
-            else window.addEventListener("load", fire, { once: true });
-        })();
-    </script>
 </body>
 
 </html>

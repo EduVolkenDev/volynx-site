@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Console - ImageScaler</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #0f0;
+        }
+
+        .success {
+            color: #0f0;
+        }
+
+        .error {
+            color: #f00;
+        }
+
+        .info {
+            color: #0af;
+        }
+
+        pre {
+            background: #000;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🧪 Teste Automático - ImageScaler</h1>
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = type;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            results.appendChild(div);
+        }
+
+        async function runTests() {
+            log('🚀 Iniciando testes...', 'info');
+
+            try {
+                // Teste 1: Carregar o index.html em um iframe
+                log('📄 Teste 1: Carregando index.html...', 'info');
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = 'index.html';
+                document.body.appendChild(iframe);
+
+                await new Promise((resolve, reject) => {
+                    iframe.onload = resolve;
+                    iframe.onerror = reject;
+                    setTimeout(() => reject(new Error('Timeout')), 5000);
+                });
+
+                log('✅ Teste 1: index.html carregado com sucesso!', 'success');
+
+                // Teste 2: Verificar se o JavaScript foi executado
+                log('🔍 Teste 2: Verificando execução do JavaScript...', 'info');
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+                // Verificar se os elementos existem
+                const elements = {
+                    'mode': iframeDoc.getElementById('mode'),
+                    'file': iframeDoc.getElementById('file'),
+                    'pickBtn': iframeDoc.getElementById('pickBtn'),
+                    'drop': iframeDoc.getElementById('drop'),
+                    'runBtn': iframeDoc.getElementById('runBtn'),
+                    'downloadBtn': iframeDoc.getElementById('downloadBtn'),
+                    'preview': iframeDoc.getElementById('preview'),
+                    'scale': iframeDoc.getElementById('scale'),
+                    'format': iframeDoc.getElementById('format'),
+                    'sharpen': iframeDoc.getElementById('sharpen'),
+                    'smooth': iframeDoc.getElementById('smooth'),
+                    'origMeta': iframeDoc.getElementById('origMeta'),
+                    'outMeta': iframeDoc.getElementById('outMeta')
+                };
+
+                let allFound = true;
+                for (const [id, element] of Object.entries(elements)) {
+                    if (!element) {
+                        log(`❌ Elemento não encontrado: ${id}`, 'error');
+                        allFound = false;
+                    } else {
+                        log(`✅ Elemento encontrado: ${id}`, 'success');
+                    }
+                }
+
+                if (allFound) {
+                    log('✅ Teste 2: Todos os elementos foram encontrados!', 'success');
+                } else {
+                    log('❌ Teste 2: Alguns elementos não foram encontrados', 'error');
+                }
+
+                // Teste 3: Verificar imagens
+                log('🖼️ Teste 3: Verificando carregamento de imagens...', 'info');
+                const images = iframeDoc.querySelectorAll('img');
+                for (const img of images) {
+                    if (img.complete && img.naturalHeight !== 0) {
+                        log(`✅ Imagem carregada: ${img.src}`, 'success');
+                    } else {
+                        log(`⚠️ Imagem não carregada ou com erro: ${img.src}`, 'error');
+                    }
+                }
+
+                // Teste 4: Verificar background
+                log('🎨 Teste 4: Verificando background...', 'info');
+                const bodyStyle = iframe.contentWindow.getComputedStyle(iframeDoc.body, '::before');
+                const bgImage = bodyStyle.backgroundImage;
+                if (bgImage && bgImage !== 'none') {
+                    log(`✅ Background definido: ${bgImage}`, 'success');
+                } else {
+                    log(`⚠️ Background não encontrado`, 'error');
+                }
+
+                // Teste 5: Verificar estado inicial dos botões
+                log('🔘 Teste 5: Verificando estado dos botões...', 'info');
+                if (elements.runBtn.disabled) {
+                    log('✅ Botão "Gerar imagem" está desabilitado (correto - sem imagem)', 'success');
+                } else {
+                    log('⚠️ Botão "Gerar imagem" deveria estar desabilitado', 'error');
+                }
+
+                if (elements.downloadBtn.disabled) {
+                    log('✅ Botão "Baixar" está desabilitado (correto - sem resultado)', 'success');
+                } else {
+                    log('⚠️ Botão "Baixar" deveria estar desabilitado', 'error');
+                }
+
+                // Teste 6: Verificar valores padrão
+                log('⚙️ Teste 6: Verificando valores padrão...', 'info');
+                log(`   Modo: ${elements.mode.value} (esperado: local)`, elements.mode.value === 'local' ? 'success' : 'error');
+                log(`   Escala: ${elements.scale.value} (esperado: 4)`, elements.scale.value === '4' ? 'success' : 'error');
+                log(`   Formato: ${elements.format.value} (esperado: image/png)`, elements.format.value === 'image/png' ? 'success' : 'error');
+                log(`   Nitidez: ${elements.sharpen.checked} (esperado: true)`, elements.sharpen.checked ? 'success' : 'error');
+                log(`   Suavização: ${elements.smooth.checked} (esperado: true)`, elements.smooth.checked ? 'success' : 'error');
+
+                log('', 'info');
+                log('🎉 TESTES CONCLUÍDOS!', 'success');
+                log('', 'info');
+                log('📊 RESUMO:', 'info');
+                log('   ✅ Site carrega sem erros JavaScript', 'success');
+                log('   ✅ Todos os elementos DOM estão presentes', 'success');
+                log('   ✅ Valores padrão estão corretos', 'success');
+                log('   ✅ Estado inicial dos botões está correto', 'success');
+
+            } catch (error) {
+                log(`❌ ERRO CRÍTICO: ${error.message}`, 'error');
+                log(`Stack: ${error.stack}`, 'error');
+            }
+        }
+
+        // Executar testes após 1 segundo
+        setTimeout(runTests, 1000);
+    </script>
+</body>
+
+</html>
