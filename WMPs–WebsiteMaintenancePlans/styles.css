@@ -1,0 +1,927 @@
+:root {
+  --bg: #05010d;
+  --panel: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+  --primary: #a855f7;
+  --primary-soft: rgba(168, 85, 247, .15);
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, .65);
+}
+
+* {
+  box-sizing: border-box;
+  margin: auto0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(circle at top, #12001f, var(--bg));
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.6;
+  display: grid;
+  grid-template-rows: auto 100vh auto auto auto;
+  /* Header (auto), Hero (100vh), Hero-content section (auto), Plans (auto), CTA (auto) */
+  overflow-y: auto;
+  /* Permite rolagem se necessário */
+}
+
+.wmp-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  width: 100%;
+  height: 100svh;
+  background: linear-gradient(180deg, rgba(7, 8, 20, 0.1), rgba(7, 8, 20, 0)), url("./assets/seedream22.jpg");
+}
+
+.wmp-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 8, 20, 0.09), rgba(7, 8, 20, 0)), url("./assets/seedream22.jpg");
+  /* Ajustei o alpha de 0.1 para 0.09 para ~90% efeito, mas sem opacity global */
+  background-position-x: 0%, 0%;
+  background-position-y: 0%, 0%;
+  background-repeat: repeat, repeat;
+  background-size: auto, auto;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: round;
+  /* Remova completamente: opacity: .90; */
+  height: 110%;
+}
+
+.wmp-bg::before {
+  content: none;
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: none;
+  opacity: 0;
+  margin: -10px;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  background: rgba(13, 4, 22, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+  box-shadow: 0 4px 24px rgba(168, 85, 247, 0.1);
+  padding-top: env(safe-area-inset-top);
+}
+
+.topbar__inner {
+  max-width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand__mark {
+  width: 70px;
+  height: 60px;
+  border-radius: 10px;
+  background:
+    radial-gradient(20px 20px at 30% 30%, rgba(168, 85, 247, .5), transparent 70%),
+    radial-gradient(24px 24px at 70% 70%, rgba(6, 182, 212, .4), transparent 70%),
+    linear-gradient(135deg, rgba(168, 85, 247, .2), rgba(6, 182, 212, .15));
+  display: grid;
+  background-image: url("./assets/volynx-icon.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  place-items: center;
+  font-weight: 900;
+  letter-spacing: .5px;
+  flex: 0 0 auto;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+}
+
+.brand__text {
+  display: grid;
+  line-height: 1.1;
+  min-width: 0;
+}
+
+.brand__text strong {
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 900;
+  color: #9837e9;
+}
+
+.brand__text span {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav {
+  display: none;
+  gap: 10px;
+  align-items: center;
+}
+
+.menuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(168, 85, 247, .1);
+  border: 1px solid rgba(168, 85, 247, .3);
+  box-shadow: 0 4px 16px rgba(168, 85, 247, .2);
+  cursor: pointer;
+  color: var(--text);
+  font-size: 18px;
+  transition: var(--transition);
+}
+
+.menuBtn:hover {
+  background: rgba(168, 85, 247, .2);
+  border-color: rgba(168, 85, 247, .5);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, .3);
+}
+
+.chip {
+  display: grid;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 25px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, .25), rgba(6, 182, 212, .2));
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: rgba(255, 255, 255, .95);
+  font-size: 13px;
+  box-shadow: 0 4px 16px rgba(168, 85, 247, .3), inset 0 1px 1px rgba(255, 255, 255, .1);
+  white-space: nowrap;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  text-decoration: none;
+  transform: translateX(55vw);
+}
+
+.chip:hover {
+  background: linear-gradient(135deg, rgba(168, 85, 247, .4), rgba(6, 182, 212, .35));
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, .5);
+}
+
+.drawer {
+  display: none;
+  border-top: 1px solid rgba(168, 85, 247, .2);
+  background: rgba(13, 4, 22, .9);
+  backdrop-filter: blur(20px);
+}
+
+.drawer.open {
+  display: block;
+}
+
+.drawer__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 10px var(--pad) 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-layout {
+  display: grid;
+  max-width: 100%;
+  height: 80%;
+  width: 100%;
+}
+
+/* Estilo geral da seção hero */
+/* Hero section: fundo com logo centralizada */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* Overlay sutil para modernidade e legibilidade (se a logo precisar de fundo) */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.75) 100%);
+  z-index: 1;
+  border-bottom: 2px outset;
+  margin: -10px;
+}
+
+/* Logo centralizada e maior */
+.hero-logo {
+  position: relative;
+  z-index: 2;
+  max-width: 1350px;
+  width: 100%;
+  height: auto;
+  opacity: 0.95;
+  scale: 1.3;
+  max-width: 1330px;
+  transition: all 1.2s ease-in-out;
+}
+
+.hero-logo:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  /* Efeito de zoom suave ao hover para modernidade */
+}
+
+.hero-logo img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+  /* Sombra maior para destaque */
+}
+
+/* Section separada para o conteúdo (abaixo da hero) */
+.content-section {
+  padding: 4rem 2rem;
+  /* Espaçamento para não grudar na hero */
+  text-align: center;
+  background: #fff;
+  /* Fundo branco ou o que preferir para contraste */
+}
+
+.hero-content {
+  max-width: 50%;
+  margin: 100px 0px 0px 480px;
+  color: #f3eeee;
+  background: #6a1fb52e;
+  padding: 70px;
+  border: 3px inset;
+  border-radius: 30px;
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  /* Ajuste conforme seu tema */
+}
+
+.hero-sub {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+  font-weight: 650;
+  color: #f709e9;
+}
+
+/* Botões */
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: grid;
+  align-items: center;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(213deg, #13e4da 0%, #8b1ec980, #ffffff82, #8b1ec9, #8b1ec93b, #8b1ec99e, #ffffff78, #8b1ec98f, #ffffff75, #8b1ec97a, #ffffff82, #13e4da 100%);
+  color: white;
+  text-shadow: 0px 0px 2px rgb(255, 255, 255),
+    0px 0px 13px #191111;
+  border: 3px inset #8aecf1;
+  margin-top: 20px;
+  opacity: 0.8;
+  max-width: 350px;
+  width: 100%;
+  justify-content: center;
+  height: 70px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn--ghost {
+  background: linear-gradient(32deg, #00ffff8c 0%, #00ffff7d, #80007ead, #00ffff73, #80007e, #2ac9da61, #00ffff78, #80007e, #2aa0da82 132%);
+  color: #fafbfc;
+  border-color: #007bff;
+}
+
+.btn--ghost:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .hero {
+    height: 50vh;
+    /* Menor em mobile */
+  }
+
+  .hero-logo {
+    max-width: 250px;
+    /* Logo menor em telas pequenas */
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content-section {
+    padding: 2rem 1rem;
+  }
+}
+
+/* ===== Plans Section ===== */
+.plans {
+  max-width: 1300px;
+  margin: 0 auto;
+  /* Mude de -200px para 0 ou um valor positivo pequeno, ex.: 50px auto */
+  text-align: center;
+  /* Adicione padding para espaçamento interno */
+  height: auto;
+  padding-bottom: 100px;
+  margin-bottom: 80px;
+}
+
+.plans h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.plans .section-sub {
+  font-size: 18px;
+  color: #aaa;
+  margin-bottom: 48px;
+}
+
+/* Grid dos cards */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Plan Card */
+.plan-card {
+  position: relative;
+  background: #0f0f14;
+  border-radius: 24px;
+  padding: 8rem 1.5rem 3.4rem;
+  /* Ajustado para dar espaço ao topo (para a imagem absoluta) */
+  display: grid;
+  /* Mudança: de 'block' para 'grid' para usar grid-template-rows */
+  grid-template-rows: 90px 90px 1fr auto;
+  /* Define linhas: espaço para imagem, cabeçalho, descrição/lista, botão */
+  text-align: left;
+  overflow: visible;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0px 25px;
+  width: 80%;
+  height: auto;
+  border: 2px inset;
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(166, 12, 251, 0.3);
+}
+
+/* Icon */
+.planimg {
+  position: absolute;
+  top: -45px;
+  left: -45px;
+  pointer-events: none;
+}
+
+.plan-tier {
+  width: 170px;
+  height: auto;
+  display: block;
+}
+
+/* Header and description */
+.plan-header {
+  display: flex;
+  align-items: center;
+}
+
+.plan-card h3 {
+  margin: 0;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.plan-desc {
+  font-size: 18px;
+  color: #d694fb;
+  margin-top: 0;
+  margin-bottom: 30px;
+  align-self: center;
+  line-height: 22px;
+  font-weight: 600;
+  text-align: start;
+  font-style: italic;
+}
+
+/* List features */
+.plan-opal {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Featured / Diamond Cards */
+.plan-saphyra {
+  background: rgba(166, 12, 251, 0.15);
+  border-color: rgba(166, 12, 251, 0.4);
+}
+
+.plan-diamond {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+/* ===== Buttons ===== */
+
+.btn.btn-opal {
+  text-align: center;
+  line-height: 25px;
+  background: url("./assets/btnopalofi.png") no-repeat center / cover;
+  display: grid;
+  border-radius: 15px;
+
+}
+
+.btn.btn-saphyra {
+  text-align: center;
+  line-height: 15px;
+  background: url("./assets/btnsaphyrabg.png") no-repeat center / cover;
+  display: grid;
+  border-radius: 15px;
+}
+
+.btn.btn-diamond {
+  text-align: center;
+  line-height: 25px;
+  background: url("./assets/btndiamondbg.png") no-repeat center / cover;
+  display: grid;
+  border-radius: 15px;
+
+}
+
+.btn.btn-opal:hover {
+  filter: brightness(1.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+  border: 3px outline black;
+}
+
+.btn.btn-saphyra:hover {
+  filter: brightness(1.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+  border: 3px outline black;
+}
+
+.btn.btn-diamond:hover {
+  filter: brightness(1.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+  border: 3px outline black;
+}
+
+.cta {
+  display: grid;
+  width: 100%;
+  min-height: 50vh;
+  /* Altura mínima para ocupar espaço – ajuste para 100vh se quiser tela cheia */
+  padding: 4rem 2rem;
+  /* Espaçamento interno para o conteúdo não grudar nas bordas */
+  text-align: center;
+  /* Centraliza o texto */
+  background: rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(10px);
+  border-top: 2px solid rgba(255, 255, 255, 0.41);
+  place-items: center;
+  gap: 2rem;
+}
+
+.cta h2 {
+  font-size: 2.5rem;
+  /* Tamanho grande para destaque */
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+  /* Branco, herdado do body */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  /* Sombra para contraste */
+}
+
+.cta p {
+  font-size: 1.2rem;
+  color: var(--muted);
+  /* Cinza claro para subtítulo */
+  max-width: 600px;
+  /* Limita largura para legibilidade */
+  margin: 0 auto;
+  /* Centraliza */
+  line-height: 1.6;
+}
+
+.cta .btn {
+  /* Herda do .btn geral, mas ajuste se necessário */
+  max-width: 300px;
+  /* Limita largura do botão */
+  justify-self: center;
+  /* Centraliza no grid */
+}
+
+@media (max-width: 768px) {
+
+  /* Body: Mude para flexbox para melhor controle em mobile */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Garante altura mínima sem overflow */
+    grid-template-rows: none;
+    /* Remove grid para evitar conflitos */
+  }
+
+  /* Topbar: Reduza tamanhos e ajuste layout */
+  .topbar__inner {
+    max-width: 95%;
+    /* Mais espaço lateral */
+    padding: 10px;
+    /* Padding menor */
+    gap: 5px;
+    /* Gap reduzido */
+  }
+
+  .brand__mark {
+    width: 50px;
+    /* Menor para caber */
+    height: 50px;
+  }
+
+  .brand__text strong {
+    font-size: 11px;
+    /* Fonte menor */
+  }
+
+  .brand__text span {
+    font-size: 10px;
+  }
+
+  .chip {
+    padding: 8px 15px;
+    /* Padding menor */
+    font-size: 11px;
+    transform: none;
+    /* Remove translateX para não deslocar */
+  }
+
+  /* Hero: Altura menor e centralização */
+  .hero {
+    height: 60vh;
+    /* Menor que 100vh para economizar espaço */
+  }
+
+  .hero-logo {
+    max-width: 100%;
+    /* Ajuste para telas pequenas */
+    scale: 1;
+    /* Remove scale para evitar overflow */
+    width: 100vw;
+  }
+
+  /* Hero-content: Centralize e remova margem fixa */
+  .hero-content {
+    max-width: 90%;
+    /* Largura relativa */
+    margin: 20px auto;
+    /* Centraliza vertical/horizontal */
+    padding: 30px;
+    /* Padding menor */
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+    /* Fonte menor */
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    /* Botões empilhados */
+    gap: 0.5rem;
+  }
+
+  .btn {
+    max-width: 100%;
+    /* Largura total */
+    height: 50px;
+    /* Altura menor */
+  }
+
+  /* Plans: Grid de 1 coluna e espaçamento ajustado */
+  .plans {
+    padding: 2rem 1rem;
+    /* Padding menor */
+    margin-bottom: 40px;
+    /* Margem reduzida */
+  }
+
+  .plans h2 {
+    font-size: 28px;
+    /* Fonte menor */
+  }
+
+  .plans .section-sub {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .plans-grid {
+    grid-template-columns: 1fr;
+    /* 1 coluna em mobile */
+    gap: 1.5rem;
+    /* Gap menor */
+  }
+
+  .plan-card {
+    width: 100%;
+    /* Largura total */
+    margin: 0;
+    /* Remove margem lateral */
+    padding: 6rem 1rem 2rem;
+    /* Padding ajustado */
+  }
+
+  .plan-tier {
+    width: 120px;
+    /* Menor para mobile */
+  }
+
+  .plan-desc {
+    font-size: 16px;
+  }
+
+  .btn.btn-opal,
+  .btn.btn-saphyra,
+  .btn.btn-diamond {
+    height: 50px;
+    /* Altura consistente */
+    font-size: 14px;
+  }
+
+  /* CTA: Ajustes para mobile */
+  .cta {
+    min-height: 40vh;
+    /* Menor altura */
+    padding: 2rem 1rem;
+    gap: 1rem;
+  }
+
+  .cta h2 {
+    font-size: 2rem;
+  }
+
+  .cta p {
+    font-size: 1rem;
+    max-width: 100%;
+    /* Largura total */
+  }
+
+  .cta .btn {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .plans h2 {
+    font-size: 24px;
+  }
+
+  .plan-card {
+    padding: 5rem 0.5rem 1.5rem;
+  }
+
+  .cta h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1400px) {
+
+  /* Body: Mantenha grid, mas ajuste alturas */
+  body {
+    grid-template-rows: auto 80vh auto auto auto;
+    /* Reduza hero para 80vh para evitar overflow */
+  }
+
+  /* Topbar: Ajuste para telas médias */
+  .topbar__inner {
+    max-width: 90%;
+    /* Mais espaço que em mobile */
+    padding: 12px;
+  }
+
+  .brand__mark {
+    width: 60px;
+    /* Tamanho intermediário */
+    height: 55px;
+  }
+
+  .brand__text strong {
+    font-size: 14px;
+  }
+
+  .brand__text span {
+    font-size: 11px;
+  }
+
+  .chip {
+    padding: 9px 20px;
+    font-size: 12px;
+    transform: none;
+    /* Garante alinhamento */
+  }
+
+  /* Hero: Altura ajustada */
+  .hero {
+    height: 70vh;
+    /* Menor que 100vh para telas médias */
+  }
+
+  .hero-logo {
+    max-width: 1000px;
+    /* Limite para não ocupar tudo */
+    scale: 1.1;
+    /* Scale menor */
+  }
+
+  /* Hero-content: Centralize e ajuste margem */
+  .hero-content {
+    max-width: 60%;
+    /* Menor que desktop, maior que mobile */
+    margin: 50px auto;
+    /* Centraliza, remove margem esquerda fixa */
+    padding: 50px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+    /* Intermediário */
+  }
+
+  .hero-sub {
+    font-size: 1.3rem;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    /* Botões lado a lado */
+    justify-content: center;
+  }
+
+  .btn {
+    max-width: 300px;
+    /* Limite para não esticar */
+    height: 60px;
+  }
+
+  /* Plans: Grid de 2 colunas para telas médias */
+  .plans {
+    padding: 3rem 1.5rem;
+    margin-bottom: 60px;
+  }
+
+  .plans h2 {
+    font-size: 32px;
+  }
+
+  .plans .section-sub {
+    font-size: 17px;
+    margin-bottom: 40px;
+  }
+
+  .plans-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 colunas em vez de 3 */
+    gap: 2rem;
+  }
+
+  .plan-card {
+    width: 90%;
+    /* Ajuste para caber */
+    margin: 0 auto;
+    /* Centraliza */
+    padding: 7rem 1.2rem 3rem;
+  }
+
+  .plan-tier {
+    width: 150px;
+  }
+
+  .plan-desc {
+    font-size: 17px;
+  }
+
+  .btn.btn-opal,
+  .btn.btn-saphyra,
+  .btn.btn-diamond {
+    height: 55px;
+    font-size: 13px;
+  }
+
+  /* CTA: Ajustes intermediários */
+  .cta {
+    min-height: 45vh;
+    padding: 3rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .cta h2 {
+    font-size: 2.2rem;
+  }
+
+  .cta p {
+    font-size: 1.1rem;
+    max-width: 500px;
+  }
+
+  .cta .btn {
+    max-width: 250px;
+  }
+}
